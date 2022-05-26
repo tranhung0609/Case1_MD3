@@ -45,7 +45,7 @@
                                 </p>
                             </div>
                         </div>
-                        <form action="/logins" class="signin-form" method="post">
+                        <form action="<%=request.getContextPath()%>/logins" class="signin-form" method="post">
                             <div class="form-group mb-3">
                                 <label class="label" for="name">Username</label>
                                 <input name="user" type="text" id="inputEmail" class="form-control" placeholder="Username" required>
