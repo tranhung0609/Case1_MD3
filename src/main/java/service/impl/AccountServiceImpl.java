@@ -9,6 +9,15 @@ public class AccountServiceImpl implements AccountService {
 
     List<Account> accountList;
 
+    public Account login(String user, String pass) {
+        String query = "select *from accounts where [user] = ? and pass = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn
+        }
+        return null;
+    }
+
     @Override
     public List<Account> findAll() {
         return accountList;
