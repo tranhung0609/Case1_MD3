@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountServiceImpl implements IAccountService {
-    static Account currentAccount;
+    public static Account currentAccount;
     protected Connection getConnection() {
         Connection connection = null;
         try {
@@ -110,12 +110,11 @@ public class AccountServiceImpl implements IAccountService {
     }
 
     public boolean checkSignUp(Account account) throws SQLException {
-        boolean check = false;
+        boolean check = true;
         List<Account> accounts = findAll();
         for (Account a : accounts) {
-            if (!a.getEmail().equals(account.getEmail())) {
-                add(account);
-                check = true;
+            if (a.getEmail().equals(account.getEmail())) {
+                check = false;
                 break;
             }
         }

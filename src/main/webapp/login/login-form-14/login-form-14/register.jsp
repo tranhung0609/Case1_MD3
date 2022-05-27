@@ -45,18 +45,18 @@
                                 </p>
                             </div>
                         </div>
-                        <form action="<%=request.getContextPath()%>/accounts" class="signin-form" method="post">
+                        <form action="<%=request.getContextPath()%>/accounts?action=signup" class="signin-form" method="post">
                             <div class="form-group mb-3">
                                 <label class="label" for="username">Username</label>
-                                <input type="text" name="username" id="username" class="form-control" placeholder="Username">
+                                <input type="text" name="name" id="username" class="form-control" placeholder="Username">
                             </div>
                             <div class="form-group mb-3">
                                 <label class="label" for="your_email" >E-MAIL</label>
-                                <input type="text" name="your_email" id="your_email" class="form-control" placeholder="E-Mail" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
+                                <input type="text" name="email" id="your_email" class="form-control" placeholder="E-Mail" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
                             </div>
                             <div class="form-group mb-3">
                                 <label class="label" for="your_address" >ADDRESS</label>
-                                <input type="text" name="your_address" id="your_address" class="form-control" placeholder="Address" required>
+                                <input type="text" name="address" id="your_address" class="form-control" placeholder="Address" required>
                             </div>
                             <div class="form-group mb-3">
                                 <label class="label" for="password" >PASSWORD</label>
@@ -64,13 +64,13 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label class="label" for="comfirm_password" >CONFIRM PASSWORD</label>
-                                <input type="password" name="comfirm_password" id="comfirm_password" class="form-control" placeholder="Confirm Password" required>
+                                <input type="password" name="comfirmPassword" id="comfirm_password" class="form-control" placeholder="Confirm Password" required>
                             </div>
 <%--                            <div class="form-group mb-3">--%>
 <%--                                <input type="submit" name="register" class="register" value="Register" href="/homepage/minishop-master/minishop-master/shop.jsp">--%>
 <%--                            </div>--%>
                             <div class="form-group">
-                                <button type="submit" name="register" class="form-control btn btn-primary rounded submit px-3" href="">Register</button>
+                                <button type="submit" name="register" class="form-control btn btn-primary rounded submit px-3" href="/accounts?action=signup">Register</button>
                             </div>
                             <div class="form-group d-md-flex">
                                 <div class="w-50 text-left">

@@ -17,7 +17,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../../../css/style.css">
 
 </head>
 <body>
@@ -31,7 +31,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12 col-lg-10">
                 <div class="wrap d-md-flex">
-                    <div class="img" style="background-image: url(login/login-form-14/login-form-14/images/bg-1.jpg);">
+                    <div class="img" style="background-image: url(images/bg-1.jpg);">
                     </div>
                     <div class="login-wrap p-4 p-md-5">
                         <div class="d-flex">
@@ -70,7 +70,9 @@
                                 </div>
                             </div>
                         </form>
+                        <form action="/accounts?action=signup" method="post">
                         <p class="text-center">Not a member? <a href="/accounts?action=signup">Sign Up</a></p>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -78,10 +80,10 @@
     </div>
 </section>
 
-<script src="login/login-form-14/login-form-14/js/jquery.min.js"></script>
-<script src="login/login-form-14/login-form-14/js/popper.js"></script>
-<script src="login/login-form-14/login-form-14/js/bootstrap.min.js"></script>
-<script src="login/login-form-14/login-form-14/js/main.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
 
 </body>
 </html>

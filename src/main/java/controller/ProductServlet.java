@@ -7,7 +7,6 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "ProductServlet", urlPatterns = "/products")
@@ -41,8 +40,11 @@ public class ProductServlet extends HttpServlet {
             case "delete":
                 showDeleteForm(request, response);
                 break;
-            default:
-                showListProduct(request, response);
+            case "sell-list":
+                showListProductAtSell(request, response);
+                break;
+            case "buy-list":
+                showListProductAtBuy(request, response);
                 break;
         }
     }
@@ -64,9 +66,16 @@ public class ProductServlet extends HttpServlet {
 
     }
 
-    private void showListProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void showListProductAtSell(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/homepage/minishop-master/minishop-master/shop.jsp");
-        List<Product> products = productService.findAll();
+        List<Product> products = productService.findAllAtSell();
+        request.setAttribute("products", products);
+        requestDispatcher.forward(request, response);
+    }
+
+    private void showListProductAtBuy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/homepage/minishop-master/minishop-master/shop.jsp");
+        List<Product> products = productService.findAllAtBuy();
         request.setAttribute("products", products);
         requestDispatcher.forward(request, response);
     }

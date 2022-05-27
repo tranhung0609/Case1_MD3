@@ -108,11 +108,8 @@
                     <c:forEach items="${products}" var="product">
                         <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex">
                             <div class="product d-flex flex-column">
-<<<<<<< HEAD
                                 <a href="#" class="img-prod"><img class="img-fluid" src="images/product-1.png" alt="Colorlib Template">
-=======
                                 <a href="" class="img-prod"><img class="img-fluid" src="${product.image}" alt="Colorlib Template">
->>>>>>> a498283eee4f988992ef4c037c6fa9e924ce280b
                                     <div class="overlay"></div>
                                 </a>
                                 <div class="text py-3 pb-4 px-3">
@@ -130,15 +127,12 @@
                                             </p>
                                         </div>
                                     </div>
-<<<<<<< HEAD
                                     <h3><a href="#">${product.getName()}</a></h3>
                                     <div class="pricing">
                                         <p class="price"><span>${product.price}</span></p>
-=======
                                     <h3><a href="#">${product.name}</a></h3>
                                     <div class="pricing">
                                         <p class="price"><span>$${product.price}</span></p>
->>>>>>> a498283eee4f988992ef4c037c6fa9e924ce280b
                                     </div>
                                     <p class="bottom-area d-flex px-3">
                                         <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
@@ -148,8 +142,6 @@
                             </div>
                         </div>
                     </c:forEach>
-
-<<<<<<< HEAD
 <%--                    <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex">--%>
 <%--                        <div class="product d-flex flex-column">--%>
 <%--                            <a href="#" class="img-prod"><img class="img-fluid" src="images/product-2.png" alt="Colorlib Template">--%>
@@ -370,8 +362,6 @@
                             </div>
                         </div>
                     </div>
-=======
->>>>>>> a498283eee4f988992ef4c037c6fa9e924ce280b
                 </div>
                 <div class="row mt-5">
                     <div class="col text-center">
