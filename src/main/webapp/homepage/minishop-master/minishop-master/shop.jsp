@@ -399,20 +399,17 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading" role="tab" id="headingOne">
                                         <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Men's Shoes
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Men's
                                             </a>
                                         </h4>
                                     </div>
                                     <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                         <div class="panel-body">
                                             <ul>
-                                                <li><a href="#">Sport</a></li>
-                                                <li><a href="#">Casual</a></li>
-                                                <li><a href="#">Running</a></li>
-                                                <li><a href="#">Jordan</a></li>
-                                                <li><a href="#">Soccer</a></li>
-                                                <li><a href="#">Football</a></li>
-                                                <li><a href="#">Lifestyle</a></li>
+                                                <li><a href="#">Jeans</a></li>
+                                                <li><a href="#">T-Shirt</a></li>
+                                                <li><a href="#">Jacket</a></li>
+                                                <li><a href="#">Shoes</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -420,20 +417,17 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading" role="tab" id="headingTwo">
                                         <h4 class="panel-title">
-                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Women's Shoes
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Women's
                                             </a>
                                         </h4>
                                     </div>
                                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                         <div class="panel-body">
                                             <ul>
-                                                <li><a href="#">Sport</a></li>
-                                                <li><a href="#">Casual</a></li>
-                                                <li><a href="#">Running</a></li>
-                                                <li><a href="#">Jordan</a></li>
-                                                <li><a href="#">Soccer</a></li>
-                                                <li><a href="#">Football</a></li>
-                                                <li><a href="#">Lifestyle</a></li>
+                                                <li><a href="#">Jeans</a></li>
+                                                <li><a href="#">T-Shirt</a></li>
+                                                <li><a href="#">Jacket</a></li>
+                                                <li><a href="#">Shoes</a></li>
                                             </ul>
                                         </div>
                                     </div>

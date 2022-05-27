@@ -60,14 +60,14 @@
 </div>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="/homepage/minishop-master/minishop-master/homepage.jsp">Minishop</a>
+        <a class="navbar-brand" href="homepage.jsp">Minishop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a href="/homepage/minishop-master/minishop-master/homepage.jsp" class="nav-link">Home</a></li>
+                <li class="nav-item active"><a href="homepage.jsp" class="nav-link">Home</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catalog</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
@@ -190,7 +190,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <c:forEach items="${products}" var="product"> //list sản phẩm
+            <c:forEach items="${products}" var="product">
                 <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
                     <div class="product d-flex flex-column">
                         <a href="product-single.jsp" class="img-prod"><img class="img-fluid" src="images/product-1.png" alt="Colorlib Template">

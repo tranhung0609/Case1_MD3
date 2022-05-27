@@ -7,11 +7,17 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "ProductServlet", urlPatterns = "/products")
 public class ProductServlet extends HttpServlet {
     ProductServiceImpl productService = new ProductServiceImpl();
+    private ProductServiceImpl getProductService;
+
+    public void init(){
+        getProductService = new ProductServiceImpl();
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,8 +32,8 @@ public class ProductServlet extends HttpServlet {
             case "view":
                 showProductForm(request, response);
                 break;
-            case "creat":
-                showCreatForm(request, response);
+            case "create":
+                showCreateForm(request, response);
                 break;
             case "edit":
                 showEditForm(request, response);
@@ -45,8 +51,9 @@ public class ProductServlet extends HttpServlet {
 
     }
 
-    private void showCreatForm(HttpServletRequest request, HttpServletResponse response) {
-
+    private void showCreateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/createproduct/create-product.jsp");
+        dispatcher.forward(request, response);
     }
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) {
@@ -68,10 +75,38 @@ public class ProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
-
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "create":
+//                createProduct(request, response);
+                break;
 
 
     }
 }
+
+//    private void createProduct(HttpServletRequest request, HttpServletResponse response) {
+//        String name = request.getParameter("name");
+//        double price = Double.parseDouble(request.getParameter("price"));
+//        String image = request.getParameter("image");
+//        String image = request.getParameter("image");
+//        String image = request.getParameter("image");
+//        String image = request.getParameter("image");
+//        Product newProduct = new Product(name,price);
+//        try {
+//            getProductService.add(newProduct);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
+//        dispatcher.forward(request, response);
+//    }
+//    }
+    }
+
+
 
 
