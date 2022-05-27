@@ -1,4 +1,4 @@
-package service.implement;
+package service.impl;
 
 import model.Category;
 import service.ICategoryService;

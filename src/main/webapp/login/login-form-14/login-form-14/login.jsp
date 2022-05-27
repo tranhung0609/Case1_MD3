@@ -17,7 +17,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../../../css/style.css">
 
 </head>
 <body>
@@ -45,14 +45,15 @@
                                 </p>
                             </div>
                         </div>
-                        <form action="<%=request.getContextPath()%>/logins" class="signin-form" method="post">
+<%--                        <form action="<%=request.getContextPath()%>/accounts" class="signin-form" method="post">--%>
+                        <form class="signin-form" method="post">
                             <div class="form-group mb-3">
                                 <label class="label" for="name">Username</label>
-                                <input name="user" type="text" id="inputEmail" class="form-control" placeholder="Username" required>
+                                <input name="email" type="text" id="inputEmail" class="form-control" placeholder="Username" required>
                             </div>
                             <div class="form-group mb-3">
                                 <label class="label" for="password">Password</label>
-                                <input name="pass" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
@@ -69,7 +70,9 @@
                                 </div>
                             </div>
                         </form>
-                        <p class="text-center">Not a member? <a href="register.jsp">Sign Up</a></p>
+                        <form action="/accounts?action=signup" method="post">
+                        <p class="text-center">Not a member? <a href="/accounts?action=signup">Sign Up</a></p>
+                        </form>
                     </div>
                 </div>
             </div>

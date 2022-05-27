@@ -1,4 +1,4 @@
-package service.implement;
+package service.impl;
 
 import model.Category;
 import model.Product;
@@ -13,9 +13,10 @@ public class ProductServiceImpl implements IProductService {
 
     static String jdbcURL = "jdbc:mysql://localhost:3306/ecommerce_case_md3?useSSL=false";
     static String jdbcUsername = "root";
-    static String jdbcPassword = "123456";
+    static String jdbcPassword = "1234";
 
-    public static final String SELECT_ALL_PRODUCTS = "SELECT * FROM products"; // Join các bảng khác để lấy name các bảng
+    public static final String SELECT_ALL_PRODUCTS_AT_BUY = "SELECT * FROM products WHERE accountId <> ?"; // Join các bảng khác để lấy name các bảng
+    public static final String SELECT_ALL_PRODUCTS_AT_SELL = "SELECT * FROM products WHERE accountId = ?";
     public static final String INSERT_PRODUCTS_SQL = "INSERT INTO customer(name, price, image, quantity, categoryId, promotionId, accountId) VALUES (?, ?, ?, ?, ?, ?, ?)";
     public static final String DELETE_USERS_SQL = "DELETE FROM products WHERE id = ?;";
     public static final String UPDATE_USERS_SQL = "UPDATE products SET name = ?, price = ?, image = ?, quantity = ?, categoryId = ?, promotionId = ?  WHERE id = ?;";
@@ -48,8 +49,7 @@ public class ProductServiceImpl implements IProductService {
             preparedStatement.setInt(4, product.getQuantity());
             preparedStatement.setInt(5, product.getCategoryId());
             preparedStatement.setInt(6, product.getPromotionId());
-            // xét id Account theo currentAccount--------------------
-            preparedStatement.setInt(7, product.getAccountId());
+            preparedStatement.setInt(7, AccountServiceImpl.currentAccount.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
         }
@@ -98,11 +98,38 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public List<Product> findAll() {
+//        List<Product> products = new ArrayList<>();
+//        try (Connection connection = getConnection();
+//             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PRODUCTS_AT_BUY)
+//        )
+//        {
+//            ResultSet rs = preparedStatement.executeQuery();
+//            while (rs.next()) {
+//                int id = rs.getInt("id");
+//                String name = rs.getString("name");
+//                Double price = rs.getDouble("price");
+//                String image = rs.getString("image");
+//                int quantity = rs.getInt("quantity");
+//                int quantitySold = rs.getInt("quantitySold");
+//                int categoryId = rs.getInt("categoryId");
+//                int promotionId = rs.getInt("promotionId");
+//                int accountId = rs.getInt("accountId");
+//                products.add(new Product(id, name, price, image, quantity, quantitySold, categoryId, promotionId, accountId));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return products;
+        return null;
+    }
+
+    public List<Product> findAllAtBuy() {
         List<Product> products = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PRODUCTS)
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PRODUCTS_AT_BUY)
         )
         {
+            preparedStatement.setInt(1, AccountServiceImpl.currentAccount.getId());
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -113,7 +140,35 @@ public class ProductServiceImpl implements IProductService {
                 int quantitySold = rs.getInt("quantitySold");
                 int categoryId = rs.getInt("categoryId");
                 int promotionId = rs.getInt("promotionId");
-                int accountId = rs.getInt("accountId");
+//                int accountId = rs.getInt("accountId");
+                int accountId =  AccountServiceImpl.currentAccount.getId();
+                products.add(new Product(id, name, price, image, quantity, quantitySold, categoryId, promotionId, accountId));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
+
+    public List<Product> findAllAtSell() {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PRODUCTS_AT_BUY)
+        )
+        {
+            preparedStatement.setInt(1,  AccountServiceImpl.currentAccount.getId());
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                Double price = rs.getDouble("price");
+                String image = rs.getString("image");
+                int quantity = rs.getInt("quantity");
+                int quantitySold = rs.getInt("quantitySold");
+                int categoryId = rs.getInt("categoryId");
+                int promotionId = rs.getInt("promotionId");
+//                int accountId = rs.getInt("accountId");
+                int accountId =  AccountServiceImpl.currentAccount.getId();
                 products.add(new Product(id, name, price, image, quantity, quantitySold, categoryId, promotionId, accountId));
             }
         } catch (SQLException e) {

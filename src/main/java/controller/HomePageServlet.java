@@ -1,13 +1,14 @@
 package controller;
 
-import service.implement.ProductServiceImpl;
+
+import service.impl.ProductServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "HomePageServlet", value = "/HomePageServlet")
+@WebServlet(name = "HomePageServlet", value = "/homepages")
 public class HomePageServlet extends HttpServlet {
     ProductServiceImpl productService = new ProductServiceImpl();
     @Override

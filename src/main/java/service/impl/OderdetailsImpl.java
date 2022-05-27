@@ -1,6 +1,6 @@
 package service.impl;
 
-import service.OderdetailsService;
+import service.IOrderDetailService;
 
-public class OderdetailsImpl implements OderdetailsService {
+public class OderdetailsImpl implements IOrderDetailService {
 }
