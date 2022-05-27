@@ -69,7 +69,7 @@
                                 </div>
                             </div>
                         </form>
-                        <p class="text-center">Not a member? <a href="/login/register-form/colorlib-regform-33/colorlib-regform-33/register.jsp">Sign Up</a></p>
+                        <p class="text-center">Not a member? <a href="register.jsp">Sign Up</a></p>
                     </div>
                 </div>
             </div>
