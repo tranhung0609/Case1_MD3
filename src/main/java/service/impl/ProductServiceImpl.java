@@ -47,10 +47,10 @@ public class ProductServiceImpl implements IProductService {
             preparedStatement.setDouble(2, product.getPrice());
             preparedStatement.setString(3, product.getImage());
             preparedStatement.setInt(4, product.getQuantity());
-            preparedStatement.setInt(5, product.getCategoryId());
-            preparedStatement.setInt(6, product.getPromotionId());
-            // xét id Account theo currentAccount--------------------
-            preparedStatement.setInt(7, product.getAccountId());
+//            preparedStatement.setInt(5, product.getCategoryId());
+//            preparedStatement.setInt(6, product.getPromotionId());
+//            // xét id Account theo currentAccount--------------------
+//            preparedStatement.setInt(7, product.getAccountId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
         }
@@ -88,14 +88,14 @@ public class ProductServiceImpl implements IProductService {
     }
 
     //lấy List category để hiển thị loại sản phẩm thay vì Id
-    List<Category> findAllCategoryByProducts(List<Product> products) {
-        List<Category> categories = new ArrayList<>();
-        for (int i = 0; i < products.size(); i++) {
-            Category category = categoryService.findById(products.get(i).getCategoryId());
-            categories.add(category);
-        }
-        return categories;
-    }
+//    List<Category> findAllCategoryByProducts(List<Product> products) {
+//        List<Category> categories = new ArrayList<>();
+//        for (int i = 0; i < products.size(); i++) {
+//            Category category = categoryService.findById(products.get(i).getCategoryId());
+//            categories.add(category);
+//        }
+//        return categories;
+//    }
 
     @Override
     public List<Product> findAll() {
@@ -142,13 +142,13 @@ public class ProductServiceImpl implements IProductService {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement =
                      connection.prepareStatement(UPDATE_USERS_SQL)) {
-            preparedStatement.setString(1, product.getName());
-            preparedStatement.setDouble(2, product.getPrice());
-            preparedStatement.setString(3, product.getImage());
-            preparedStatement.setInt(4, product.getQuantity());
-            preparedStatement.setInt(5, product.getCategoryId());
-            preparedStatement.setInt(6, product.getPromotionId());
-            rowUpdate = preparedStatement.executeUpdate() > 0;
+//            preparedStatement.setString(1, product.getName());
+//            preparedStatement.setDouble(2, product.getPrice());
+//            preparedStatement.setString(3, product.getImage());
+//            preparedStatement.setInt(4, product.getQuantity());
+//            preparedStatement.setInt(5, product.getCategoryId());
+//            preparedStatement.setInt(6, product.getPromotionId());
+//            rowUpdate = preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
         }
