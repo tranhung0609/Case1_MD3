@@ -44,11 +44,11 @@
                 <div class="row d-flex">
                     <div class="col-md pr-4 d-flex topper align-items-center">
                         <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
-                        <span class="text">+ 1235 2355 98</span>
+                        <span class="text">0965596698</span>
                     </div>
                     <div class="col-md pr-4 d-flex topper align-items-center">
                         <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
-                        <span class="text">youremail@email.com</span>
+                        <span class="text">trvanhung.nhk.0609@gmail.com</span>
                     </div>
                     <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
                         <span class="text">3-5 Business days delivery &amp; Free Returns</span>
@@ -60,27 +60,28 @@
 </div>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="homepage.jsp">Minishop</a>
+        <a class="navbar-brand" href="/homepage/minishop-master/minishop-master/homepage.jsp">Minishop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="homepage.jsp" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="/homepage/minishop-master/minishop-master/homepage.jsp" class="nav-link">Home</a></li>
                 <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catalog</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
-                        <a class="dropdown-item" href="shop.jsp">Shop</a>
-                        <a class="dropdown-item" href="product-single.jsp">Single Product</a>
-                        <a class="dropdown-item" href="cart.jsp">Cart</a>
-                        <a class="dropdown-item" href="checkout.jsp">Checkout</a>
+<%--                        <a class="dropdown-item" href="/products">Shop</a>--%>
+                        <a class="dropdown-item" href="/homepage/minishop-master/minishop-master/product-single.jsp">Single Product</a>
+                        <a class="dropdown-item" href="/homepage/minishop-master/minishop-master/cart.jsp">Cart</a>
+                        <a class="dropdown-item" href="webapp/homepage/minishop-master/minishop-master/checkout.jsp">Checkout</a>
                     </div>
                 </li>
-                <li class="nav-item"><a href="about.jsp" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="blog.jsp" class="nav-link">Blog</a></li>
-                <li class="nav-item"><a href="contact.jsp" class="nav-link">Contact</a></li>
-                <li class="nav-item cta cta-colored"><a href="cart.jsp" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+                <li class="nav-item"><a href="/homepage/minishop-master/minishop-master/about.jsp" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="/homepage/minishop-master/minishop-master/blog.jsp" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="/homepage/minishop-master/minishop-master/contact.jsp" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="/createproduct/create-product.jsp" class="nav-link">Create Product</a></li>
+                <li class="nav-item cta cta-colored"><a href="/homepage/minishop-master/minishop-master/cart.jsp" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
 
             </ul>
         </div>
@@ -107,7 +108,11 @@
                     <c:forEach items="${products}" var="product">
                         <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex">
                             <div class="product d-flex flex-column">
+<<<<<<< HEAD
                                 <a href="#" class="img-prod"><img class="img-fluid" src="images/product-1.png" alt="Colorlib Template">
+=======
+                                <a href="" class="img-prod"><img class="img-fluid" src="${product.image}" alt="Colorlib Template">
+>>>>>>> a498283eee4f988992ef4c037c6fa9e924ce280b
                                     <div class="overlay"></div>
                                 </a>
                                 <div class="text py-3 pb-4 px-3">
@@ -125,9 +130,15 @@
                                             </p>
                                         </div>
                                     </div>
+<<<<<<< HEAD
                                     <h3><a href="#">${product.getName()}</a></h3>
                                     <div class="pricing">
                                         <p class="price"><span>${product.price}</span></p>
+=======
+                                    <h3><a href="#">${product.name}</a></h3>
+                                    <div class="pricing">
+                                        <p class="price"><span>$${product.price}</span></p>
+>>>>>>> a498283eee4f988992ef4c037c6fa9e924ce280b
                                     </div>
                                     <p class="bottom-area d-flex px-3">
                                         <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
@@ -138,6 +149,7 @@
                         </div>
                     </c:forEach>
 
+<<<<<<< HEAD
 <%--                    <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex">--%>
 <%--                        <div class="product d-flex flex-column">--%>
 <%--                            <a href="#" class="img-prod"><img class="img-fluid" src="images/product-2.png" alt="Colorlib Template">--%>
@@ -358,6 +370,8 @@
                             </div>
                         </div>
                     </div>
+=======
+>>>>>>> a498283eee4f988992ef4c037c6fa9e924ce280b
                 </div>
                 <div class="row mt-5">
                     <div class="col text-center">

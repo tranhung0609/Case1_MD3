@@ -60,28 +60,34 @@
 </div>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="homepage.jsp">Minishop</a>
+        <a class="navbar-brand" href="/homepage/minishop-master/minishop-master/homepage.jsp">Minishop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a href="homepage.jsp" class="nav-link">Home</a></li>
+                <li class="nav-item active"><a href="/homepage/minishop-master/minishop-master/homepage.jsp" class="nav-link">Home</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catalog</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <a class="dropdown-item" href="/products">Shop</a>
+<<<<<<< HEAD
                         <a class="dropdown-item" href="product-single.jsp">Single Product</a>
                         <a class="dropdown-item" href="cart.jsp">Cart</a>
                         <a class="dropdown-item" href="checkout.jsp">Checkout</a>
+=======
+                        <a class="dropdown-item" href="/homepage/minishop-master/minishop-master/product-single.jsp">Single Product</a>
+                        <a class="dropdown-item" href="/homepage/minishop-master/minishop-master/cart.jsp">Cart</a>
+                        <a class="dropdown-item" href="/homepage/minishop-master/minishop-master/checkout.jsp">Checkout</a>
+>>>>>>> a498283eee4f988992ef4c037c6fa9e924ce280b
                     </div>
                 </li>
-                <li class="nav-item"><a href="about.jsp" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="blog.jsp" class="nav-link">Blog</a></li>
-                <li class="nav-item"><a href="contact.jsp" class="nav-link">Contact</a></li>
-                <li class="nav-item"><a href="/login/login-form-14/login-form-14/login.jsp" class="nav-link">Login</a></li>
-                <li class="nav-item cta cta-colored"><a href="cart.jsp" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+                <li class="nav-item"><a href="/homepage/minishop-master/minishop-master/about.jsp" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="/homepage/minishop-master/minishop-master/blog.jsp" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="/homepage/minishop-master/minishop-master/contact.jsp" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="/accounts?action=login" class="nav-link">Login</a></li>
+                <li class="nav-item cta cta-colored"><a href="/homepage/minishop-master/minishop-master/cart.jsp" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
 
             </ul>
         </div>
@@ -183,8 +189,8 @@
         </div>
     </div>
     <div class="container">
-        <c:forEach items="${products}" var="product"> //list sản phẩm
         <div class="row">
+            <c:forEach items="${products}" var="product"> //list sản phẩm
                 <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
                     <div class="product d-flex flex-column">
                         <a href="product-single.jsp" class="img-prod"><img class="img-fluid" src="images/product-1.png" alt="Colorlib Template">

@@ -29,18 +29,18 @@
             <p class="text-1">Sign Up</p>
             <p class="text-2"></p>
         </div>
-        <form class="form-detail" action="#" method="post" id="myform">
+        <form class="form-detail" method="post" id="myform">
             <div class="form-row">
                 <label for="username">USERNAME</label>
-                <input type="text" name="username" id="username" class="input-text">
+                <input type="text" name="name" id="username" class="input-text">
             </div>
             <div class="form-row">
                 <label for="your_email">E-MAIL</label>
-                <input type="text" name="your_email" id="your_email" class="input-text" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
+                <input type="text" name="email" id="your_email" class="input-text" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
             </div>
             <div class="form-row">
                 <label for="your_address">ADDRESS</label>
-                <input type="text" name="your_address" id="your_address" class="input-text" required>
+                <input type="text" name="address" id="your_address" class="input-text" required>
             </div>
             <div class="form-row">
                 <label for="password">PASSWORD</label>
@@ -51,8 +51,8 @@
                 <input type="password" name="comfirm_password" id="comfirm_password" class="input-text" required>
             </div>
             <div class="form-row-last">
-                <input type="submit" name="register" class="register" value="Register" href="/homepage/minishop-master/minishop-master/shop.jsp">
-                <p>Or<a href="#">Sign in</a></p>
+                <input type="submit" name="register" class="register" value="Register">
+<%--                <p>Or<a href="#">Sign in</a></p>--%>
             </div>
         </form>
     </div>
