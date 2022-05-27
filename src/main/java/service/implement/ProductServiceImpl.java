@@ -13,7 +13,7 @@ public class ProductServiceImpl implements IProductService {
 
     static String jdbcURL = "jdbc:mysql://localhost:3306/ecommerce_case_md3?useSSL=false";
     static String jdbcUsername = "root";
-    static String jdbcPassword = "1234";
+    static String jdbcPassword = "123456";
 
     public static final String SELECT_ALL_PRODUCTS = "SELECT * FROM products"; // Join các bảng khác để lấy name các bảng
     public static final String INSERT_PRODUCTS_SQL = "INSERT INTO customer(name, price, image, quantity, categoryId, promotionId, accountId) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -100,8 +100,9 @@ public class ProductServiceImpl implements IProductService {
     public List<Product> findAll() {
         List<Product> products = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement =
-                     connection.prepareStatement(SELECT_ALL_PRODUCTS)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PRODUCTS)
+        )
+        {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
