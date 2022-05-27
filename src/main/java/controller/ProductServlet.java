@@ -81,29 +81,29 @@ public class ProductServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
-                createProduct(request, response);
+//                createProduct(request, response);
                 break;
 
     }
 }
 
-    private void createProduct(HttpServletRequest request, HttpServletResponse response) {
-        String name = request.getParameter("name");
-        double price = Double.parseDouble(request.getParameter("price"));
-        String image = request.getParameter("image");
-        String image = request.getParameter("image");
-        String image = request.getParameter("image");
-        String image = request.getParameter("image");
-        Product newProduct = new Product(name,price);
-        try {
-            getProductService.add(newProduct);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
-        dispatcher.forward(request, response);
-    }
-    }
+//    private void createProduct(HttpServletRequest request, HttpServletResponse response) {
+//        String name = request.getParameter("name");
+//        double price = Double.parseDouble(request.getParameter("price"));
+//        String image = request.getParameter("image");
+//        String image = request.getParameter("image");
+//        String image = request.getParameter("image");
+//        String image = request.getParameter("image");
+//        Product newProduct = new Product(name,price);
+//        try {
+//            getProductService.add(newProduct);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
+//        dispatcher.forward(request, response);
+//    }
+//    }
     }
 
 
