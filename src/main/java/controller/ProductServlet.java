@@ -36,7 +36,7 @@ public class ProductServlet extends HttpServlet {
                 showDeleteForm(request, response);
                 break;
             default:
-                showListCustomer(request, response);
+                showListProduct(request, response);
                 break;
         }
     }
@@ -57,7 +57,7 @@ public class ProductServlet extends HttpServlet {
 
     }
 
-    private void showListCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void showListProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/homepage/minishop-master/minishop-master/shop.jsp");
         List<Product> products = productService.findAll();
         request.setAttribute("products", products);
@@ -68,6 +68,7 @@ public class ProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
+
 
 
     }
