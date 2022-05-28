@@ -79,16 +79,18 @@ public class AccountServiceImpl implements IAccountService {
 
     @Override
     public boolean delete(int id) throws SQLException {
-        boolean rowDeleted = false;
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement =
-                     connection.prepareStatement("DELETE FROM accounts WHERE id = ?;")) {
-            preparedStatement.setInt(1, id);
-            rowDeleted = preparedStatement.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return rowDeleted;
+//        boolean rowDeleted = false;
+//        try (Connection connection = getConnection();
+//             PreparedStatement preparedStatement =
+//                     connection.prepareStatement("DELETE FROM accounts WHERE id = ?;")) {
+//            preparedStatement.setInt(1, id);
+//            rowDeleted = preparedStatement.executeUpdate() > 0;
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return rowDeleted;
+        return false;
+        // không xóa tài khoản
     }
 
     @Override
@@ -98,10 +100,10 @@ public class AccountServiceImpl implements IAccountService {
              PreparedStatement preparedStatement =
                      connection.prepareStatement("UPDATE accounts SET name = ?, email = ?, address = ?, password = ? WHERE id = ?;")) {
             preparedStatement.setString(1, account.getName());
-            preparedStatement.setString(2, account.getEmail());
+            preparedStatement.setString(2, account.getEmail ());
             preparedStatement.setString(3, account.getAddress());
             preparedStatement.setString(4, account.getPassword());
-            preparedStatement.setInt(5, account.getId());
+            preparedStatement.setInt(5, AccountServiceImpl.currentAccount.getId());
             rowUpdate = preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
