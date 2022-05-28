@@ -5,6 +5,7 @@ import model.Promotion;
 import service.IPromotionService;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PromotionServiceImpl implements IPromotionService {
@@ -44,7 +45,20 @@ public class PromotionServiceImpl implements IPromotionService {
 
     @Override
     public List<Promotion> findAll() {
-        return null;
+        List<Promotion> promotions = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement =
+                     connection.prepareStatement("SELECT * FROM promotions")) {
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                promotions.add(new Promotion(id, name));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return promotions;
     }
 
     @Override

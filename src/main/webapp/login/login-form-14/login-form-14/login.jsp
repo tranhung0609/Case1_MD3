@@ -46,7 +46,7 @@
                             </div>
                         </div>
 <%--                        <form action="<%=request.getContextPath()%>/accounts" class="signin-form" method="post">--%>
-                        <form class="signin-form" method="post">
+                        <form class="signin-form" action="/accounts?action=login" method="post">
                             <div class="form-group mb-3">
                                 <label class="label" for="name">Username</label>
                                 <input name="email" type="text" id="inputEmail" class="form-control" placeholder="Username" required>

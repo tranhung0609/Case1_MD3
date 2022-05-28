@@ -1,9 +1,11 @@
 package service.impl;
 
+import model.Account;
 import model.Category;
 import service.ICategoryService;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryServiceImpl implements ICategoryService {
@@ -43,7 +45,20 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Override
     public List<Category> findAll() {
-        return null;
+        List<Category> categories = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement =
+                     connection.prepareStatement("SELECT * FROM categories")) {
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                categories.add(new Category(id, name));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return categories;
     }
 
     @Override

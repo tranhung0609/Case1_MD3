@@ -17,15 +17,11 @@ public class ProductServiceImpl implements IProductService {
     static String jdbcUsername = "root";
     static String jdbcPassword = "1234";
 
-    public static final String SELECT_ALL_PRODUCTS_AT_BUY = "SELECT * FROM products WHERE accountId <> ?"; // Join các bảng khác để lấy name các bảng
+    public static final String SELECT_ALL_PRODUCTS_AT_BUY = "SELECT * FROM products WHERE accountId <> ?"; //Join các bảng khác để lấy name các bảng
     public static final String SELECT_ALL_PRODUCTS_AT_SELL = "SELECT * FROM products WHERE accountId = ?";
-    public static final String INSERT_PRODUCTS_SQL = "INSERT INTO customer(name, price, image, quantity, categoryId, promotionId, accountId) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public static final String INSERT_PRODUCTS_SQL = "INSERT INTO products(name, price, image, quantity, categoryId, promotionId, accountId) VALUES (?, ?, ?, ?, ?, ?, ?)";
     public static final String DELETE_PRODUCT_SQL = "DELETE FROM products WHERE id = ?;";
     public static final String UPDATE_PRODUCT_SQL = "UPDATE products SET name = ?, price = ?, image = ?, quantity = ?, categoryId = ?, promotionId = ?  WHERE id = ?;";
-    public static final String SELECT_PRODUCT_BY_ID = "SELECT products.id, products.name, price, image, quantity, quantitySold, c.name, p.name, a.name " +
-            "FROM products JOIN accounts a ON a.id = products.accountId " +
-            "JOIN categories c ON c.id = products.categoryId " +
-            "JOIN promotions p ON p.id = products.promotionId;";
 
     public ProductServiceImpl() {
     }
@@ -66,26 +62,6 @@ public class ProductServiceImpl implements IProductService {
             }
         }
         return null;
-//        Product product = null;
-//        try (Connection connection = getConnection();
-//             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PRODUCT_BY_ID);) {
-//            preparedStatement.setInt(1, id);
-//            System.out.println(preparedStatement);
-//            ResultSet rs = preparedStatement.executeQuery();
-//            while (rs.next()) {
-//                String name = rs.getString("name");
-//                double price = rs.getDouble("price");
-//                String image = rs.getString("image");
-//                int quantity = rs.getInt("quantity");
-//                int quantitySold = rs.getInt("quantityId");
-//                int categoryId = rs.getInt("categoryId");
-//                int promotionId = rs.getInt("promotionId");
-//                int accountId = rs.getInt("accountId");
-//                product = new Product(id, name, price, image, quantity, quantitySold, categoryId, promotionId, accountId);
-//            }
-//        } catch (SQLException e) {
-//        }
-//        return product;
     }
 
     //lấy List category để hiển thị loại sản phẩm thay vì Id
@@ -113,7 +89,7 @@ public class ProductServiceImpl implements IProductService {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                Double price = rs.getDouble("price");
+                double price = rs.getDouble("price");
                 String image = rs.getString("image");
                 int quantity = rs.getInt("quantity");
                 int quantitySold = rs.getInt("quantitySold");
@@ -138,7 +114,7 @@ public class ProductServiceImpl implements IProductService {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                Double price = rs.getDouble("price");
+                double price = rs.getDouble("price");
                 String image = rs.getString("image");
                 int quantity = rs.getInt("quantity");
                 int quantitySold = rs.getInt("quantitySold");

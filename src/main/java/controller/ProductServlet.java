@@ -1,22 +1,25 @@
 package controller;
 
+import model.Category;
 import model.Product;
+import model.Promotion;
+import service.impl.AccountServiceImpl;
+import service.impl.CategoryServiceImpl;
 import service.impl.ProductServiceImpl;
+import service.impl.PromotionServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "ProductServlet", urlPatterns = "/products")
 public class ProductServlet extends HttpServlet {
     ProductServiceImpl productService = new ProductServiceImpl();
-    private ProductServiceImpl getProductService;
-
-    public void init(){
-        getProductService = new ProductServiceImpl();
-    }
+    CategoryServiceImpl categoryService = new CategoryServiceImpl();
+    PromotionServiceImpl promotionService = new PromotionServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,15 +49,28 @@ public class ProductServlet extends HttpServlet {
             case "buy-list":
                 showListProductAtBuy(request, response);
                 break;
+            default:
+                showListProduct(request, response);
         }
     }
 
-    private void showProductForm(HttpServletRequest request, HttpServletResponse response) {
+    private void showListProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("coloshop-master/homepage.jsp");
+        List<Product> productList = productService.findAll();
+        request.setAttribute("products", productList);
+        requestDispatcher.forward(request, response);
+    }
+
+    private void showProductForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/createproduct/create-product.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("product/create.jsp");
+        List<Category> categories = categoryService.findAll();
+        List<Promotion> promotions = promotionService.findAll();
+        request.setAttribute("categories", categories);
+        request.setAttribute("promotions", promotions);
         dispatcher.forward(request, response);
     }
 
@@ -67,17 +83,17 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void showListProductAtSell(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/homepage/minishop-master/minishop-master/shop.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/coloshop-master/categories.jsp");
         List<Product> products = productService.findAllAtSell();
         request.setAttribute("products", products);
         requestDispatcher.forward(request, response);
     }
 
     private void showListProductAtBuy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/homepage/minishop-master/minishop-master/shop.jsp");
-        List<Product> products = productService.findAllAtBuy();
-        request.setAttribute("products", products);
-        requestDispatcher.forward(request, response);
+//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/coloshop-master/categories.jsp");
+//        List<Product> products = productService.findAllAtBuy();
+//        request.setAttribute("products", products);
+//        requestDispatcher.forward(request, response);
     }
 
     @Override
@@ -90,31 +106,31 @@ public class ProductServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
-//                createProduct(request, response);
+                try {
+                    createProduct(request, response);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
                 break;
 
 
+        }
+    }
+
+    private void createProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        String name = request.getParameter("name");
+        double price = Double.parseDouble(request.getParameter("price"));
+        String image = request.getParameter("image");
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+        int promotionId = Integer.parseInt(request.getParameter("promotionId"));
+        Product product = new Product(name, price, image, quantity, categoryService.findById(categoryId), promotionService.findById(promotionId), AccountServiceImpl.currentAccount);
+        productService.add(product);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("");
+        dispatcher.forward(request, response);
+
     }
 }
-
-//    private void createProduct(HttpServletRequest request, HttpServletResponse response) {
-//        String name = request.getParameter("name");
-//        double price = Double.parseDouble(request.getParameter("price"));
-//        String image = request.getParameter("image");
-//        String image = request.getParameter("image");
-//        String image = request.getParameter("image");
-//        String image = request.getParameter("image");
-//        Product newProduct = new Product(name,price);
-//        try {
-//            getProductService.add(newProduct);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
-//        dispatcher.forward(request, response);
-//    }
-//    }
-    }
 
 
 
