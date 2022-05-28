@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: ACER
@@ -100,10 +101,7 @@
                             <ul class="navbar_menu">
                                 <li><a href="homepage.jsp">home</a></li>
                                 <li><a href="categories.jsp">shop</a></li>
-                                <li><a href="#">promotion</a></li>
-                                <li><a href="#">pages</a></li>
-                                <li><a href="#">blog</a></li>
-                                <li><a href="contact.jsp">contact</a></li>
+                                <li><a href="/createproduct/create-product.jsp">create product</a></li>
                             </ul>
                             <ul class="navbar_user">
                                 <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
@@ -199,12 +197,10 @@
                             <h5>Product Category</h5>
                         </div>
                         <ul class="sidebar_categories">
-                            <li><a href="#">Men</a></li>
+                            <li><a href="#" >Men</a></li>
                             <li class="active"><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>Women</a></li>
                             <li><a href="#">Accessories</a></li>
                             <li><a href="#">New Arrivals</a></li>
-                            <li><a href="#">Collection</a></li>
-                            <li><a href="#">Shop</a></li>
                         </ul>
                     </div>
 
@@ -313,21 +309,24 @@
                                 <div class="product-grid">
 
                                     <!-- Product 1 -->
-
-                                    <div class="product-item men">
-                                        <div class="product discount product_filter">
-                                            <div class="product_image">
-                                                <img src="images/product_1.png" alt="">
+                                    <c:forEach items="products" var="product">
+                                        <div class="product-item men">
+                                            <div class="product discount product_filter">
+                                                <div class="product_image">
+                                                    <img src="images/product_1.png" alt="">
+                                                </div>
+                                                <div class="favorite favorite_left"></div>
+                                                <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+                                                <div class="product_info">
+                                                    <h6 class="product_name"><a href="single.jsp">${product.name}</a></h6>
+                                                    <div class="product_price">$${product.price}<span>$590.00</span></div>
+                                                </div>
                                             </div>
-                                            <div class="favorite favorite_left"></div>
-                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
-                                            <div class="product_info">
-                                                <h6 class="product_name"><a href="single.jsp">Fujifilm X100T 16 MP Digital Camera (Silver)</a></h6>
-                                                <div class="product_price">$520.00<span>$590.00</span></div>
-                                            </div>
+                                            <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
                                         </div>
-                                        <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
-                                    </div>
+                                    </c:forEach>
+
+
 
                                     <!-- Product 2 -->
 

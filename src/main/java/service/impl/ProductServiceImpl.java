@@ -112,7 +112,7 @@ public class ProductServiceImpl implements IProductService {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                Double price = rs.getDouble("price");
+                double price = rs.getDouble("price");
                 String image = rs.getString("image");
                 int quantity = rs.getInt("quantity");
                 int quantitySold = rs.getInt("quantitySold");
@@ -138,7 +138,7 @@ public class ProductServiceImpl implements IProductService {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                Double price = rs.getDouble("price");
+                double price = rs.getDouble("price");
                 String image = rs.getString("image");
                 int quantity = rs.getInt("quantity");
                 int quantitySold = rs.getInt("quantitySold");

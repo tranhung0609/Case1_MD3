@@ -62,11 +62,6 @@
                             <input name="price" type="text" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <%--                            //mô tả sản phẩm--%>
-                            <label>Description</label>
-                            <textarea name="description" class="form-control" required></textarea>
-                        </div>
-                        <div class="form-group">
                             <%--                            số lượng--%>
                             <label>Quantity</label>
                             <input name="quantity" type="text" class="form-control" required>

@@ -46,10 +46,19 @@ public class ProductServlet extends HttpServlet {
             case "buy-list":
                 showListProductAtBuy(request, response);
                 break;
+            default:
+                showListProduct(request,response);
         }
     }
 
-    private void showProductForm(HttpServletRequest request, HttpServletResponse response) {
+    private void showListProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("coloshop-master/homepage.jsp");
+        List<Product> productList = productService.findAll();
+        request.setAttribute("products",productList);
+        requestDispatcher.forward(request,response);
+    }
+
+    private void showProductForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
@@ -67,17 +76,17 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void showListProductAtSell(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/homepage/minishop-master/minishop-master/shop.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/coloshop-master/categories.jsp");
         List<Product> products = productService.findAllAtSell();
         request.setAttribute("products", products);
         requestDispatcher.forward(request, response);
     }
 
     private void showListProductAtBuy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/homepage/minishop-master/minishop-master/shop.jsp");
-        List<Product> products = productService.findAllAtBuy();
-        request.setAttribute("products", products);
-        requestDispatcher.forward(request, response);
+//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/coloshop-master/categories.jsp");
+//        List<Product> products = productService.findAllAtBuy();
+//        request.setAttribute("products", products);
+//        requestDispatcher.forward(request, response);
     }
 
     @Override
