@@ -108,7 +108,7 @@
                                 <li class="checkout">
                                     <a href="#">
                                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                        <span id="checkout_items" class="checkout_items">2</span>
+                                        <span id="checkout_items" class="checkout_items"></span>
                                     </a>
                                 </li>
                             </ul>
@@ -181,7 +181,7 @@
                     <div class="main_slider_content">
                         <h6>Spring / Summer Collection 2017</h6>
                         <h1>Get up to 30% Off New Arrivals</h1>
-                        <div class="red_button shop_now_button"><a href="#">shop now</a></div>
+                        <div class="red_button shop_now_button"><a href="homepage.jsp">shop now</a></div>
                     </div>
                 </div>
             </div>
