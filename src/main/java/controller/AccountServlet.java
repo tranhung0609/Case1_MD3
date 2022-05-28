@@ -28,7 +28,14 @@ public class AccountServlet extends HttpServlet {
             case "signup":
                 showFormSignUp(request, response);
                 break;
+            case "update":
+                showFormUpdate(request, response);
+                break;
         }
+    }
+
+    private void showFormUpdate(HttpServletRequest request, HttpServletResponse response) {
+
     }
 
     private void showFormSignUp(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -60,6 +67,27 @@ public class AccountServlet extends HttpServlet {
                     e.printStackTrace();
                 }
                 break;
+            case "update":
+                try {
+                    updateAccount(request, response);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
+        }
+    }
+
+    private void updateAccount(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String address = request.getParameter("address");
+        String password = request.getParameter("password");
+        Account account = new Account(name, email, address, password);
+        if (accountService.checkSignUp(account) & accountService.update(account)) {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("homepage/minishop-master/minishop-master/homepage.jsp");
+            requestDispatcher.forward(request,response);
+        } else {
+            response.sendRedirect("/accounts?action=update");
         }
     }
 

@@ -72,9 +72,6 @@
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catalog</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <a class="dropdown-item" href="/products?action=buy-list">Shop</a>
-                        <a class="dropdown-item" href="product-single.jsp">Single Product</a>
-                        <a class="dropdown-item" href="cart.jsp">Cart</a>
-                        <a class="dropdown-item" href="checkout.jsp">Checkout</a>
                         <a class="dropdown-item" href="/homepage/minishop-master/minishop-master/product-single.jsp">Single Product</a>
                         <a class="dropdown-item" href="/homepage/minishop-master/minishop-master/cart.jsp">Cart</a>
                         <a class="dropdown-item" href="/homepage/minishop-master/minishop-master/checkout.jsp">Checkout</a>
