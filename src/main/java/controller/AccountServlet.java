@@ -39,17 +39,19 @@ public class AccountServlet extends HttpServlet {
     }
 
     private void showFormSignUp(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/login-form-14/register.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/login/login-form-14/login-form-14/register.jsp");
         requestDispatcher.forward(request,response);
     }
 
     private void showFormLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/login-form-14/login.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/login/login-form-14/login-form-14/login.jsp");
         requestDispatcher.forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
         String action = request.getParameter("action");
@@ -58,7 +60,7 @@ public class AccountServlet extends HttpServlet {
         }
         switch (action) {
             case "login":
-                login(request, response);
+                login(request, response, session);
                 break;
             case "signup":
                 try {
@@ -100,19 +102,19 @@ public class AccountServlet extends HttpServlet {
         Account account = new Account(name, email, address, password);
         if (accountService.checkSignUp(account) && accountService.checkPass(password, comfirmPassword)) {
             accountService.add(account);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/login-form-14/login.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/login/login-form-14/login-form-14/login.jsp");
             requestDispatcher.forward(request,response);
         } else {
             response.sendRedirect("/accounts?action=signup");
         }
     }
 
-    private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void login(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         if (accountService.checkLogin(email, password)) {
-            request.setAttribute("currentAccount",AccountServiceImpl.currentAccount);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("coloshop-master/homepage.jsp");
+            session.setAttribute("currentAccount",AccountServiceImpl.currentAccount);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/coloshop-master/homepage.jsp");
             requestDispatcher.forward(request,response);
         } else {
             response.sendRedirect("/accounts?action=login");

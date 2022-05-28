@@ -101,7 +101,6 @@
                             <ul class="navbar_menu">
                                 <li><a href="homepage.jsp">home</a></li>
                                 <li><a href="categories.jsp">shop</a></li>
-                                <li><a href="/createproduct/create-product.jsp">create product</a></li>
                             </ul>
                             <ul class="navbar_user">
                                 <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>

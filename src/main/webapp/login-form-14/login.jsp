@@ -31,7 +31,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12 col-lg-10">
                 <div class="wrap d-md-flex">
-                    <div class="img" style="background-image: url(/login-form-14/images/bg-1.jpg);">
+                    <div class="img" style="background-image: url(images/bg-1.jpg);">
                     </div>
                     <div class="login-wrap p-4 p-md-5">
                         <div class="d-flex">
@@ -45,8 +45,8 @@
                                 </p>
                             </div>
                         </div>
-                        <form action="<%=request.getContextPath()%>/accounts" class="signin-form" method="post">
-                        <form class="signin-form" method="post">
+<%--                        <form action="<%=request.getContextPath()%>/accounts" class="signin-form" method="post">--%>
+                        <form class="signin-form" action="/accounts?action=login" method="post">
                             <div class="form-group mb-3">
                                 <label class="label" for="name">Username</label>
                                 <input name="email" type="text" id="inputEmail" class="form-control" placeholder="Username" required>
