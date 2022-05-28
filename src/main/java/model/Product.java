@@ -25,9 +25,6 @@ public class Product {
     public Product(String name, double price) {
     }
 
-    public Product(int id, String name, double price, String image, int quantity, int quantitySold, int categoryId, int promotionId, int accountId) {
-    }
-
     public int getId() {
         return id;
     }
@@ -83,6 +80,4 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
-
-
 }

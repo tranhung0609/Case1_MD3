@@ -1,8 +1,9 @@
-package service.implement;
+package service.impl;
 
 import model.Category;
 import model.Product;
 import service.IProductService;
+import service.impl.CategoryServiceImpl;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,9 +12,9 @@ import java.util.List;
 public class ProductServiceImpl implements IProductService {
     CategoryServiceImpl categoryService = new CategoryServiceImpl();
 
-    static String jdbcURL = "jdbc:mysql://localhost:3306/ecommerce_case_md3?useSSL=false";
-    static String jdbcUsername = "root";
-    static String jdbcPassword = "123456";
+    public static String jdbcURL = "jdbc:mysql://localhost:3306/ecommerce_case_md3?useSSL=false";
+    public static String jdbcUsername = "root";
+    public static String jdbcPassword = "123456";
 
     public static final String SELECT_ALL_PRODUCTS = "SELECT * FROM products"; // Join các bảng khác để lấy name các bảng
     public static final String INSERT_PRODUCTS_SQL = "INSERT INTO customer(name, price, image, quantity, categoryId, promotionId, accountId) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -46,11 +47,11 @@ public class ProductServiceImpl implements IProductService {
             preparedStatement.setDouble(2, product.getPrice());
             preparedStatement.setString(3, product.getImage());
             preparedStatement.setInt(4, product.getQuantity());
-            preparedStatement.setInt(5, product.getCategoryId());
-            preparedStatement.setInt(6, product.getPromotionId());
-            // xét id Account theo currentAccount--------------------
-            preparedStatement.setInt(7, product.getAccountId());
-            preparedStatement.executeUpdate();
+//            preparedStatement.setInt(5, product.getCategoryId());
+//            preparedStatement.setInt(6, product.getPromotionId());
+//            // xét id Account theo currentAccount--------------------
+//            preparedStatement.setInt(7, product.getAccountId());
+//            preparedStatement.executeUpdate();
         } catch (SQLException e) {
         }
     }
@@ -79,7 +80,7 @@ public class ProductServiceImpl implements IProductService {
                 int categoryId = rs.getInt("categoryId");
                 int promotionId = rs.getInt("promotionId");
                 int accountId = rs.getInt("accountId");
-                product = new Product(id, name, price, image, quantity, quantitySold, categoryId, promotionId, accountId);
+                product = new Product(id, name, price, image, quantity, quantitySold, categoryService.findById(categoryId));
             }
         } catch (SQLException e) {
         }
@@ -90,8 +91,8 @@ public class ProductServiceImpl implements IProductService {
     List<Category> findAllCategoryByProducts(List<Product> products) {
         List<Category> categories = new ArrayList<>();
         for (int i = 0; i < products.size(); i++) {
-            Category category = categoryService.findById(products.get(i).getCategoryId());
-            categories.add(category);
+//            Category category = categoryService.findById(products.get(i).getCategoryId());
+//            categories.add(category);
         }
         return categories;
     }
@@ -112,9 +113,8 @@ public class ProductServiceImpl implements IProductService {
                 int quantity = rs.getInt("quantity");
                 int quantitySold = rs.getInt("quantitySold");
                 int categoryId = rs.getInt("categoryId");
-                int promotionId = rs.getInt("promotionId");
-                int accountId = rs.getInt("accountId");
-                products.add(new Product(id, name, price, image, quantity, quantitySold, categoryId, promotionId, accountId));
+
+                products.add(new Product(id, name, price, image, quantity, quantitySold, categoryService.findById(categoryId)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -146,8 +146,8 @@ public class ProductServiceImpl implements IProductService {
             preparedStatement.setDouble(2, product.getPrice());
             preparedStatement.setString(3, product.getImage());
             preparedStatement.setInt(4, product.getQuantity());
-            preparedStatement.setInt(5, product.getCategoryId());
-            preparedStatement.setInt(6, product.getPromotionId());
+//            preparedStatement.setInt(5, product.getCategoryId());
+//            preparedStatement.setInt(6, product.getPromotionId());
             rowUpdate = preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();

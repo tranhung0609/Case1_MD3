@@ -14,10 +14,11 @@ public class CategoryServiceImpl implements ICategoryService {
     }
 
     protected Connection getConnection() {
+
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(ProductServiceImpl.jdbcURL, ProductServiceImpl.jdbcUsername, ProductServiceImpl.jdbcPassword);
+            connection = DriverManager.getConnection(service.impl.ProductServiceImpl.jdbcURL, service.impl.ProductServiceImpl.jdbcUsername, service.impl.ProductServiceImpl.jdbcPassword);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
