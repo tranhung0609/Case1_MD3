@@ -76,8 +76,8 @@
                                         <i class="fa fa-angle-down"></i>
                                     </a>
                                     <ul class="account_selection">
-                                        <li><a href="/login/login-form-14/login-form-14/login.jsp"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-                                        <li><a href="/login/login-form-14/login-form-14/register.jsp"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+                                        <li><a href="/accounts?action=login"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
+                                        <li><a href="/accounts?action=signup"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -159,8 +159,8 @@
                         <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="menu_selection">
-                        <li><a href="/login/login-form-14/login-form-14/login.jsp"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-                        <li><a href="/login/login-form-14/login-form-14/register.jsp"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+                        <li><a href="/login-form-14/login.jsp"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
+                        <li><a href="/login-form-14/register.jsp"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
                     </ul>
                 </li>
                 <li class="menu_item"><a href="/products">home</a></li>

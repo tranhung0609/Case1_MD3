@@ -9,7 +9,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Login</title>
+    <title>Register</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -17,10 +17,10 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
-<body>
+<body class="form-v7">
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center">
@@ -31,7 +31,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12 col-lg-10">
                 <div class="wrap d-md-flex">
-                    <div class="img" style="background-image: url(images/bg-1.jpg);">
+                    <div class="img" style="background-image: url(/login-form-14/images/pexels-yugdas-manandhar-2876658.jpg);">
                     </div>
                     <div class="login-wrap p-4 p-md-5">
                         <div class="d-flex">
@@ -45,18 +45,32 @@
                                 </p>
                             </div>
                         </div>
-<%--                        <form action="<%=request.getContextPath()%>/accounts" class="signin-form" method="post">--%>
-                        <form class="signin-form" method="post">
+                        <form action="<%=request.getContextPath()%>/accounts?action=signup" class="signin-form" method="post">
                             <div class="form-group mb-3">
-                                <label class="label" for="name">Username</label>
-                                <input name="email" type="text" id="inputEmail" class="form-control" placeholder="Username" required>
+                                <label class="label" for="username">Username</label>
+                                <input type="text" name="name" id="username" class="form-control" placeholder="Username">
                             </div>
                             <div class="form-group mb-3">
-                                <label class="label" for="password">Password</label>
-                                <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                <label class="label" for="your_email" >E-MAIL</label>
+                                <input type="text" name="email" id="your_email" class="form-control" placeholder="E-Mail" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
                             </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="your_address" >ADDRESS</label>
+                                <input type="text" name="address" id="your_address" class="form-control" placeholder="Address" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="password" >PASSWORD</label>
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="comfirm_password" >CONFIRM PASSWORD</label>
+                                <input type="password" name="comfirmPassword" id="comfirm_password" class="form-control" placeholder="Confirm Password" required>
+                            </div>
+<%--                            <div class="form-group mb-3">--%>
+<%--                                <input type="submit" name="register" class="register" value="Register" href="/homepage/minishop-master/minishop-master/shop.jsp">--%>
+<%--                            </div>--%>
                             <div class="form-group">
-                                <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
+                                <button type="submit" name="register" class="form-control btn btn-primary rounded submit px-3" href="/accounts?action=signup">Register</button>
                             </div>
                             <div class="form-group d-md-flex">
                                 <div class="w-50 text-left">
@@ -66,20 +80,16 @@
                                     </label>
                                 </div>
                                 <div class="w-50 text-md-right">
-                                    <a href="#">Forgot Password</a>
                                 </div>
                             </div>
                         </form>
-                        <form action="/accounts?action=signup" method="post">
-                        <p class="text-center">Not a member? <a href="/accounts?action=signup">Sign Up</a></p>
-                        </form>
+<%--                        <p class="text-center">Not a member? <a href="register.jsp">Sign Up</a></p>--%>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 <script src="js/jquery.min.js"></script>
 <script src="js/popper.js"></script>
 <script src="js/bootstrap.min.js"></script>
