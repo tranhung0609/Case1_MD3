@@ -17,7 +17,7 @@ public class ProductServiceImpl implements IProductService {
     static String jdbcUsername = "root";
     static String jdbcPassword = "1234";
 
-    public static final String SELECT_ALL_PRODUCTS_AT_BUY = "SELECT * FROM products WHERE accountId <> ?"; //Join các bảng khác để lấy name các bảng
+    public static final String SELECT_ALL_PRODUCTS_AT_BUY = "SELECT * FROM products WHERE accountId <> ?";
     public static final String SELECT_ALL_PRODUCTS_AT_SELL = "SELECT * FROM products WHERE accountId = ?";
     public static final String INSERT_PRODUCTS_SQL = "INSERT INTO products(name, price, image, quantity, categoryId, promotionId, accountId) VALUES (?, ?, ?, ?, ?, ?, ?)";
     public static final String DELETE_PRODUCT_SQL = "DELETE FROM products WHERE id = ?;";

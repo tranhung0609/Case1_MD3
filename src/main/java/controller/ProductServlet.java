@@ -90,10 +90,10 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void showListProductAtBuy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/coloshop-master/categories.jsp");
-//        List<Product> products = productService.findAllAtBuy();
-//        request.setAttribute("products", products);
-//        requestDispatcher.forward(request, response);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/coloshop-master/categories.jsp");
+        List<Product> products = productService.findAllAtBuy();
+        request.setAttribute("products", products);
+        requestDispatcher.forward(request, response);
     }
 
     @Override
@@ -122,8 +122,8 @@ public class ProductServlet extends HttpServlet {
         double price = Double.parseDouble(request.getParameter("price"));
         String image = request.getParameter("image");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-        int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-        int promotionId = Integer.parseInt(request.getParameter("promotionId"));
+        int categoryId = Integer.parseInt(request.getParameter("category"));
+        int promotionId = Integer.parseInt(request.getParameter("promotion"));
         Product product = new Product(name, price, image, quantity, categoryService.findById(categoryId), promotionService.findById(promotionId), AccountServiceImpl.currentAccount);
         productService.add(product);
         RequestDispatcher dispatcher = request.getRequestDispatcher("");

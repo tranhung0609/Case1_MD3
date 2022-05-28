@@ -31,7 +31,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12 col-lg-10">
                 <div class="wrap d-md-flex">
-                    <div class="img" style="background-image: url(/login/login-form-14/login-form-14/images/pexels-yugdas-manandhar-2876658.jpg);">
+                    <div class="img" style="background-image: url(/login-form-14/images/pexels-yugdas-manandhar-2876658.jpg);">
                     </div>
                     <div class="login-wrap p-4 p-md-5">
                         <div class="d-flex">

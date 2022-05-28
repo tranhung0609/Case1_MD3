@@ -39,12 +39,12 @@ public class AccountServlet extends HttpServlet {
     }
 
     private void showFormSignUp(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/login/login-form-14/login-form-14/register.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/login-form-14/register.jsp");
         requestDispatcher.forward(request,response);
     }
 
     private void showFormLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/login/login-form-14/login-form-14/login.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/login-form-14/login.jsp");
         requestDispatcher.forward(request,response);
     }
 
@@ -102,7 +102,7 @@ public class AccountServlet extends HttpServlet {
         Account account = new Account(name, email, address, password);
         if (accountService.checkSignUp(account) && accountService.checkPass(password, comfirmPassword)) {
             accountService.add(account);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/login/login-form-14/login-form-14/login.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/login-form-14/login.jsp");
             requestDispatcher.forward(request,response);
         } else {
             response.sendRedirect("/accounts?action=signup");
