@@ -43,7 +43,7 @@
             <div class="col-lg-12 d-block">
                 <div class="row d-flex">
                     <div class="col-md pr-4 d-flex topper align-items-center">
-                        <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+                        <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-user"></span></div>
                         <span class="text">${currentAccount.getName()}</span>
                     </div>
                     <div class="col-md pr-4 d-flex topper align-items-center">
@@ -51,7 +51,7 @@
                         <span class="text">${currentAccount.getEmail()}</span>
                     </div>
                     <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-                        <span class="text">3-5 Business days delivery.Free Returns</span>
+                        <span class="text">3-5 Business days delivery Free Returns</span>
                     </div>
                 </div>
             </div>
@@ -60,14 +60,14 @@
 </div>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="homepage.jsp">Minishop</a>
+        <a class="navbar-brand" href="/homepage/minishop-master/minishop-master/homepage.jsp">Minishop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a href="homepage.jsp" class="nav-link">Home</a></li>
+                <li class="nav-item active"><a href="/homepage/minishop-master/minishop-master/homepage.jsp" class="nav-link">Home</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catalog</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
@@ -80,7 +80,7 @@
                 <li class="nav-item"><a href="/homepage/minishop-master/minishop-master/about.jsp" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="/homepage/minishop-master/minishop-master/blog.jsp" class="nav-link">Blog</a></li>
                 <li class="nav-item"><a href="/homepage/minishop-master/minishop-master/contact.jsp" class="nav-link">Contact</a></li>
-                <li class="nav-item"><a href="/accounts?action=login" class="nav-link">Login</a></li>
+                <li class="nav-item"><a href="/accounts?action=login" class="nav-link"><span class="icon-window-minimize"></span>Logout</a></li>
                 <li class="nav-item cta cta-colored"><a href="/homepage/minishop-master/minishop-master/cart.jsp" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
 
             </ul>
@@ -98,12 +98,10 @@
                     <img class="one-third order-md-last img-fluid" src="images/bg_1.png" alt="">
                     <div class="one-forth d-flex align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
                         <div class="text">
-                            <span class="subheading">#New Arrival</span>
+                            <span class="subheading"></span>
                             <div class="horizontal">
                                 <h1 class="mb-4 mt-3">Shoes Collection 2019</h1>
                                 <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country.</p>
-
-                                <p><a href="shop.jsp" class="btn-custom">Discover Now</a></p>
                             </div>
                         </div>
                     </div>

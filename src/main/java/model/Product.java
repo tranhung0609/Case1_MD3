@@ -7,23 +7,23 @@ public class Product {
     private String image;
     private int quantity;
     private int quantitySold;
-    private int categoryId;
-    private int promotionId;
-    private int accountId;
+    private Category category;
+    private Promotion promotion;
+    private Account account;
 
     public Product() {
     }
 
-    public Product(int id, String name, double price, String image, int quantity, int quantitySold, int categoryId, int promotionId, int accountId) {
+    public Product(int id, String name, double price, String image, int quantity, int quantitySold, Category category, Promotion promotion, Account account) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.image = image;
         this.quantity = quantity;
         this.quantitySold = quantitySold;
-        this.categoryId = categoryId;
-        this.promotionId = promotionId;
-        this.accountId = accountId;
+        this.category = category;
+        this.promotion = promotion;
+        this.account = account;
     }
 
     public int getId() {
@@ -74,27 +74,27 @@ public class Product {
         this.quantitySold = quantitySold;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public int getPromotionId() {
-        return promotionId;
+    public Promotion getPromotion() {
+        return promotion;
     }
 
-    public void setPromotionId(int promotionId) {
-        this.promotionId = promotionId;
+    public void setPromotion(Promotion promotion) {
+        this.promotion = promotion;
     }
 
-    public int getAccountId() {
-        return accountId;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }
