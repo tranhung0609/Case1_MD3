@@ -31,8 +31,8 @@ public class ProductServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "view":
-                showProductForm(request, response);
+            case "details":
+                showProductDetails(request, response);
                 break;
             case "create":
                 showCreateForm(request, response);
@@ -49,9 +49,23 @@ public class ProductServlet extends HttpServlet {
             case "buy-list":
                 showListProductAtBuy(request, response);
                 break;
+            case "search":
+                showSearchForm(request, response);
+                break;
             default:
-                showListProduct(request, response);
+                homePage(request, response);
+                break;
         }
+    }
+
+    private void showSearchForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/search.jsp");
+        requestDispatcher.forward(request, response);
+    }
+
+    private void homePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("coloshop-master/homepage.jsp");
+        requestDispatcher.forward(request, response);
     }
 
     private void showListProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -61,17 +75,21 @@ public class ProductServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
-    private void showProductForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    private void showProductDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/details.jsp");
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product product = productService.findById(id);
+        request.setAttribute("product", product);
+        requestDispatcher.forward(request, response);
     }
 
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("product/create.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/create.jsp");
         List<Category> categories = categoryService.findAll();
         List<Promotion> promotions = promotionService.findAll();
         request.setAttribute("categories", categories);
         request.setAttribute("promotions", promotions);
-        dispatcher.forward(request, response);
+        requestDispatcher.forward(request, response);
     }
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) {
@@ -83,17 +101,17 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void showListProductAtSell(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/coloshop-master/categories.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/list-sell.jsp");
         List<Product> products = productService.findAllAtSell();
         request.setAttribute("products", products);
         requestDispatcher.forward(request, response);
     }
 
     private void showListProductAtBuy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/coloshop-master/categories.jsp");
-//        List<Product> products = productService.findAllAtBuy();
-//        request.setAttribute("products", products);
-//        requestDispatcher.forward(request, response);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/coloshop-master/categories.jsp");
+        List<Product> products = productService.findAllAtBuy();
+        request.setAttribute("products", products);
+        requestDispatcher.forward(request, response);
     }
 
     @Override
@@ -112,9 +130,19 @@ public class ProductServlet extends HttpServlet {
                     e.printStackTrace();
                 }
                 break;
-
+            case "search":
+                searchProduct(request, response);
+                break;
 
         }
+    }
+
+    private void searchProduct(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String name = request.getParameter("name");
+        List<Product> products = productService.findByName(name);
+        request.setAttribute("products", products);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/search.jsp");
+        requestDispatcher.forward(request, response);
     }
 
     private void createProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
@@ -122,11 +150,11 @@ public class ProductServlet extends HttpServlet {
         double price = Double.parseDouble(request.getParameter("price"));
         String image = request.getParameter("image");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-        int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-        int promotionId = Integer.parseInt(request.getParameter("promotionId"));
+        int categoryId = Integer.parseInt(request.getParameter("category"));
+        int promotionId = Integer.parseInt(request.getParameter("promotion"));
         Product product = new Product(name, price, image, quantity, categoryService.findById(categoryId), promotionService.findById(promotionId), AccountServiceImpl.currentAccount);
         productService.add(product);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("product/list-sell");
         dispatcher.forward(request, response);
 
     }
