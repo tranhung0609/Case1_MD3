@@ -48,6 +48,7 @@
                         <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".men">men's</li>
                     </ul>
                     <a href="/products?action=create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Create</a>
+                    <a href="/products?action=search" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Search</a>
                 </div>
             </div>
         </div>
