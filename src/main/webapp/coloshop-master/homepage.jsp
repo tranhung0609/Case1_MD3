@@ -22,6 +22,7 @@
     <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
     <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
     <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+    <link rel="stylesheet" type="text/css" href="search-form.css">
 </head>
 
 <body>
@@ -46,7 +47,7 @@
 
                                 <!-- Currency / Language / My Account -->
 
-                                <li class="currency">
+                                <li class="">
                                     <a href="#">
                                         usd
                                         <i class="fa fa-angle-down"></i>
@@ -94,14 +95,14 @@
                 <div class="row">
                     <div class="col-lg-12 text-right">
                         <div class="logo_container">
-                            <a href="homepage.jsp">colo<span>shop</span></a>
+                            <a href="/products">colo<span>shop</span></a>
                         </div>
                         <nav class="navbar">
                             <ul class="navbar_menu">
                                 <li><a href="/products">home</a></li>
                                 <li><a href="/products?action=sell-list">my shop</a></li>
-                                <li><a href="single.jsp">single product</a></li>
-                                <li><a href="contact.jsp">contact</a></li>
+                                <li><a href="/order-details">single product</a></li>
+                                <li><a href="/contacts">contact</a></li>
                             </ul>
                             <ul class="navbar_user">
                                 <li><a href="/products?action=search"><i class="fa fa-search" aria-hidden="true"></i></a></li>
@@ -165,7 +166,7 @@
                 </li>
                 <li class="menu_item"><a href="/products">home</a></li>
                 <li class="menu_item"><a href="/products?action=sell-list">my shop</a></li>
-                <li class="menu_item"><a href="contact.jsp">contact</a></li>
+                <li class="menu_item"><a href="/contacts">contact</a></li>
             </ul>
         </div>
     </div>
@@ -194,21 +195,21 @@
                 <div class="col-md-4">
                     <div class="banner_item align-items-center" style="background-image:url(images/banner_1.jpg)">
                         <div class="banner_category">
-                            <a href="categories.jsp">women's</a>
+                            <a href="/products?action=buy-list">women's</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="banner_item align-items-center" style="background-image:url(images/banner_2.jpg)">
                         <div class="banner_category">
-                            <a href="categories.jsp">accessories's</a>
+                            <a href="/products?action=buy-list">accessories's</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="banner_item align-items-center" style="background-image:url(images/banner_3.jpg)">
                         <div class="banner_category">
-                            <a href="categories.jsp">men's</a>
+                            <a href="/products?action=buy-list">men's</a>
                         </div>
                     </div>
                 </div>
@@ -236,7 +237,7 @@
                             <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".accessories">accessories</li>
                             <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".men">men's</li>
 <%--                            <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" href="/products?action=create">create--%>
-                                <a href="/products?action=create">create</a>
+<%--                                <a href="/products?action=create">create</a>--%>
 <%--                            </li>--%>
                         </ul>
                     </div>
