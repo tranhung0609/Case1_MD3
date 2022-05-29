@@ -126,7 +126,8 @@ public class ProductServiceImpl implements IProductService {
                 int quantitySold = rs.getInt("quantitySold");
                 int categoryId = rs.getInt("categoryId");
                 int promotionId = rs.getInt("promotionId");
-                int accountId = AccountServiceImpl.currentAccount.getId();
+                int accountId = rs.getInt("accountId");
+//                int accountId = AccountServiceImpl.currentAccount.getId();
                 products.add(new Product(id, name, price, image, quantity, quantitySold, categoryService.findById(categoryId), promotionService.findById(promotionId), accountService.findById(accountId)));
             }
         } catch (SQLException e) {
