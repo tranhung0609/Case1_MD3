@@ -1,17 +1,19 @@
 package model;
 
+import java.util.List;
+
 public class Order {
     private int id;
-    private double totalPrice;
+    private List<OrderDetail> orderDetails;
     private Account account;
     private String status;
 
     public Order() {
     }
 
-    public Order(int id, double totalPrice, Account account, String status) {
+    public Order(int id, List<OrderDetail> orderDetails, Account account, String status) {
         this.id = id;
-        this.totalPrice = totalPrice;
+        this.orderDetails = orderDetails;
         this.account = account;
         this.status = status;
     }
@@ -24,12 +26,12 @@ public class Order {
         this.id = id;
     }
 
-    public double getTotalPrice() {
-        return totalPrice;
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
     }
 
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
     }
 
     public Account getAccount() {

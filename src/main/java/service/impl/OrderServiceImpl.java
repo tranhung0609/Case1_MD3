@@ -49,7 +49,7 @@ public class OrderServiceImpl implements IOrderService {
                 double totalPrice = rs.getDouble("totalPrice");
                 int accountId = rs.getInt("accountId");
                 String status = rs.getString("status");
-                orders.add(new Order(id, totalPrice, accountService.findById(accountId), status));
+//                orders.add(new Order(id, totalPrice, accountService.findById(accountId), status));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -59,6 +59,7 @@ public class OrderServiceImpl implements IOrderService {
 
     public List<Order> findAllAtBuy() {
         List<Order> orders = new ArrayList<>();
+//        List<OrderDetail> orderDetails = orderDetailService.;
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement =
                      connection.prepareStatement("SELECT * FROM orders WHERE accountId = ?")) {
@@ -69,7 +70,7 @@ public class OrderServiceImpl implements IOrderService {
                 double totalPrice = rs.getDouble("totalPrice");
                 int accountId = rs.getInt("accountId");
                 String status = rs.getString("status");
-                orders.add(new Order(id, totalPrice, accountService.findById(accountId), status));
+                orders.add(new Order());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -79,21 +80,21 @@ public class OrderServiceImpl implements IOrderService {
 
     public List<Order> findAllAtSell() {
         List<Order> orders = new ArrayList<>();
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement =
-                     connection.prepareStatement("SELECT * FROM orders WHERE accountId <> ?")) {
-            preparedStatement.setInt(1, AccountServiceImpl.currentAccount.getId());
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                double totalPrice = rs.getDouble("totalPrice");
-                int accountId = rs.getInt("accountId");
-                String status = rs.getString("status");
-                orders.add(new Order(id, totalPrice, accountService.findById(accountId), status));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        try (Connection connection = getConnection();
+//             PreparedStatement preparedStatement =
+//                     connection.prepareStatement("SELECT * FROM orders WHERE accountId <> ?")) {
+//            preparedStatement.setInt(1, AccountServiceImpl.currentAccount.getId());
+//            ResultSet rs = preparedStatement.executeQuery();
+//            while (rs.next()) {
+//                int id = rs.getInt("id");
+//                double totalPrice = rs.getDouble("totalPrice");
+//                int accountId = rs.getInt("accountId");
+//                String status = rs.getString("status");
+//                orders.add(new Order(id, totalPrice, accountService.findById(accountId), status));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
         return orders;
     }
 

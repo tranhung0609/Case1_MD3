@@ -65,14 +65,29 @@ public class ProductServiceImpl implements IProductService {
     }
 
     public List<Product> findByName(String name) {
-        List<Product> products = findAllAtBuy();
-        List<Product> listByName = new ArrayList<>();
-        for (Product p : products) {
-            if (p.getName().contains(name)) {
-                listByName.add(p);
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM products WHERE name LIKE ? AND accountId <> ?")
+        ) {
+            preparedStatement.setString(1,"%" + name + "%");
+            preparedStatement.setInt(2,AccountServiceImpl.currentAccount.getId());
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name1 = rs.getString("name");
+                double price = rs.getDouble("price");
+                String image = rs.getString("image");
+                int quantity = rs.getInt("quantity");
+                int quantitySold = rs.getInt("quantitySold");
+                int categoryId = rs.getInt("categoryId");
+                int promotionId = rs.getInt("promotionId");
+                int accountId = rs.getInt("accountId");
+                products.add(new Product(id, name1, price, image, quantity, quantitySold, categoryService.findById(categoryId), promotionService.findById(promotionId), accountService.findById(accountId)));
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return listByName;
+        return products;
     }
 
     //lấy List category để hiển thị loại sản phẩm thay vì Id

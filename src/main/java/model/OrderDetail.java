@@ -1,9 +1,11 @@
 package model;
 
 public class OrderDetail {
+    private int id;
     private Order order;
     private Product product;
     private int quantity;
+    private double totalPrice;
 
     public OrderDetail() {
     }
@@ -12,6 +14,22 @@ public class OrderDetail {
         this.order = order;
         this.product = product;
         this.quantity = quantity;
+    }
+
+    public OrderDetail(int id, Order order, Product product, int quantity, double totalPrice) {
+        this.id = id;
+        this.order = order;
+        this.product = product;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Order getOrder() {
@@ -36,5 +54,13 @@ public class OrderDetail {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

@@ -49,10 +49,7 @@ public class OrderServlet extends HttpServlet {
     }
 
     private void addCart(HttpServletRequest request, HttpServletResponse response) {
-        int productId = Integer.parseInt(request.getParameter("productId"));
-        int accountId = Integer.parseInt(request.getParameter("accountId"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
-//        orderService.add();
+
 
     }
 }
