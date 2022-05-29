@@ -77,8 +77,8 @@
                                         <i class="fa fa-angle-down"></i>
                                     </a>
                                     <ul class="account_selection">
-                                        <li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-                                        <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+                                        <li><a href="/accounts?action=login"><i class="fa fa-sign-in" aria-hidden="true"></i>Log Out</a></li>
+                                        <li><a href="/accounts?action=signup"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -99,8 +99,8 @@
                         </div>
                         <nav class="navbar">
                             <ul class="navbar_menu">
-                                <li><a href="homepage.jsp">home</a></li>
-                                <li><a href="categories.jsp">shop</a></li>
+                                <li><a href=/products">home</a></li>
+                                <li><a href="/products?action=sell-list">my shop</a></li>
                             </ul>
                             <ul class="navbar_user">
                                 <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
@@ -183,8 +183,8 @@
 
                 <div class="breadcrumbs d-flex flex-row align-items-center">
                     <ul>
-                        <li><a href="homepage.jsp">Home</a></li>
-                        <li class="active"><a href="homepage.jsp"><i class="fa fa-angle-right" aria-hidden="true"></i>Men's</a></li>
+                        <li><a href="/products">Home</a></li>
+<%--                        <li class="active"><a href="homepage.jsp"><i class="fa fa-angle-right" aria-hidden="true"></i>Men's</a></li>--%>
                     </ul>
                 </div>
 
@@ -308,7 +308,7 @@
                                 <div class="product-grid">
 
                                     <!-- Product 1 -->
-                                    <c:forEach items="products" var="product">
+                                    <c:forEach items="${products}" var="product">
                                         <div class="product-item men">
                                             <div class="product discount product_filter">
                                                 <div class="product_image">
@@ -317,7 +317,7 @@
                                                 <div class="favorite favorite_left"></div>
                                                 <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
                                                 <div class="product_info">
-                                                    <h6 class="product_name"><a href="single.jsp">${product.name}</a></h6>
+                                                    <h6 class="product_name"><a href="/products?action=details&id=${product.id}">${product.name}</a></h6>
                                                     <div class="product_price">$${product.price}<span>$590.00</span></div>
                                                 </div>
                                             </div>

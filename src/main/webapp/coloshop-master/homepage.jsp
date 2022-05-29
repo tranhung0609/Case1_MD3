@@ -98,14 +98,14 @@
                         </div>
                         <nav class="navbar">
                             <ul class="navbar_menu">
-                                <li><a href="homepage.jsp">home</a></li>
-                                <li><a href="categories.jsp">shop</a></li>
+                                <li><a href="/products">home</a></li>
+                                <li><a href="/products?action=sell-list">my shop</a></li>
                                 <li><a href="single.jsp">single product</a></li>
                                 <li><a href="contact.jsp">contact</a></li>
                             </ul>
                             <ul class="navbar_user">
-                                <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                                <li><a href="/products?action=search"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                                <li><a href="/accounts?action=details"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                                 <li class="checkout">
                                     <a href="/checkout/responsive-shopping-cart-layout/check-out.jsp">
                                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -154,17 +154,17 @@
                     </ul>
                 </li>
                 <li class="menu_item has-children">
-                    <a href="#">
+                    <a href="a">
                         My Account
                         <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="menu_selection">
-                        <li><a href="/accounts?action=login"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
+                        <li><a href="/accounts?action=login"><i class="fa fa-sign-in" aria-hidden="true"></i>Log Out</a></li>
                         <li><a href="/accounts?action=signup"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
                     </ul>
                 </li>
                 <li class="menu_item"><a href="/products">home</a></li>
-                <li class="menu_item"><a href="categories.jsp">shop</a></li>
+                <li class="menu_item"><a href="/products?action=sell-list">my shop</a></li>
                 <li class="menu_item"><a href="contact.jsp">contact</a></li>
             </ul>
         </div>
@@ -179,7 +179,7 @@
                     <div class="main_slider_content">
                         <h6>Spring / Summer Collection 2017</h6>
                         <h1>Get up to 30% Off New Arrivals</h1>
-                        <div class="red_button shop_now_button"><a href="homepage.jsp">shop now</a></div>
+                        <div class="red_button shop_now_button"><a href="/products?action=buy-list">shop now</a></div>
                     </div>
                 </div>
             </div>
@@ -455,7 +455,7 @@
                                 <div class="timer_unit">Sec</div>
                             </li>
                         </ul>
-                        <div class="red_button deal_ofthe_week_button"><a href="categories.jsp">shop now</a></div>
+                        <div class="red_button deal_ofthe_week_button"><a href="/products?action=buy-list">shop now</a></div>
                     </div>
                 </div>
             </div>
