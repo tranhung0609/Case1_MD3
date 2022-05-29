@@ -92,8 +92,16 @@ public class ProductServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
-    private void showEditForm(HttpServletRequest request, HttpServletResponse response) {
-
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/edit.jsp");
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product product = productService.findById(id);
+        request.setAttribute("product", product);
+        List<Category> categories = categoryService.findAll();
+        List<Promotion> promotions = promotionService.findAll();
+        request.setAttribute("categories", categories);
+        request.setAttribute("promotions", promotions);
+        requestDispatcher.forward(request, response);
     }
 
     private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) {
@@ -133,8 +141,26 @@ public class ProductServlet extends HttpServlet {
             case "search":
                 searchProduct(request, response);
                 break;
-
+            case "edit":
+                try {
+                    editProduct(request, response);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
         }
+    }
+
+    private void editProduct(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        String name = request.getParameter("name");
+        double price = Double.parseDouble(request.getParameter("price"));
+        String image = request.getParameter("image");
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        int categoryId = Integer.parseInt(request.getParameter("category"));
+        int promotionId = Integer.parseInt(request.getParameter("promotion"));
+        Product product = new Product(name, price, image, quantity, categoryService.findById(categoryId), promotionService.findById(promotionId), AccountServiceImpl.currentAccount);
+        productService.update(product);
+        response.sendRedirect("/products?action=sell-list");
     }
 
     private void searchProduct(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -154,9 +180,7 @@ public class ProductServlet extends HttpServlet {
         int promotionId = Integer.parseInt(request.getParameter("promotion"));
         Product product = new Product(name, price, image, quantity, categoryService.findById(categoryId), promotionService.findById(promotionId), AccountServiceImpl.currentAccount);
         productService.add(product);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("product/list-sell");
-        dispatcher.forward(request, response);
-
+        response.sendRedirect("/products?action=sell-list");
     }
 }
 

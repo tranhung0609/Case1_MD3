@@ -26,7 +26,8 @@
                 <div class="product_price">$${product.price}<span>$590.00</span></div>
             </div>
         </div>
-        <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+        <div class="red_button add_to_cart_button"><a href="/products?action=edit&id=${product.id}">Edit</a></div>
+        <div class="red_button add_to_cart_button"><a href="/products?action=delete&id=${product.id}">Delete</a></div>
     </div>
 </c:forEach>
 </body>
