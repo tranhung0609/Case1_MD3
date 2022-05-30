@@ -36,7 +36,12 @@ public class ManageCartItem {
         }
     }
 
-    public void deleteProduct(){
-
+    public void deleteProduct(int cartItemId, List<CartItem> list){
+        for (CartItem c : list) {
+            if (c.cartItemId == cartItemId){
+                list.remove(c);
+                break;
+            }
+        }
     }
 }

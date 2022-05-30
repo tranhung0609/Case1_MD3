@@ -34,8 +34,19 @@ public class OrderServlet extends HttpServlet {
             case "show":
                 showListCart(request, response,session);
                 break;
+            case "delete":
+                deleteFromCart(request, response,session);
+                //lỗi 500
+                break;
         }
 
+    }
+
+    private void deleteFromCart(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
+        int cartItemId = Integer.parseInt(request.getParameter("cartItemId"));
+        List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cartItems");
+        manageCartItem.deleteProduct(cartItemId, cartItems);
+        response.sendRedirect("/orders?action=show");
     }
 
     private void showListCart(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {

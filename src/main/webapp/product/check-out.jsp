@@ -13,7 +13,8 @@
     <meta charset="UTF-8">
     <title>Check-out</title>
     <link type="text/css" href="/product/css/check-out.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="js/jquery-1.11.1.min.js"></script>
 </head>
 <body>
@@ -26,16 +27,20 @@
             <th style="width:10%">Giá</th>
             <th style="width:8%">Số lượng</th>
             <th style="width:22%" class="text-center">Thành tiền</th>
-            <th style="width:10%"> </th>
+            <th style="width:10%"></th>
         </tr>
         </thead>
         <tbody>
-        <form action="/orders" method="post">
-            <c:forEach items="${myCartItems}" var="cartItem">
+        <c:forEach items="${myCartItems}" var="cartItem">
+            <form action="/orders" method="get">
+                <input type="hidden" name="action" value="delete">
+                <input type="hidden" name="cartItemId" value="${cartItem.getCartItemId()}">
                 <tr>
                     <td data-th="Product">
                         <div class="row">
-                            <div class="col-sm-2 hidden-xs"><img src="${cartItem.getProduct().getImage()}" alt="Sản phẩm 1" class="img-responsive" width="100">
+                            <div class="col-sm-2 hidden-xs"><img src="${cartItem.getProduct().getImage()}"
+                                                                 alt="Sản phẩm 1"
+                                                                 class="img-responsive" width="100">
                             </div>
                             <div class="col-sm-10">
                                 <h4 class="nomargin">${cartItem.getProduct().getName()}</h4>
@@ -48,32 +53,37 @@
                     </td>
                     <td data-th="Subtotal" class="text-center">${cartItem.price}</td>
                     <td class="actions" data-th="">
-                        <button class="btn btn-danger btn-sm" onclick="xacNhanDelete(${product.id})"><i class="fa fa-trash-o">Xóa</i>
+<%--                        <button class="btn btn-danger btn-sm" onclick="xacNhanDelete(${product.id})"><i--%>
+                        <button class="btn btn-danger btn-sm"><i
+                                class="fa fa-trash-o">Xóa</i>
                         </button>
                     </td>
                 </tr>
+            </form>
+        </c:forEach>
         </tbody>
-            </c:forEach>
-        </form>
+
+
         <tfoot>
-    <tr>
-<%--        đã chuyền đường link quay trở lại mua hàng--%>
-        <td><a href="/products?action=buy-list" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a>
-        </td>
-        <td colspan="2" class="hidden-xs"> </td>
-        <td class="hidden-xs text-center"><strong>Tổng tiền ${totalPrice}</strong>
-        </td>
-<%--    truyền đường link thanh toán tiền--%>
-        <td><a href="" class="btn btn-success btn-block">Thanh toán<i class="fa fa-angle-right"></i></a>
-        </td>
-    </tr>
-    </tfoot>
+        <tr>
+            <%--        đã chuyền đường link quay trở lại mua hàng--%>
+            <td><a href="/products?action=buy-list" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục
+                mua hàng</a>
+            </td>
+            <td colspan="2" class="hidden-xs"></td>
+            <td class="hidden-xs text-center"><strong>Tổng tiền ${totalPrice}</strong>
+            </td>
+            <%--    truyền đường link thanh toán tiền--%>
+            <td><a href="" class="btn btn-success btn-block">Thanh toán<i class="fa fa-angle-right"></i></a>
+            </td>
+        </tr>
+        </tfoot>
     </table>
 </div>
 <script>
-    function xacNhanDelete(id){
-        if (confirm("Bạn có chắc muốn xóa")){
-            document.getElementById("delete "+id).submit();
+    function xacNhanDelete(id) {
+        if (confirm("Bạn có chắc muốn xóa")) {
+            document.getElementById("delete " + id).submit();
         }
     }
 </script>
