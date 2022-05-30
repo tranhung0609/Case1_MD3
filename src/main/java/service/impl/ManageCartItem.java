@@ -35,4 +35,8 @@ public class ManageCartItem {
             }
         }
     }
+
+    public void deleteProduct(){
+
+    }
 }
