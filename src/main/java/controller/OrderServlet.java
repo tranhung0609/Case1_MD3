@@ -95,12 +95,11 @@ public class OrderServlet extends HttpServlet {
             session.setAttribute("myCartItems", myCartItems);
         } else {
             myCartItems = manageCartItem.findByAccount(AccountServiceImpl.currentAccount.getId(), cartItems);
-            if (myCartItems == null) {
+            if (myCartItems.size() == 0) {
                 myCartItems = new ArrayList<>();
                 session.setAttribute("myCartItems", myCartItems);
             }
         }
-        manageCartItem.addToCart(cartItem, myCartItems, quantity);
         manageCartItem.addToCart(cartItem, cartItems, quantity);
         response.sendRedirect("/orders?action=show");
     }

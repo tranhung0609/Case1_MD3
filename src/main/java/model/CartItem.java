@@ -9,11 +9,6 @@ public class CartItem {
     public CartItem() {
     }
 
-//    public CartItem(Product product, double price, int quantity) {
-//        this.product = product;
-//        this.price = price;
-//        this.quantity = quantity;
-//    }
 
     public CartItem(Product product, Account account, double price, int quantity) {
         this.product = product;

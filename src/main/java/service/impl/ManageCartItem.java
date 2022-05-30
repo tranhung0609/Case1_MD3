@@ -23,14 +23,14 @@ public class ManageCartItem {
             list.add(cartItem);
         } else {
             for (CartItem c : list) {
-                if (c.getProduct().getId() == cartItem.getProduct().getId()) {
+                if ((c.getProduct().getId() == cartItem.getProduct().getId()) && c.getAccount().getId() == cartItem.getAccount().getId()) {
                     c.setQuantity(c.getQuantity() + quantity);
                     c.setPrice(c.getPrice() + (cartItem.getProduct().getPrice() * quantity));
                     count = 1;
                     break;
                 }
             }
-            if (count == 0){
+            if (count == 0) {
                 list.add(cartItem);
             }
         }
