@@ -124,17 +124,17 @@
     <div class="headline">
         <h3>List san pham</h3>
     </div>
-    <button> <a href="#" type="button" class="btn btn-outline-primary">Create</a> </button>
-    <button> <a href="#" type="button" class="btn btn-outline-secondary">Edit</a> </button>
+    <button> <a href="/products?action=create" type="button" class="btn btn-outline-primary">Create</a> </button>
+    <button> <a href="/products?action=edit&id=${product.id}" type="button" class="btn btn-outline-secondary">Edit</a> </button>
     <ul class="products">
-        <c:forEach items="products" var="product">
+        <c:forEach items="${products}" var="product">
             <li>
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
                             <img src="${product.image}"alt="">
                         </a>
-                        <a href="" class="delete">delete</a>
+                        <a href="/products?action=delete&id=${product.id}" class="delete">delete</a>
                     </div>
                     <div class="product-info">
                         <a href="" class="product-cat">abc</a>

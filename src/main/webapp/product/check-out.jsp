@@ -16,7 +16,7 @@
     <script src="js/jquery-1.11.1.min.js"></script>
 </head>
 <body>
-<h2 class="text-center"> giao diện trang giỏ hàng</h2>
+<h2 class="text-center">Thanh toán</h2>
 <div class="container">
     <table id="cart" class="table table-hover table-condensed">
         <thead>
