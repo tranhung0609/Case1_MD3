@@ -15,7 +15,7 @@ public class ProductServiceImpl implements IProductService {
 
     static String jdbcURL = "jdbc:mysql://localhost:3306/ecommerce_case_md3?useSSL=false";
     static String jdbcUsername = "root";
-    static String jdbcPassword = "12111992";
+    static String jdbcPassword = "123456";
 
     public static final String SELECT_ALL_PRODUCTS_AT_BUY = "SELECT * FROM products WHERE accountId <> ?";
     public static final String SELECT_ALL_PRODUCTS_AT_SELL = "SELECT * FROM products WHERE accountId = ?";
