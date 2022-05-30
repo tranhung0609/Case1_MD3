@@ -78,7 +78,7 @@
     ul.products li .product-top .product-thumb img{
         display: block;
     }
-    ul.products li .product-top a.edit{
+    ul.products li .product-top a.delete{
         text-transform: uppercase;
         text-decoration: none;
         text-align: center;
@@ -93,7 +93,7 @@
         opacity: 0.85;
 
     }
-    ul.products li:hover a.edit{
+    ul.products li:hover a.delete{
         bottom: 0px;
     }
     ul.products li .product-info{
