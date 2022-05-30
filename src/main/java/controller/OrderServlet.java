@@ -39,7 +39,7 @@ public class OrderServlet extends HttpServlet {
     }
 
     private void showListCart(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("cart/list.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/product/check-out.jsp");
         List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cartItems");
         if (cartItems == null) {
             cartItems = new ArrayList<>();

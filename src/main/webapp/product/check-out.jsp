@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: ACER
@@ -28,64 +29,53 @@
             <th style="width:10%"> </th>
         </tr>
         </thead>
-        <tbody><tr>
-            <td data-th="Product">
-                <div class="row">
-                    <div class="col-sm-2 hidden-xs"><img src="http://hocwebgiare.com/thiet_ke_web_chuan_demo/shopping_cart/images/090.jpg" alt="Sản phẩm 1" class="img-responsive" width="100">
-                    </div>
-                    <div class="col-sm-10">
-                        <h4 class="nomargin">Sản phẩm 1</h4>
-                        <p>Mô tả của sản phẩm 1</p>
-                    </div>
-                </div>
-            </td>
-            <td data-th="Price">200.000 đ</td>
-            <td data-th="Quantity"><input class="form-control text-center" value="1" type="number">
-            </td>
-            <td data-th="Subtotal" class="text-center">200.000 đ</td>
-            <td class="actions" data-th="">
-                <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o">Xóa</i>
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <td data-th="Product">
-                <div class="row">
-                    <div class="col-sm-2 hidden-xs"><img src="http://hocwebgiare.com/thiet_ke_web_chuan_demo/shopping_cart/images/174.jpg" alt="Sản phẩm 1" class="img-responsive" width="100">
-                    </div>
-                    <div class="col-sm-10">
-                        <h4 class="nomargin">Sản phẩm 2</h4>
-                        <p>Mô tả của sản phẩm 2</p>
-                    </div>
-                </div>
-            </td>
-            <td data-th="Price">300.000 đ</td>
-            <td data-th="Quantity"><input class="form-control text-center" value="1" type="number">
-            </td>
-            <td data-th="Subtotal" class="text-center">300.000 đ</td>
-            <td class="actions" data-th="">
-                <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o">Xóa</i>
-                </button>
-            </td>
-        </tr>
-        </tbody><tfoot>
-    <tr class="visible-xs">
-        <td class="text-center"><strong>Tổng 200.000 đ</strong>
-        </td>
-    </tr>
+        <tbody>
+        <form action="/orders" method="post">
+            <c:forEach items="${myCartItems}" var="cartItem">
+                <tr>
+                    <td data-th="Product">
+                        <div class="row">
+                            <div class="col-sm-2 hidden-xs"><img src="${cartItem.getProduct().getImage()}" alt="Sản phẩm 1" class="img-responsive" width="100">
+                            </div>
+                            <div class="col-sm-10">
+                                <h4 class="nomargin">${cartItem.getProduct().getName()}</h4>
+                                    <%--                        <p>Mô tả của sản phẩm 1</p>--%>
+                            </div>
+                        </div>
+                    </td>
+                    <td data-th="Price">$${cartItem.getProduct().getPrice()}</td>
+                    <td data-th="Quantity">${cartItem.quantity}
+                    </td>
+                    <td data-th="Subtotal" class="text-center">${cartItem.price}</td>
+                    <td class="actions" data-th="">
+                        <button class="btn btn-danger btn-sm" onclick="xacNhanDelete(${product.id})"><i class="fa fa-trash-o">Xóa</i>
+                        </button>
+                    </td>
+                </tr>
+        </tbody>
+            </c:forEach>
+        </form>
+        <tfoot>
     <tr>
 <%--        đã chuyền đường link quay trở lại mua hàng--%>
         <td><a href="/products?action=buy-list" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a>
         </td>
         <td colspan="2" class="hidden-xs"> </td>
-        <td class="hidden-xs text-center"><strong>Tổng tiền 500.000 đ</strong>
+        <td class="hidden-xs text-center"><strong>Tổng tiền ${totalPrice}</strong>
         </td>
 <%--    truyền đường link thanh toán tiền--%>
-        <td><a href="#" class="btn btn-success btn-block">Thanh toán <i class="fa fa-angle-right"></i></a>
+        <td><a href="" class="btn btn-success btn-block">Thanh toán<i class="fa fa-angle-right"></i></a>
         </td>
     </tr>
     </tfoot>
     </table>
 </div>
+<script>
+    function xacNhanDelete(id){
+        if (confirm("Bạn có chắc muốn xóa")){
+            document.getElementById("delete "+id).onsubmit(undefined);
+        }
+    }
+</script>
 </body>
 </html>
