@@ -78,7 +78,7 @@
             </div>
         </div>
 
-        <div class="container">
+        <div class="container" >
             <div class="row">
                 <c:forEach items="${products}" var="product">
                 <div class="col mt-3">
@@ -88,7 +88,7 @@
                         <div class="product-item accessories">
                             <div class="product discount product_filter">
                                 <div class="product_image">
-                                    <img src="${product.image}" alt="">
+                                    <img src="${product.image}" alt="Loading...">
                                 </div>
                                 <div class="favorite favorite_left"></div>
                                 <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
