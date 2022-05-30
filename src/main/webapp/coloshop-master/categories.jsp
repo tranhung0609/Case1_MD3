@@ -308,6 +308,7 @@
                                 <div class="product-grid">
 
                                     <!-- Product 1 -->
+                                    <form action="/orders?action=add-to-cart" method="post">
                                     <c:forEach items="${products}" var="product">
                                         <div class="product-item men">
                                             <div class="product discount product_filter">
@@ -321,10 +322,12 @@
                                                     <div class="product_price">$${product.price}<span>$590.00</span></div>
                                                 </div>
                                             </div>
-                                            <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+                                            <div class="red_button add_to_cart_button">
+                                                <button><a href="/orders?action=add-to-cart&productId=${product.id}&price=${product.price}">add to cart</a></button>
+                                            </div>
                                         </div>
                                     </c:forEach>
-
+                                    </form>
 
 
                                     <!-- Product 2 -->

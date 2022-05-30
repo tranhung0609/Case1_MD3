@@ -51,8 +51,10 @@ public class ProductServlet extends HttpServlet {
                 break;
             case "search":
                 showSearchForm(request, response);
-                break;
-            default:
+
+
+
+              default:
                 homePage(request, response);
                 break;
         }
@@ -65,13 +67,6 @@ public class ProductServlet extends HttpServlet {
 
     private void homePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("coloshop-master/homepage.jsp");
-        requestDispatcher.forward(request, response);
-    }
-
-    private void showListProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("coloshop-master/homepage.jsp");
-        List<Product> productList = productService.findAll();
-        request.setAttribute("products", productList);
         requestDispatcher.forward(request, response);
     }
 
