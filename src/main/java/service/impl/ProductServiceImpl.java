@@ -15,7 +15,7 @@ public class ProductServiceImpl implements IProductService {
 
     static String jdbcURL = "jdbc:mysql://localhost:3306/ecommerce_case_md3?useSSL=false";
     static String jdbcUsername = "root";
-    static String jdbcPassword = "123456";
+    static String jdbcPassword = "12111992";
 
     public static final String SELECT_ALL_PRODUCTS_AT_BUY = "SELECT * FROM products WHERE accountId <> ?";
     public static final String SELECT_ALL_PRODUCTS_AT_SELL = "SELECT * FROM products WHERE accountId = ?";
@@ -172,11 +172,12 @@ public class ProductServiceImpl implements IProductService {
              PreparedStatement preparedStatement =
                      connection.prepareStatement(UPDATE_PRODUCT_SQL)) {
             preparedStatement.setString(1, product.getName());
-            preparedStatement.setDouble(2, product.getPrice());
+            preparedStatement.setString(2, String.valueOf(product.getPrice()));
             preparedStatement.setString(3, product.getImage());
-            preparedStatement.setInt(4, product.getQuantity());
-            preparedStatement.setInt(5, product.getCategory().getId());
-            preparedStatement.setInt(6, product.getPromotion().getId());
+            preparedStatement.setString(4, String.valueOf(product.getQuantity()));
+            preparedStatement.setString(5, String.valueOf(product.getCategory().getId()));
+            preparedStatement.setString(6, String.valueOf(product.getPromotion().getId()));
+            preparedStatement.setString(7, String.valueOf(product.getId()));
             rowUpdate = preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();

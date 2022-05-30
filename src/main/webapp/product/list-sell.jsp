@@ -10,34 +10,43 @@
 <html>
 <head>
     <title>Danh sách sản phẩm</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+                crossorigin="anonymous"></script>
 
 </head>
 <body>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
-    *{
+
+    * {
         padding: 0;
         margin: 0;
     }
-    body{
+
+    body {
         font-family: 'Open Sans', sans-serif;
         font-size: 14px;
         color: #111;
         line-height: 1.15;
         background-image: url("https://png.pngtree.com/thumb_back/fw800/back_our/20190628/ourmid/pngtree-tech-lines-gray-background-image_275742.jpg");
     }
-    #wrapper{
+
+    #wrapper {
         max-width: 1170px;
         margin: 0 auto;
     }
-    .headline{
+
+    .headline {
         text-align: center;
         margin: 40px 0px;
     }
-    h3{
+
+    h3 {
         font-size: 18px;
         color: #111;
         padding: 10px 20px;
@@ -47,38 +56,46 @@
         color: #555;
         font-weight: 600;
     }
-    ul.products{
+
+    ul.products {
         list-style: none;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
     }
-    ul.product li{
+
+    ul.product li {
         flex-basis: 25%;
         padding-left: 15px;
         padding-right: 15px;
         box-sizing: border-box;
         margin-bottom: 30px;
     }
-    ul.product li img{
+
+    ul.product li img {
         max-width: 100%;
         height: auto;
     }
-    ul.products li .product-top{
+
+    ul.products li .product-top {
         position: relative;
         overflow: hidden;
     }
-    ul.products li .product-top .product-thumb{
+
+    ul.products li .product-top .product-thumb {
         display: block;
     }
-    ul.products li:hover .product-top .product-thumb img{
+
+    ul.products li:hover .product-top .product-thumb img {
         filter: opacity(80%);
 
     }
-    ul.products li .product-top .product-thumb img{
+
+    ul.products li .product-top .product-thumb img {
         display: block;
     }
-    ul.products li .product-top a.edit{
+
+    ul.products li .product-top a.edit {
         text-transform: uppercase;
         text-decoration: none;
         text-align: center;
@@ -93,27 +110,33 @@
         opacity: 0.85;
 
     }
-    ul.products li:hover a.edit{
+
+    ul.products li:hover a.edit {
         bottom: 0px;
     }
-    ul.products li .product-info{
+
+    ul.products li .product-info {
         padding: 10px 0px;
     }
-    ul.products li .product-info a{
+
+    ul.products li .product-info a {
         display: block;
         text-decoration: none;
     }
-    ul.products li .product-info a.product-cat{
+
+    ul.products li .product-info a.product-cat {
         font-size: 11px;
         text-transform: uppercase;
         color: #9e9e9e;
         padding: 3px 0px;
     }
-    ul.products li .product-info a.product-name{
+
+    ul.products li .product-info a.product-name {
         color: #334862;
         padding: 3px 0px;
     }
-    ul.products li .product-info .product-price{
+
+    ul.products li .product-info .product-price {
         color: #111;
         padding: 2px 0px;
         font-weight: bold;
@@ -122,43 +145,67 @@
 </style>
 <div id="wrapper">
     <div class="headline">
-        <h3>List san pham</h3>
+        <h2>Product List</h2>
+        <form method="post">
+            <button><a href="/products?action=create" type="button" class="btn btn-outline-primary">Create</a></button>
+        </form>
     </div>
-    <button> <a href="#" type="button" class="btn btn-outline-primary">Create</a> </button>
-    <button> <a href="#" type="button" class="btn btn-outline-secondary">Edit</a> </button>
+
+
     <ul class="products">
-        <c:forEach items="products" var="product">
+        <%--        <c:forEach items="${products}" var="product">--%>
+        <%--            <li>--%>
+        <%--                <div class="product-item">--%>
+        <%--                    <div class="product-info">--%>
+        <%--                        <a href="" class="product-cat">abc</a>--%>
+        <%--&lt;%&ndash;                        <a href="" class="product-name">${product.image}</a>&ndash;%&gt;--%>
+        <%--                        <a href="" class="product-name"><input value="${product.name}"></a>--%>
+        <%--                        <div class="product-price"><input value="$${product.price}"></div>--%>
+        <%--                        <a href="/products?action=edit&id=${product.id}" type="button" class="btn btn-outline-primary">Edit</a>--%>
+        <%--                    </div>--%>
+        <%--                </div>--%>
+        <%--            </li>--%>
+        <%--        </c:forEach>--%>
+
+
+        <c:forEach items="${products}" var="product">
             <li>
                 <div class="product-item">
-                    <div class="product-top">
-                        <a href="" class="product-thumb">
-                            <img src="${product.image}"alt="">
-                        </a>
-                        <a href="" class="delete">delete</a>
-                    </div>
-                    <div class="product-info">
-                        <a href="" class="product-cat">abc</a>
-                        <a href="" class="product-name">${product.name}</a>
+
+
+                    <div>
+                        <div class="product-top"><a href="/products?action=edit&id=${product.id}" type="button" class="btn btn-outline-primary">Edit</a><a href="/products?action=delete&id=${product.id}" type="button" class="btn btn-outline-primary">Delete</a></div>
+
+                        <div class="product-item">
+                            <a href="" class="product-image">
+                                <img style="height: 240px;width: 200px" src="${product.image}" alt="">
+                            </a>
+                        </div>
+                        <div class="product-info">
+                            <a href="" class="product-cat">abc</a>
+                            <a href="" class="product-name">${product.name}</a>
+                        </div>
                         <div class="product-price">$${product.price}</div>
+
                     </div>
                 </div>
             </li>
         </c:forEach>
-<%--        <li>--%>
-<%--            <div class="product-item">--%>
-<%--                <div class="product-top">--%>
-<%--                    <a href="" class="product-thumb">--%>
-<%--                        <img src="/webapp/images/blog_3.jpg"alt="">--%>
-<%--                    </a>--%>
-<%--                    <a href="" class="edit">edit</a>--%>
-<%--                </div>--%>
-<%--                <div class="product-info">--%>
-<%--                    <a href="" class="product-cat">abc</a>--%>
-<%--                    <a href="" class="product-name">abc</a>--%>
-<%--                    <div class="product-price">239</div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </li>--%>
+        <%--        <li>--%>
+        <%--            <div class="product-item">--%>
+        <%--                <div class="product-top">--%>
+        <%--                    <a href="" class="product-thumb">--%>
+        <%--                        <img src="/webapp/images/blog_3.jpg"alt="">--%>
+        <%--                    </a>--%>
+        <%--                    <a href="" class="edit">edit</a>--%>
+        <%--                </div>--%>
+        <%--                <div class="product-info">--%>
+        <%--                    <a href="" class="product-cat">abc</a>--%>
+        <%--                    <a href="" class="product-name">abc</a>--%>
+        <%--                    <div class="product-price">239</div>--%>
+        <%--                </div>--%>
+        <%--            </div>--%>
+        <%--        </li>--%>
     </ul>
 </div>
 <%--<div class="new_arrivals">--%>

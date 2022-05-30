@@ -1,5 +1,6 @@
 package controller;
 
+import model.Account;
 import model.Category;
 import model.Product;
 import model.Promotion;
@@ -158,13 +159,17 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void editProduct(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+       int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         double price = Double.parseDouble(request.getParameter("price"));
         String image = request.getParameter("image");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         int categoryId = Integer.parseInt(request.getParameter("category"));
         int promotionId = Integer.parseInt(request.getParameter("promotion"));
-        Product product = new Product(name, price, image, quantity, categoryService.findById(categoryId), promotionService.findById(promotionId), AccountServiceImpl.currentAccount);
+        Category category = categoryService.findById(categoryId);
+        Promotion promotion = promotionService.findById(promotionId);
+        Account account = AccountServiceImpl.currentAccount;
+        Product product = new Product(id, name, price, image, quantity, category,promotion,account);
         productService.update(product);
         response.sendRedirect("/products?action=sell-list");
     }
