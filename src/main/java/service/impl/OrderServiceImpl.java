@@ -102,25 +102,6 @@ public class OrderServiceImpl implements IOrderService {
         return null;
     }
 
-    public void addToCart(CartItem cartItem, List<CartItem> list, int quantity) {
-        int count = 0;
-        if (list.size() == 0) {
-            list.add(cartItem);
-        } else {
-            for (CartItem c : list) {
-                if (c.getProduct().getId() == cartItem.getProduct().getId()) {
-                    c.setQuantity(c.getQuantity() + quantity);
-                    c.setPrice(c.getPrice() + (cartItem.getProduct().getPrice() * quantity));
-                    count = 1;
-                    break;
-                }
-            }
-            if (count == 0){
-                list.add(cartItem);
-            }
-        }
-    }
-
     public double calTotalPrice(List<CartItem> list) {
         double totalPrice = 0;
         for (CartItem c : list) {

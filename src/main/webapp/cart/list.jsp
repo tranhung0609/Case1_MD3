@@ -13,8 +13,8 @@
 </head>
 <body>
 <form action="/orders" method="post">
-<c:forEach items="${cartItems}" var="cartItem">
-    <h3>${cartItem.getProduct().getName()}, ${cartItem.quantity}, ${cartItem.price}</h3>
+<c:forEach items="${myCartItems}" var="cartItem">
+    <h3>${cartItem.getProduct().getName()}, ${cartItem.quantity}, ${cartItem.price}, ${cartItem.getAccount().getName()}</h3>
 </c:forEach>
     <a href="">${totalPrice}</a>
     <a href="/products?action=buy-list">Trở lại</a>

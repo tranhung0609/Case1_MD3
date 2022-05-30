@@ -3,9 +3,7 @@ package controller;
 import model.CartItem;
 import model.Category;
 import model.Product;
-import service.impl.OrderDetailServiceImpl;
-import service.impl.OrderServiceImpl;
-import service.impl.ProductServiceImpl;
+import service.impl.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -18,6 +16,7 @@ import java.util.List;
 public class OrderServlet extends HttpServlet {
     OrderServiceImpl orderService = new OrderServiceImpl();
     ProductServiceImpl productService = new ProductServiceImpl();
+    ManageCartItem manageCartItem = new ManageCartItem();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,7 +31,7 @@ public class OrderServlet extends HttpServlet {
             case "add-to-cart":
                 addToCart(request, response, session);
                 break;
-            default:
+            case "show":
                 showListCart(request, response,session);
                 break;
         }
@@ -46,9 +45,15 @@ public class OrderServlet extends HttpServlet {
             cartItems = new ArrayList<>();
             session.setAttribute("cartItems", cartItems);
         } else {
-            double totalPrice = orderService.calTotalPrice(cartItems);
-            session.setAttribute("cartItems", cartItems);
-            session.setAttribute("totalPrice", totalPrice);
+            List<CartItem> myCartItems = manageCartItem.findByAccount(AccountServiceImpl.currentAccount.getId(), cartItems);
+            if (myCartItems == null) {
+                myCartItems = new ArrayList<>();
+                session.setAttribute("myCartItems", myCartItems);
+            } else {
+                double totalPrice = orderService.calTotalPrice(myCartItems);
+                session.setAttribute("myCartItems", myCartItems);
+                session.setAttribute("totalPrice", totalPrice);
+            }
         }
         requestDispatcher.forward(request, response);
     }
@@ -62,31 +67,41 @@ public class OrderServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        switch (action) {
-            case "add-to-cart":
-                addToCart(request, response, session);
-                break;
-            case "buy":
-                break;
-            default:
-                showListCart(request, response,session);
-                break;
-        }
+//        switch (action) {
+//            case "add-to-cart":
+//                addToCart(request, response, session);
+//                break;
+//            case "buy":
+//                break;
+//            default:
+//                showListCart(request, response, session);
+//                break;
+//        }
     }
 
     private void addToCart(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException, ServletException {
         List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cartItems");
+        List<CartItem> myCartItems;
         int quantity = 1;
 //                Integer.parseInt(request.getParameter("quantity"));
         double price = Double.parseDouble(request.getParameter("price"));
         int productId = Integer.parseInt(request.getParameter("productId"));
         Product product = productService.findById(productId);
-        CartItem cartItem = new CartItem(product, price, quantity);
+        CartItem cartItem = new CartItem(product, AccountServiceImpl.currentAccount, price, quantity);
         if (cartItems == null) {
             cartItems = new ArrayList<>();
+            myCartItems = new ArrayList<>();
             session.setAttribute("cartItems", cartItems);
+            session.setAttribute("myCartItems", myCartItems);
+        } else {
+            myCartItems = manageCartItem.findByAccount(AccountServiceImpl.currentAccount.getId(), cartItems);
+            if (myCartItems == null) {
+                myCartItems = new ArrayList<>();
+                session.setAttribute("myCartItems", myCartItems);
+            }
         }
-        orderService.addToCart(cartItem, cartItems, quantity);
-        response.sendRedirect("orders");
+        manageCartItem.addToCart(cartItem, myCartItems, quantity);
+        manageCartItem.addToCart(cartItem, cartItems, quantity);
+        response.sendRedirect("/orders?action=show");
     }
 }
