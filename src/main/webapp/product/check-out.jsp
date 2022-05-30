@@ -15,7 +15,7 @@
     <link type="text/css" href="/product/css/check-out.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="js/jquery-1.11.1.min.js"></script>
-</head>
+
 <body>
 <h2 class="text-center">Thanh toán</h2>
 <div class="container">
@@ -44,11 +44,15 @@
                         </div>
                     </td>
                     <td data-th="Price">$${cartItem.getProduct().getPrice()}</td>
-                    <td data-th="Quantity">${cartItem.quantity}
-                    </td>
+
+                        <td>
+                            <input type="number" class="data-th" style="width: 40px;">${cartItem.quantity}
+                        </td>
+
+
                     <td data-th="Subtotal" class="text-center">${cartItem.price}</td>
                     <td class="actions" data-th="">
-                        <button class="btn btn-danger btn-sm" onclick="xacNhanDelete(${product.id})"><i class="fa fa-trash-o">Xóa</i>
+                        <button  class="btn btn-danger btn-sm" onclick="xacNhanDelete(${product.id})"><i class="fa fa-trash-o">Xóa</i>
                         </button>
                     </td>
                 </tr>
