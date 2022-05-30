@@ -99,8 +99,14 @@ public class ProductServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
-    private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) {
-
+    private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        try {
+            productService.delete(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        response.sendRedirect("/products?action=sell-list");
     }
 
     private void showListProductAtSell(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

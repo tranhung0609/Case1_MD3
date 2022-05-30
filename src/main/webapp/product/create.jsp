@@ -28,6 +28,7 @@
         }
     </style>
 <body>
+
 <div class="container">
     <div class="table-wrapper">
         <div class="table-title">
@@ -94,10 +95,7 @@
             </div>
         </div>
     </div>
-
 </div>
-
-
 <script src="js/manager.js" type="text/javascript"></script>
 </body>
 </html>
