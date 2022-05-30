@@ -32,13 +32,20 @@ public class OrderServlet extends HttpServlet {
                 addToCart(request, response, session);
                 break;
             case "show":
-                showListCart(request, response,session);
+                showListCart(request, response, session);
                 break;
             case "delete":
-                deleteFromCart(request, response,session);
-                //lỗi 500
+                deleteFromCart(request, response, session);
+                break;
+            case "buy":
+                buyFromCart(request, response, session);
                 break;
         }
+
+    }
+
+    private void buyFromCart(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+        List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cartItems");
 
     }
 
@@ -69,27 +76,6 @@ public class OrderServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
-        HttpSession session = request.getSession();
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "";
-        }
-//        switch (action) {
-//            case "add-to-cart":
-//                addToCart(request, response, session);
-//                break;
-//            case "buy":
-//                break;
-//            default:
-//                showListCart(request, response, session);
-//                break;
-//        }
-    }
-
     private void addToCart(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException, ServletException {
         List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cartItems");
         List<CartItem> myCartItems;
@@ -114,4 +100,27 @@ public class OrderServlet extends HttpServlet {
         manageCartItem.addToCart(cartItem, cartItems, quantity);
         response.sendRedirect("/orders?action=show");
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+        HttpSession session = request.getSession();
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+//        switch (action) {
+//            case "add-to-cart":
+//                addToCart(request, response, session);
+//                break;
+//            case "buy":
+//                break;
+//            default:
+//                showListCart(request, response, session);
+//                break;
+//        }
+    }
+
+
 }

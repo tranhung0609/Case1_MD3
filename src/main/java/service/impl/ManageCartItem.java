@@ -2,11 +2,14 @@ package service.impl;
 
 import model.Account;
 import model.CartItem;
+import model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ManageCartItem {
+    ProductServiceImpl productService = new ProductServiceImpl();
+
     public List<CartItem> findByAccount(int accountId, List<CartItem> list) {
         List<CartItem> cartItems = new ArrayList<>();
         for (CartItem c : list) {
@@ -23,6 +26,7 @@ public class ManageCartItem {
             list.add(cartItem);
         } else {
             for (CartItem c : list) {
+                // xét theo cartItemId mà em lười sửa quá mn à
                 if ((c.getProduct().getId() == cartItem.getProduct().getId()) && c.getAccount().getId() == cartItem.getAccount().getId()) {
                     c.setQuantity(c.getQuantity() + quantity);
                     c.setPrice(c.getPrice() + (cartItem.getProduct().getPrice() * quantity));
@@ -36,12 +40,30 @@ public class ManageCartItem {
         }
     }
 
-    public void deleteProduct(int cartItemId, List<CartItem> list){
+    public void deleteProduct(int cartItemId, List<CartItem> list) {
         for (CartItem c : list) {
-            if (c.cartItemId == cartItemId){
+            if (c.cartItemId == cartItemId) {
                 list.remove(c);
                 break;
             }
         }
+    }
+
+    public boolean buy(int accountId, List<CartItem> list) {
+        boolean rowBuy = true;
+        List<CartItem> myCartItems = findByAccount(accountId, list);
+        for (CartItem c : myCartItems) {
+            if (myCartItems.size() != 0) {
+                Product product = productService.findById(c.getProduct().getId());
+                if (product.getQuantity() >= c.getQuantity()) {
+                    product.setQuantity(product.getQuantity() - c.getQuantity());
+                    product.setQuantitySold(product.getQuantitySold() + c.getQuantity());
+                    list.remove(c);
+                } else {
+                    rowBuy = false;
+                }
+            }
+        }
+        return rowBuy;
     }
 }
