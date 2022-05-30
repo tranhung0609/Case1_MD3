@@ -105,7 +105,7 @@
                                 <li><a href="/contacts">contact</a></li>
                             </ul>
                             <ul class="navbar_user">
-                                <li><a href="/products?action=search"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                                <li> <a href="/products?action=search"><i class="fa fa-search" aria-hidden="true"></i></a></li>
                                 <li><a href="/accounts?action=details"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                                 <li class="checkout">
                                     <a href="/checkout/responsive-shopping-cart-layout/check-out.jsp">
