@@ -184,7 +184,7 @@
                 <div class="breadcrumbs d-flex flex-row align-items-center">
                     <ul>
                         <li><a href="/products">Home</a></li>
-<%--                        <li class="active"><a href="homepage.jsp"><i class="fa fa-angle-right" aria-hidden="true"></i>Men's</a></li>--%>
+                        <%--                        <li class="active"><a href="homepage.jsp"><i class="fa fa-angle-right" aria-hidden="true"></i>Men's</a></li>--%>
                     </ul>
                 </div>
 
@@ -193,14 +193,13 @@
                 <div class="sidebar">
                     <div class="sidebar_section">
                         <div class="sidebar_title">
-                            <h5>Product List</h5>
+                            <h5>Product Category</h5>
                         </div>
                         <ul class="sidebar_categories">
                             <li><a href="#" >Men</a></li>
                             <li class="active"><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>Women</a></li>
                             <li><a href="#">Accessories</a></li>
                             <li><a href="#">New Arrivals</a></li>
-                            <li><a href="/products?action=sort">Favorite Product</a></li>
                         </ul>
                     </div>
 
@@ -311,25 +310,25 @@
                                     <!-- Product 1 -->
 
                                     <form action="/orders?action=add-to-cart" method="post">
-                                    <c:forEach items="${products}" var="product">
-                                        <div class="product-item men">
-                                            <div class="product discount product_filter">
-                                                <div class="product_image">
-                                                    <img src="images/product_1.png" alt="">
+                                        <c:forEach items="${products}" var="product">
+                                            <div class="product-item men">
+                                                <div class="product discount product_filter">
+                                                    <div class="product_image">
+                                                        <img src="images/product_1.png" alt="">
+                                                    </div>
+                                                    <div class="favorite favorite_left"></div>
+                                                    <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+                                                    <div class="product_info">
+                                                        <h6 class="product_name"><a href="/products?action=details&id=${product.id}">${product.name}</a></h6>
+                                                        <div class="product_price">$${product.price}<span>$590.00</span></div>
+                                                    </div>
+                                                    <h6>Sold : ${product.quantitySold} products</h6>
                                                 </div>
-                                                <div class="favorite favorite_left"></div>
-                                                <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
-                                                <div class="product_info">
-                                                    <h6 class="product_name"><a href="/products?action=details&id=${product.id}">${product.name}</a></h6>
-                                                    <div class="product_price">$${product.price}<span>$590.00</span></div>
+                                                <div class="red_button add_to_cart_button">
+                                                    <button><a href="/orders?action=add-to-cart&productId=${product.id}&price=${product.price}">add to cart</a></button>
                                                 </div>
-                                                <h6>Sold : ${product.quantitySold} products</h6>
                                             </div>
-                                            <div class="red_button add_to_cart_button">
-                                                <button><a href="/orders?action=add-to-cart&productId=${product.id}&price=${product.price}">add to cart</a></button>
-                                            </div>
-                                        </div>
-                                    </c:forEach>
+                                        </c:forEach>
                                     </form>
 
 

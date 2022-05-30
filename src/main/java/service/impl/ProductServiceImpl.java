@@ -222,4 +222,28 @@ public class ProductServiceImpl implements IProductService {
             e.printStackTrace();
         }
     }
+
+    public List<Product> sortByQuantitySold() {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM products WHERE accountId <> ? ORDER BY quantitySold DESC;")) {
+            preparedStatement.setInt(1, AccountServiceImpl.currentAccount.getId());
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                double price = rs.getDouble("price");
+                String image = rs.getString("image");
+                int quantity = rs.getInt("quantity");
+                int quantitySold = rs.getInt("quantitySold");
+                int categoryId = rs.getInt("categoryId");
+                int promotionId = rs.getInt("promotionId");
+                int accountId = rs.getInt("accountId");
+                products.add(new Product(id, name, price, image, quantity, quantitySold, categoryService.findById(categoryId), promotionService.findById(promotionId), accountService.findById(accountId)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
 }

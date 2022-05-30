@@ -52,10 +52,20 @@ public class ProductServlet extends HttpServlet {
             case "search":
                 showSearchForm(request, response);
                 break;
+            case "sort":
+                sortProductByQuantitySold(request, response);
+                break;
               default:
                 homePage(request, response);
                 break;
         }
+    }
+
+    private void sortProductByQuantitySold(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/coloshop-master/sort.jsp");
+        List<Product> products = productService.sortByQuantitySold();
+        request.setAttribute("products", products);
+        requestDispatcher.forward(request, response);
     }
 
     private void showSearchForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
