@@ -73,7 +73,7 @@
 <script>
     function xacNhanDelete(id){
         if (confirm("Bạn có chắc muốn xóa")){
-            document.getElementById("delete "+id).onsubmit(undefined);
+            document.getElementById("delete "+id).submit();
         }
     }
 </script>
