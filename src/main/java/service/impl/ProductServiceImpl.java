@@ -202,10 +202,24 @@ public class ProductServiceImpl implements IProductService {
             preparedStatement.setInt(4, product.getQuantity());
             preparedStatement.setInt(5, product.getCategory().getId());
             preparedStatement.setInt(6, product.getPromotion().getId());
+            preparedStatement.setInt(7, product.getId());
             rowUpdate = preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return rowUpdate;
+    }
+
+    public void updateAtBuy(int quantity, int quantitySold, int id) throws SQLException {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement =
+                     connection.prepareStatement("UPDATE products SET quantity = ?, quantitySold = ? WHERE id = ?")) {
+            preparedStatement.setInt(1, quantity);
+            preparedStatement.setInt(2, quantitySold);
+            preparedStatement.setInt(3, id);
+            preparedStatement.executeUpdate() ;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

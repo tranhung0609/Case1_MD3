@@ -49,21 +49,4 @@ public class ManageCartItem {
         }
     }
 
-    public boolean buy(int accountId, List<CartItem> list) {
-        boolean rowBuy = true;
-        List<CartItem> myCartItems = findByAccount(accountId, list);
-        for (CartItem c : myCartItems) {
-            if (myCartItems.size() != 0) {
-                Product product = productService.findById(c.getProduct().getId());
-                if (product.getQuantity() >= c.getQuantity()) {
-                    product.setQuantity(product.getQuantity() - c.getQuantity());
-                    product.setQuantitySold(product.getQuantitySold() + c.getQuantity());
-                    list.remove(c);
-                } else {
-                    rowBuy = false;
-                }
-            }
-        }
-        return rowBuy;
-    }
 }

@@ -125,7 +125,6 @@
         <h3>List san pham</h3>
     </div>
     <button> <a href="/products?action=create" type="button" class="btn btn-outline-primary">Create</a> </button>
-    <button> <a href="/products?action=edit&id=${product.id}" type="button" class="btn btn-outline-secondary">Edit</a> </button>
     <ul class="products">
         <c:forEach items="${products}" var="product">
             <li>
@@ -141,6 +140,7 @@
                         <a href="" class="product-name">${product.name}</a>
                         <div class="product-price">$${product.price}</div>
                     </div>
+                    <button> <a href="/products?action=edit&id=${product.id}" type="button" class="btn btn-outline-secondary">Edit</a> </button>
                 </div>
             </li>
         </c:forEach>

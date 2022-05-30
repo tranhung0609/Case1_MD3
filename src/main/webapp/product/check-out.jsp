@@ -74,7 +74,7 @@
             <td class="hidden-xs text-center"><strong>Tổng tiền ${totalPrice}</strong>
             </td>
             <%--    truyền đường link thanh toán tiền--%>
-            <td><a href="" class="btn btn-success btn-block">Thanh toán<i class="fa fa-angle-right"></i></a>
+            <td><a href="/orders?action=buy" class="btn btn-success btn-block">Thanh toán<i class="fa fa-angle-right"></i></a>
             </td>
         </tr>
         </tfoot>

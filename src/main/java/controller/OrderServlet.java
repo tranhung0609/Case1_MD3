@@ -9,6 +9,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,15 +39,32 @@ public class OrderServlet extends HttpServlet {
                 deleteFromCart(request, response, session);
                 break;
             case "buy":
-                buyFromCart(request, response, session);
+                try {
+                    buyFromCart(request, response, session);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
                 break;
         }
 
     }
 
-    private void buyFromCart(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+    private void buyFromCart(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException, SQLException {
+        int accountId = AccountServiceImpl.currentAccount.getId();
         List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cartItems");
-
+        if (cartItems != null) {
+            List<CartItem> myCartItem = manageCartItem.findByAccount(accountId, cartItems);
+            if (myCartItem.size() != 0) {
+                orderService.buy(accountId, cartItems);
+            }
+//            else {
+//                response.sendRedirect("/orders?action=show");
+//            }
+        }
+//        else {
+//            response.sendRedirect("/orders?action=show");
+//        }
+        response.sendRedirect("/orders?action=show");
     }
 
     private void deleteFromCart(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {

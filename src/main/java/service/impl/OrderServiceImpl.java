@@ -9,8 +9,8 @@ import java.util.List;
 
 public class OrderServiceImpl implements IOrderService {
     AccountServiceImpl accountService = new AccountServiceImpl();
-    //    OrderDetailServiceImpl orderDetailService = new OrderDetailServiceImpl();
     ProductServiceImpl productService = new ProductServiceImpl();
+    ManageCartItem manageCartItem = new ManageCartItem();
 
     protected Connection getConnection() {
         Connection connection = null;
@@ -48,7 +48,7 @@ public class OrderServiceImpl implements IOrderService {
                 double totalPrice = rs.getDouble("totalPrice");
                 int accountId = rs.getInt("accountId");
                 String status = rs.getString("status");
-//                orders.add(new Order(id, totalPrice, accountService.findById(accountId), status));
+                orders.add(new Order(id, totalPrice, accountService.findById(accountId), status));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -69,7 +69,7 @@ public class OrderServiceImpl implements IOrderService {
                 double totalPrice = rs.getDouble("totalPrice");
                 int accountId = rs.getInt("accountId");
                 String status = rs.getString("status");
-                orders.add(new Order());
+                orders.add(new Order(id, totalPrice, accountService.findById(accountId), status));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -108,6 +108,26 @@ public class OrderServiceImpl implements IOrderService {
             totalPrice += (c.getProduct().getPrice() * c.getQuantity());
         }
         return totalPrice;
+    }
+
+    public boolean buy(int accountId, List<CartItem> list) throws SQLException {
+        boolean rowBuy = true;
+        List<CartItem> myCartItems = manageCartItem.findByAccount(accountId, list);
+        for (CartItem c : myCartItems) {
+            if (myCartItems.size() != 0) {
+                Product product = productService.findById(c.getProduct().getId());
+                if (product.getQuantity() >= c.getQuantity()) {
+                    product.setQuantity(product.getQuantity() - c.getQuantity());
+                    product.setQuantitySold(product.getQuantitySold() + c.getQuantity());
+                    productService.updateAtBuy(product.getQuantity(), product.getQuantitySold(), c.getProduct().getId());
+//                    productService.updateAtBuy((product.getQuantity() - c.getQuantity()), (product.getQuantitySold() + c.getQuantity()), c.getProduct().getId());
+                    list.remove(c);
+                } else {
+                    rowBuy = false;
+                }
+            }
+        }
+        return rowBuy;
     }
 
     @Override
