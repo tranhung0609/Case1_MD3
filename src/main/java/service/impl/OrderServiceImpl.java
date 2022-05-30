@@ -9,7 +9,7 @@ import java.util.List;
 
 public class OrderServiceImpl implements IOrderService {
     AccountServiceImpl accountService = new AccountServiceImpl();
-//    OrderDetailServiceImpl orderDetailService = new OrderDetailServiceImpl();
+    //    OrderDetailServiceImpl orderDetailService = new OrderDetailServiceImpl();
     ProductServiceImpl productService = new ProductServiceImpl();
 
     protected Connection getConnection() {
@@ -103,20 +103,28 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     public void addToCart(CartItem cartItem, List<CartItem> list, int quantity) {
-        for (CartItem c : list) {
-            if (c.getProduct().getId() == cartItem.getProduct().getId()) {
-                c.setQuantity(c.getQuantity() + quantity);
-                c.setPrice(c.getPrice() + (cartItem.getProduct().getPrice() * quantity));
-            } else {
+        int count = 0;
+        if (list.size() == 0) {
+            list.add(cartItem);
+        } else {
+            for (CartItem c : list) {
+                if (c.getProduct().getId() == cartItem.getProduct().getId()) {
+                    c.setQuantity(c.getQuantity() + quantity);
+                    c.setPrice(c.getPrice() + (cartItem.getProduct().getPrice() * quantity));
+                    count = 1;
+                    break;
+                }
+            }
+            if (count == 0){
                 list.add(cartItem);
             }
         }
     }
 
-    public double calTotalPrice(List<CartItem> list){
+    public double calTotalPrice(List<CartItem> list) {
         double totalPrice = 0;
         for (CartItem c : list) {
-            totalPrice += (c.getPrice() * c.getQuantity());
+            totalPrice += (c.getProduct().getPrice() * c.getQuantity());
         }
         return totalPrice;
     }

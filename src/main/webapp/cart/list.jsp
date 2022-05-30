@@ -16,7 +16,8 @@
 <c:forEach items="${cartItems}" var="cartItem">
     <h3>${cartItem.getProduct().getName()}, ${cartItem.quantity}, ${cartItem.price}</h3>
 </c:forEach>
-    <a href="/orders?action=buy&totalPrice=${totalPrice}"></a>
+    <a href="">${totalPrice}</a>
+    <a href="/products?action=buy-list">Trở lại</a>
 </form>
 </body>
 </html>

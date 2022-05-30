@@ -25,6 +25,9 @@ public class OrderServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
         String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
         switch (action) {
             case "add-to-cart":
                 addToCart(request, response, session);
@@ -71,9 +74,10 @@ public class OrderServlet extends HttpServlet {
         }
     }
 
-    private void addToCart(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
+    private void addToCart(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException, ServletException {
         List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cartItems");
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        int quantity = 1;
+//                Integer.parseInt(request.getParameter("quantity"));
         double price = Double.parseDouble(request.getParameter("price"));
         int productId = Integer.parseInt(request.getParameter("productId"));
         Product product = productService.findById(productId);
@@ -83,6 +87,6 @@ public class OrderServlet extends HttpServlet {
             session.setAttribute("cartItems", cartItems);
         }
         orderService.addToCart(cartItem, cartItems, quantity);
-        response.sendRedirect("/orders");
+        response.sendRedirect("orders");
     }
 }
