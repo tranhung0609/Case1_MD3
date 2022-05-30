@@ -10,7 +10,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Check-out</title>
     <link type="text/css" href="/product/css/check-out.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="js/jquery-1.11.1.min.js"></script>
@@ -74,11 +74,13 @@
         </td>
     </tr>
     <tr>
-        <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a>
+<%--        đã chuyền đường link quay trở lại mua hàng--%>
+        <td><a href="/products?action=buy-list" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a>
         </td>
         <td colspan="2" class="hidden-xs"> </td>
         <td class="hidden-xs text-center"><strong>Tổng tiền 500.000 đ</strong>
         </td>
+<%--    truyền đường link thanh toán tiền--%>
         <td><a href="#" class="btn btn-success btn-block">Thanh toán <i class="fa fa-angle-right"></i></a>
         </td>
     </tr>
