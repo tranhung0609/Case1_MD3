@@ -49,7 +49,7 @@
                     </td>
                     <td data-th="Price">$${cartItem.getProduct().getPrice()}</td>
                     <td>
-                        <input type="number" class="data-th" style= "width: 40px;">${cartItem.quantity}
+                        <input type="number" class="data-th" style= "width: 40px;" value="${cartItem.quantity}">
 
                     </td>
                     <td data-th="Subtotal" class="text-center">${cartItem.price}</td>

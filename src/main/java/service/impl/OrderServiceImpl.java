@@ -11,6 +11,7 @@ public class OrderServiceImpl implements IOrderService {
     AccountServiceImpl accountService = new AccountServiceImpl();
     ProductServiceImpl productService = new ProductServiceImpl();
     ManageCartItem manageCartItem = new ManageCartItem();
+    OrderDetailServiceImpl orderDetailService = new OrderDetailServiceImpl();
 
     protected Connection getConnection() {
         Connection connection = null;
@@ -26,14 +27,43 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public void add(Order order) throws SQLException {
 //        try (Connection connection = getConnection();
-//             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO orders(totalPrice, accountId, status) VALUES (?, ?, ?)")) {
-//            double totalPrice = orderDetailService.calTotalPriceById(order.getId());
+//             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO orders(totalPrice, accountId) VALUES (?, ?)")) {
+//            double totalPrice = calTotalPrice();
 //            preparedStatement.setDouble(1, totalPrice);
 //            preparedStatement.setInt(2, AccountServiceImpl.currentAccount.getId());
-//            preparedStatement.setString(3, order.getStatus());
 //            preparedStatement.executeUpdate();
 //        } catch (SQLException e) {
 //        }
+    }
+
+    public void add(List<CartItem> list) throws SQLException {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO orders(totalPrice, accountId) VALUES (?, ?)")) {
+            double totalPrice = calTotalPrice(list);
+            preparedStatement.setDouble(1, totalPrice);
+            preparedStatement.setInt(2, AccountServiceImpl.currentAccount.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+        }
+    }
+
+    public void addBill(List<CartItem> list) throws SQLException {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM orders ORDER BY id DESC LIMIT 1")) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            int orderId = 0;
+            while (resultSet.next()) {
+                orderId = resultSet.getInt("id");
+            }
+            Order order = findById(orderId);
+            for (CartItem c : list) {
+                Product product = productService.findById(c.getProduct().getId());
+                OrderDetail orderDetail = new OrderDetail(order, product, c.getQuantity());
+                orderDetailService.add(orderDetail);
+            }
+
+        } catch (SQLException e) {
+        }
     }
 
     @Override
@@ -99,6 +129,12 @@ public class OrderServiceImpl implements IOrderService {
 
     @Override
     public Order findById(int id) {
+        List<Order> orders = findAll();
+        for (Order o : orders) {
+            if (o.getId() == id) {
+                return o;
+            }
+        }
         return null;
     }
 
@@ -120,7 +156,6 @@ public class OrderServiceImpl implements IOrderService {
                     product.setQuantity(product.getQuantity() - c.getQuantity());
                     product.setQuantitySold(product.getQuantitySold() + c.getQuantity());
                     productService.updateAtBuy(product.getQuantity(), product.getQuantitySold(), c.getProduct().getId());
-//                    productService.updateAtBuy((product.getQuantity() - c.getQuantity()), (product.getQuantitySold() + c.getQuantity()), c.getProduct().getId());
                     list.remove(c);
                 } else {
                     rowBuy = false;

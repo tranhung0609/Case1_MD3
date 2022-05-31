@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDetailServiceImpl implements IOrderDetailService {
-    OrderServiceImpl orderService = new OrderServiceImpl();
+//    OrderServiceImpl orderService = new OrderServiceImpl();
     ProductServiceImpl productService = new ProductServiceImpl();
 
     protected Connection getConnection() {
@@ -44,19 +44,19 @@ public class OrderDetailServiceImpl implements IOrderDetailService {
     @Override
     public List<OrderDetail> findAll() {
         List<OrderDetail> orderDetails = new ArrayList<>();
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement =
-                     connection.prepareStatement("SELECT * FROM orderdetails")) {
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                int orderId = rs.getInt("orderId");
-                int productId = rs.getInt("productId");
-                int quantity = rs.getInt("quantity");
-                orderDetails.add(new OrderDetail(orderService.findById(orderId), productService.findById(productId), quantity));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        try (Connection connection = getConnection();
+//             PreparedStatement preparedStatement =
+//                     connection.prepareStatement("SELECT * FROM orderdetails")) {
+//            ResultSet rs = preparedStatement.executeQuery();
+//            while (rs.next()) {
+//                int orderId = rs.getInt("orderId");
+//                int productId = rs.getInt("productId");
+//                int quantity = rs.getInt("quantity");
+//                orderDetails.add(new OrderDetail(orderService.findById(orderId), productService.findById(productId), quantity));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
         return orderDetails;
     }
 
