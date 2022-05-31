@@ -297,6 +297,7 @@
                                                 <div class="product_info">
                                                     <h6 class="product_name"><a href="/products?action=details&id=${product.id}">${product.name}</a></h6>
                                                     <div class="product_price">$${product.price}<span></span></div>
+                                                    <input type="number" class="" style="width: 45px;">
                                                 </div>
                                                 <h6>Sold : ${product.quantitySold} products</h6>
                                             </div>
