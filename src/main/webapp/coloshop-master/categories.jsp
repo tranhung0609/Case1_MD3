@@ -298,7 +298,7 @@
                                                 </div>
                                             </div>
                                             <div class="red_button add_to_cart_button">
-                                                <button><a href="/orders?action=add-to-cart&productId=${product.id}&price=${product.price}">add to cart</a></button>
+                                                <div class="red_button add_to_cart_button"><a href="/orders?action=add-to-cart&productId=${product.id}&price=${product.price}">add to cart</a></div>
                                             </div>
                                         </div>
                                     </c:forEach>
