@@ -184,6 +184,9 @@ public class ProductServlet extends HttpServlet {
             case "search":
                 searchProduct(request, response);
                 break;
+            case "findDesc":
+                findDescProduct(request, response);
+                break;
             case "edit":
                 try {
                     editProduct(request, response);
@@ -192,6 +195,13 @@ public class ProductServlet extends HttpServlet {
                 }
                 break;
         }
+    }
+
+    private void findDescProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/finddesc.jsp");
+        List<Product> productList = productService.findDescPrice();
+        request.setAttribute("ds",productList);
+        requestDispatcher.forward(request,response);
     }
 
     private void editProduct(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {

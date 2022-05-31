@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     </td>
-                    <td data-th="Price">$${cartItem.getProduct().getPrice()}</td>
+                    <td data-th="Price" id >$${cartItem.getProduct().getPrice()}</td>
 
                         <td>
                             <input type="number" class="data-th" style="width: 40px;">${cartItem.quantity}
