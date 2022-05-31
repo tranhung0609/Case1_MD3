@@ -53,8 +53,9 @@
                                         <i class="fa fa-angle-down"></i>
                                     </a>
                                     <ul class="account_selection">
-                                        <li><a href="/accounts?action=login"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-                                        <li><a href="/accounts?action=signup"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+<%--                                        <li><a href="/accounts?action=login"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>--%>
+<%--                                        <li><a href="/accounts?action=signup"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>--%>
+                                        <li><a href="/accounts?action=login"><i class="fa fa-user-plus" aria-hidden="true"></i>LogOut</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -78,11 +79,10 @@
                                 <li><a href="/products">home</a></li>
                                 <li><a href="/products?action=sell-list">my shop</a></li>
                                 <li><a href="/order-details">single product</a></li>
-                                <li><a href="/contacts">contact</a></li>
                             </ul>
                             <ul class="navbar_user">
                                 <li> <a href="/products?action=search"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-                                <li><a href="/accounts?action=details"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                                <li><a href=""><i class="fa fa-user" aria-hidden="true"></i></a></li>
                                 <li class="checkout">
 <%--                                    Nhập đường dẫn vào check-out--%>
                                     <a href="#">
