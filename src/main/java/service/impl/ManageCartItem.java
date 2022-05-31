@@ -27,7 +27,7 @@ public class ManageCartItem {
         } else {
             for (CartItem c : list) {
                 // xét theo cartItemId mà em lười sửa quá mn à
-                if ((c.getProduct().getId() == cartItem.getProduct().getId()) && c.getAccount().getId() == cartItem.getAccount().getId()) {
+                if ((c.getProduct().getId() == cartItem.getProduct().getId()) && c.getAccount().getId() == cartItem.getAccount().getId() && quantity > 0) {
                     c.setQuantity(c.getQuantity() + quantity);
                     c.setPrice(c.getPrice() + (cartItem.getProduct().getPrice() * quantity));
                     count = 1;

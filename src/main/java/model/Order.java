@@ -16,6 +16,11 @@ public class Order {
         this.status = status;
     }
 
+    public Order(double totalPrice, Account account) {
+        this.totalPrice = totalPrice;
+        this.account = account;
+    }
+
     public int getId() {
         return id;
     }

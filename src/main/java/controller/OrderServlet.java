@@ -2,6 +2,7 @@ package controller;
 
 import model.CartItem;
 import model.Category;
+import model.Order;
 import model.Product;
 import service.impl.*;
 
@@ -53,17 +54,15 @@ public class OrderServlet extends HttpServlet {
         int accountId = AccountServiceImpl.currentAccount.getId();
         List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cartItems");
         if (cartItems != null) {
-            List<CartItem> myCartItem = manageCartItem.findByAccount(accountId, cartItems);
-            if (myCartItem.size() != 0) {
+            List<CartItem> myCartItems = manageCartItem.findByAccount(accountId, cartItems);
+            if (myCartItems.size() != 0) {
+//                double totalPrice = orderService.calTotalPrice(myCartItems);
+////                Order order = new Order(totalPrice, AccountServiceImpl.currentAccount);
+                orderService.add(myCartItems);
+                orderService.addBill(myCartItems);
                 orderService.buy(accountId, cartItems);
             }
-//            else {
-//                response.sendRedirect("/orders?action=show");
-//            }
         }
-//        else {
-//            response.sendRedirect("/orders?action=show");
-//        }
         response.sendRedirect("/orders?action=show");
     }
 
