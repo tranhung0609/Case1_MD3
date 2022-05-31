@@ -64,6 +64,10 @@
         max-width: 100%;
         height: auto;
     }
+    .img-edit{
+       width: 240px;
+        height: 200px;
+    }
     ul.products li .product-top{
         position: relative;
         overflow: hidden;
@@ -131,7 +135,7 @@
                 <div class="product-item">
                     <div class="product-top">
                         <a href="" class="product-thumb">
-                            <img src="${product.image}"alt="">
+                            <img class="img-edit" src="${product.image}" alt="">
                         </a>
                         <a href="/products?action=delete&id=${product.id}" class="delete">delete</a>
                     </div>
@@ -161,51 +165,6 @@
 <%--        </li>--%>
     </ul>
 </div>
-<%--<div class="new_arrivals">--%>
-<%--    <div class="container">--%>
-<%--        <div class="row">--%>
-<%--            <div class="col text-center">--%>
-<%--                <div class="section_title new_arrivals_title">--%>
-<%--                    <h2>Danh sách sản phẩm</h2>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <div class="row align-items-center">--%>
-<%--            <div class="col text-center">--%>
-<%--                <div class="new_arrivals_sorting">--%>
-<%--                    <ul class="arrivals_grid_sorting clearfix button-group filters-button-group">--%>
-<%--                        <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">all</li>--%>
-<%--                        <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".women">women's</li>--%>
-<%--                        <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".accessories">accessories</li>--%>
-<%--                        <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".men">men's</li>--%>
-<%--                    </ul>--%>
-<%--                    <a href="/products?action=create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Create</a>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
 
-<%--<div class="container">--%>
-<%--    <div class="row">--%>
-<%--        <div class="col mt-3">--%>
-<%--            <div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>--%>
-<%--                <c:forEach items="${products}" var="product">--%>
-<%--                <div class="product-item accessories">--%>
-<%--                    <div class="product discount product_filter">--%>
-<%--                        <div class="product_image">--%>
-<%--                            <img src="${product.image}" alt="">--%>
-<%--                        </div>--%>
-<%--                        <div class="favorite favorite_left"></div>--%>
-<%--                        <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>--%>
-<%--                        <div class="product_info">--%>
-<%--                            <h6 class="product_name"><a href="">${product.name}</a></h6>--%>
-<%--                            <h6 class="product_name"><a href="">Số lượng hiện có :</a>${product.quantity}</h6>--%>
-<%--                            <div class="product_price">$500<span>$${product.price}</span></div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                    <div class="red_button add_to_cart_button"><a href="/products?action=edit&id=${product.id}">Edit</a></div>--%>
-<%--                    <div class="red_button add_to_cart_button"><a href="/products?action=delete&id=${product.id}">Delete</a></div>--%>
-<%--                </div>--%>
-<%--                </c:forEach>--%>
-<%--</div>--%>
 </body>
 </html>

@@ -13,8 +13,7 @@
     <meta charset="UTF-8">
     <title>Check-out</title>
     <link type="text/css" href="/product/css/check-out.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="js/jquery-1.11.1.min.js"></script>
 </head>
 <body>
@@ -27,7 +26,7 @@
             <th style="width:10%">Giá</th>
             <th style="width:8%">Số lượng</th>
             <th style="width:22%" class="text-center">Thành tiền</th>
-            <th style="width:10%"></th>
+            <th style="width:10%"> </th>
         </tr>
         </thead>
         <tbody>
@@ -49,13 +48,13 @@
                         </div>
                     </td>
                     <td data-th="Price">$${cartItem.getProduct().getPrice()}</td>
-                    <td data-th="Quantity">${cartItem.quantity}
+                    <td>
+                        <input type="number" class="data-th" style= "width: 40px;">${cartItem.quantity}
+
                     </td>
                     <td data-th="Subtotal" class="text-center">${cartItem.price}</td>
                     <td class="actions" data-th="">
-<%--                        <button class="btn btn-danger btn-sm" onclick="xacNhanDelete(${product.id})"><i--%>
-                        <button class="btn btn-danger btn-sm"><i
-                                class="fa fa-trash-o">Xóa</i>
+                        <button  class="btn btn-danger btn-sm" onclick="xacNhanDelete(${product.id})"><i class="fa fa-trash-o">Xóa</i>
                         </button>
                     </td>
                 </tr>
