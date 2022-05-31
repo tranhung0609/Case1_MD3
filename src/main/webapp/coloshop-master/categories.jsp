@@ -293,15 +293,16 @@
                                                     <img src="images/product_1.png" alt="">
                                                 </div>
                                                 <div class="favorite favorite_left"></div>
-                                                <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span></span></div>
+                                                <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>${product.getStatus()}</span></div>
                                                 <div class="product_info">
                                                     <h6 class="product_name"><a href="/products?action=details&id=${product.id}">${product.name}</a></h6>
-                                                    <div class="product_price">$${product.price}<span></span></div>
+                                                    <div class="product_price">$${product.getPriceByPromotion()}<span>$${product.price}</span></div>
                                                 </div>
+                                                <input type="number" value="1" name="quan">
                                                 <h6>Sold : ${product.quantitySold} products</h6>
                                             </div>
                                             <div class="red_button add_to_cart_button">
-                                                <div class="red_button add_to_cart_button"><a href="/orders?action=add-to-cart&productId=${product.id}&price=${product.price}">add to cart</a></div>
+                                                <div class="red_button add_to_cart_button"><a href="/orders?action=add-to-cart&productId=${product.id}&price=${product.getPriceByPromotion()}">add to cart</a></div>
                                             </div>
                                         </div>
                                     </c:forEach>
@@ -368,7 +369,9 @@
                                             <div class="favorite"></div>
                                             <div class="product_info">
                                                 <h6 class="product_name"><a href="single.jsp">Pryma Headphones, Rose Gold & Grey</a></h6>
-                                                <div class="product_price">$180.00</div>
+                                                <div class="product_price">$180.00
+                                                    <span>$555</span>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>

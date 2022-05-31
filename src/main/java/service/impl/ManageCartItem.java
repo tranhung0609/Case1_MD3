@@ -29,7 +29,7 @@ public class ManageCartItem {
                 // xét theo cartItemId mà em lười sửa quá mn à
                 if ((c.getProduct().getId() == cartItem.getProduct().getId()) && c.getAccount().getId() == cartItem.getAccount().getId() && quantity > 0) {
                     c.setQuantity(c.getQuantity() + quantity);
-                    c.setPrice(c.getPrice() + (cartItem.getProduct().getPrice() * quantity));
+                    c.setPrice(c.getProduct().getPriceByPromotion() + (cartItem.getProduct().getPriceByPromotion() * quantity));
                     count = 1;
                     break;
                 }

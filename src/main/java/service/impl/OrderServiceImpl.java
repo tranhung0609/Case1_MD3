@@ -141,7 +141,7 @@ public class OrderServiceImpl implements IOrderService {
     public double calTotalPrice(List<CartItem> list) {
         double totalPrice = 0;
         for (CartItem c : list) {
-            totalPrice += (c.getProduct().getPrice() * c.getQuantity());
+            totalPrice += (c.getProduct().getPriceByPromotion() * c.getQuantity());
         }
         return totalPrice;
     }

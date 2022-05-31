@@ -34,7 +34,6 @@
         <c:forEach items="${myCartItems}" var="cartItem">
             <form action="/orders" method="post">
                 <input type="hidden" name="action" value="delete">
-                <input type="hidden" value="${size}" id="size">
                 <input type="hidden" name="cartItemId" value="${cartItem.getCartItemId()}">
 
                 <tr>
@@ -50,11 +49,10 @@
                             </div>
                         </div>
                     </td>
-                    <td data-th="Price" id="price${cartItem.product.id}">${cartItem.getProduct().getPrice()}</td>
-                    <td>
-                        <input type="text" class="data-th" style="width: 40px;" id="quan${cartItem.product.id}"
-                               onchange="calPriceByQuantity(${cartItem.product.id})" value="${cartItem.quantity}">
-                        <input type="hidden" name="q" value="${cartItem.quantity}">
+                    <td data-th="Price" id="price${cartItem.product.id}">${cartItem.getProduct().getPriceByPromotion()}</td>
+                    <td data-th="Quantity">${cartItem.quantity}
+<%--                        <input type="text" class="data-th" style="width: 40px;" id="quan${cartItem.product.id}"--%>
+<%--                               onchange="calPriceByQuantity(${cartItem.product.id})" value="${cartItem.quantity}">--%>
                     </td>
                     <td data-th="Subtotal" class="text-center print"
                         id="print${cartItem.product.id}">${cartItem.price}</td>
@@ -72,7 +70,7 @@
             function calPriceByQuantity(id) {
                 let a = +document.getElementById("price" + id).innerHTML;
                 let b = +document.getElementById("quan" + id).value;
-                let c = document.getElementById("print" + id).innerHTML = (a * b);
+                document.getElementById("print" + id).innerHTML = (a * b);
                 let sum = 0;
                 for (let i = 0; i < document.getElementsByClassName('print').length; i++) {
                     sum += +document.getElementsByClassName('print')[i].innerHTML;
@@ -90,7 +88,7 @@
                 mua hàng</a>
             </td>
             <td colspan="2" class="hidden-xs"></td>
-            <td class="hidden-xs text-center" id="printTotal"><strong>Tổng tiền ${totalPrice}</strong>
+            <td class="hidden-xs text-center" id="printTotal"><strong>Tổng tiền $${totalPrice}</strong>
             </td>
             <%--    truyền đường link thanh toán tiền--%>
             <td><a href="/orders?action=buy" class="btn btn-success btn-block">Thanh toán<i
