@@ -56,8 +56,9 @@
                         </button>
                     </td>
                 </tr>
+                </c:forEach>
         </tbody>
-            </c:forEach>
+
         </form>
         <tfoot>
     <tr>
