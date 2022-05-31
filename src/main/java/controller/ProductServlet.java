@@ -51,13 +51,21 @@ public class ProductServlet extends HttpServlet {
                 break;
             case "search":
                 showSearchForm(request, response);
-
-
-
+                break;
+            case "sort":
+                sortProductByQuantitySold(request, response);
+                break;
               default:
                 homePage(request, response);
                 break;
         }
+    }
+
+    private void sortProductByQuantitySold(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/coloshop-master/sort.jsp");
+        List<Product> products = productService.sortByQuantitySold();
+        request.setAttribute("products", products);
+        requestDispatcher.forward(request, response);
     }
 
     private void showSearchForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -153,13 +161,14 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void editProduct(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         double price = Double.parseDouble(request.getParameter("price"));
         String image = request.getParameter("image");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         int categoryId = Integer.parseInt(request.getParameter("category"));
         int promotionId = Integer.parseInt(request.getParameter("promotion"));
-        Product product = new Product(name, price, image, quantity, categoryService.findById(categoryId), promotionService.findById(promotionId), AccountServiceImpl.currentAccount);
+        Product product = new Product(id, name, price, image, quantity, categoryService.findById(categoryId), promotionService.findById(promotionId), AccountServiceImpl.currentAccount);
         productService.update(product);
         response.sendRedirect("/products?action=sell-list");
     }

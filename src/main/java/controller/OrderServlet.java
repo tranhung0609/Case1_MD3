@@ -9,6 +9,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,10 +33,45 @@ public class OrderServlet extends HttpServlet {
                 addToCart(request, response, session);
                 break;
             case "show":
-                showListCart(request, response,session);
+                showListCart(request, response, session);
+                break;
+            case "delete":
+                deleteFromCart(request, response, session);
+                break;
+            case "buy":
+                try {
+                    buyFromCart(request, response, session);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
                 break;
         }
 
+    }
+
+    private void buyFromCart(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException, SQLException {
+        int accountId = AccountServiceImpl.currentAccount.getId();
+        List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cartItems");
+        if (cartItems != null) {
+            List<CartItem> myCartItem = manageCartItem.findByAccount(accountId, cartItems);
+            if (myCartItem.size() != 0) {
+                orderService.buy(accountId, cartItems);
+            }
+//            else {
+//                response.sendRedirect("/orders?action=show");
+//            }
+        }
+//        else {
+//            response.sendRedirect("/orders?action=show");
+//        }
+        response.sendRedirect("/orders?action=show");
+    }
+
+    private void deleteFromCart(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
+        int cartItemId = Integer.parseInt(request.getParameter("cartItemId"));
+        List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cartItems");
+        manageCartItem.deleteProduct(cartItemId, cartItems);
+        response.sendRedirect("/orders?action=show");
     }
 
     private void showListCart(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
@@ -56,27 +92,6 @@ public class OrderServlet extends HttpServlet {
             }
         }
         requestDispatcher.forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
-        HttpSession session = request.getSession();
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "";
-        }
-//        switch (action) {
-//            case "add-to-cart":
-//                addToCart(request, response, session);
-//                break;
-//            case "buy":
-//                break;
-//            default:
-//                showListCart(request, response, session);
-//                break;
-//        }
     }
 
     private void addToCart(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException, ServletException {
@@ -103,4 +118,27 @@ public class OrderServlet extends HttpServlet {
         manageCartItem.addToCart(cartItem, cartItems, quantity);
         response.sendRedirect("/orders?action=show");
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+        HttpSession session = request.getSession();
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+//        switch (action) {
+//            case "add-to-cart":
+//                addToCart(request, response, session);
+//                break;
+//            case "buy":
+//                break;
+//            default:
+//                showListCart(request, response, session);
+//                break;
+//        }
+    }
+
+
 }

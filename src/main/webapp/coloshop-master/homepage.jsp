@@ -85,7 +85,7 @@
                                 <li><a href=""><i class="fa fa-user" aria-hidden="true"></i></a></li>
                                 <li class="checkout">
 <%--                                    Nhập đường dẫn vào check-out--%>
-                                    <a href="#">
+                                    <a href="/orders?action=show">
                                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                         <span id="checkout_items" class="checkout_items"></span>
                                     </a>

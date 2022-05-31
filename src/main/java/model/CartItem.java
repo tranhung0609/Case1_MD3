@@ -1,6 +1,7 @@
 package model;
 
 public class CartItem {
+    public static int cartItemId;
     private Product product;
     private Account account;
     private double price;
@@ -11,6 +12,7 @@ public class CartItem {
 
 
     public CartItem(Product product, Account account, double price, int quantity) {
+        cartItemId ++;
         this.product = product;
         this.account = account;
         this.price = price;
@@ -27,6 +29,14 @@ public class CartItem {
 
     public double getPrice() {
         return price;
+    }
+
+    public static int getCartItemId() {
+        return cartItemId;
+    }
+
+    public static void setCartItemId(int cartItemId) {
+        CartItem.cartItemId = cartItemId;
     }
 
     public void setPrice(double price) {

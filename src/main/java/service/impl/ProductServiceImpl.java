@@ -15,7 +15,7 @@ public class ProductServiceImpl implements IProductService {
 
     static String jdbcURL = "jdbc:mysql://localhost:3306/ecommerce_case_md3?useSSL=false";
     static String jdbcUsername = "root";
-    static String jdbcPassword = "123456";
+    static String jdbcPassword = "1234";
 
     public static final String SELECT_ALL_PRODUCTS_AT_BUY = "SELECT * FROM products WHERE accountId <> ?";
     public static final String SELECT_ALL_PRODUCTS_AT_SELL = "SELECT * FROM products WHERE accountId = ?";
@@ -202,10 +202,48 @@ public class ProductServiceImpl implements IProductService {
             preparedStatement.setInt(4, product.getQuantity());
             preparedStatement.setInt(5, product.getCategory().getId());
             preparedStatement.setInt(6, product.getPromotion().getId());
+            preparedStatement.setInt(7, product.getId());
             rowUpdate = preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return rowUpdate;
+    }
+
+    public void updateAtBuy(int quantity, int quantitySold, int id) throws SQLException {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement =
+                     connection.prepareStatement("UPDATE products SET quantity = ?, quantitySold = ? WHERE id = ?")) {
+            preparedStatement.setInt(1, quantity);
+            preparedStatement.setInt(2, quantitySold);
+            preparedStatement.setInt(3, id);
+            preparedStatement.executeUpdate() ;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Product> sortByQuantitySold() {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM products WHERE accountId <> ? ORDER BY quantitySold DESC;")) {
+            preparedStatement.setInt(1, AccountServiceImpl.currentAccount.getId());
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                double price = rs.getDouble("price");
+                String image = rs.getString("image");
+                int quantity = rs.getInt("quantity");
+                int quantitySold = rs.getInt("quantitySold");
+                int categoryId = rs.getInt("categoryId");
+                int promotionId = rs.getInt("promotionId");
+                int accountId = rs.getInt("accountId");
+                products.add(new Product(id, name, price, image, quantity, quantitySold, categoryService.findById(categoryId), promotionService.findById(promotionId), accountService.findById(accountId)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
     }
 }

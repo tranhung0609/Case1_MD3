@@ -15,7 +15,7 @@
     <link type="text/css" href="/product/css/check-out.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="js/jquery-1.11.1.min.js"></script>
-
+</head>
 <body>
 <h2 class="text-center">Thanh toán</h2>
 <div class="container">
@@ -30,12 +30,16 @@
         </tr>
         </thead>
         <tbody>
-        <form action="/orders" method="post">
-            <c:forEach items="${myCartItems}" var="cartItem">
+        <c:forEach items="${myCartItems}" var="cartItem">
+            <form action="/orders" method="get">
+                <input type="hidden" name="action" value="delete">
+                <input type="hidden" name="cartItemId" value="${cartItem.getCartItemId()}">
                 <tr>
                     <td data-th="Product">
                         <div class="row">
-                            <div class="col-sm-2 hidden-xs"><img src="${cartItem.getProduct().getImage()}" alt="Sản phẩm 1" class="img-responsive" width="100">
+                            <div class="col-sm-2 hidden-xs"><img src="${cartItem.getProduct().getImage()}"
+                                                                 alt="Sản phẩm 1"
+                                                                 class="img-responsive" width="100">
                             </div>
                             <div class="col-sm-10">
                                 <h4 class="nomargin">${cartItem.getProduct().getName()}</h4>
@@ -44,41 +48,39 @@
                         </div>
                     </td>
                     <td data-th="Price">$${cartItem.getProduct().getPrice()}</td>
-
-                        <td>
-                            <input type="number" class="data-th" style="width: 40px;">${cartItem.quantity}
-                        </td>
-
-
+                    <td data-th="Quantity">${cartItem.quantity}
+                    </td>
                     <td data-th="Subtotal" class="text-center">${cartItem.price}</td>
                     <td class="actions" data-th="">
                         <button  class="btn btn-danger btn-sm" onclick="xacNhanDelete(${product.id})"><i class="fa fa-trash-o">Xóa</i>
                         </button>
                     </td>
                 </tr>
-                </c:forEach>
+            </form>
+        </c:forEach>
         </tbody>
 
-        </form>
+
         <tfoot>
-    <tr>
-<%--        đã chuyền đường link quay trở lại mua hàng--%>
-        <td><a href="/products?action=buy-list" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a>
-        </td>
-        <td colspan="2" class="hidden-xs"> </td>
-        <td class="hidden-xs text-center"><strong>Tổng tiền ${totalPrice}</strong>
-        </td>
-<%--    truyền đường link thanh toán tiền--%>
-        <td><a href="" class="btn btn-success btn-block">Thanh toán<i class="fa fa-angle-right"></i></a>
-        </td>
-    </tr>
-    </tfoot>
+        <tr>
+            <%--        đã chuyền đường link quay trở lại mua hàng--%>
+            <td><a href="/products?action=buy-list" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục
+                mua hàng</a>
+            </td>
+            <td colspan="2" class="hidden-xs"></td>
+            <td class="hidden-xs text-center"><strong>Tổng tiền ${totalPrice}</strong>
+            </td>
+            <%--    truyền đường link thanh toán tiền--%>
+            <td><a href="/orders?action=buy" class="btn btn-success btn-block">Thanh toán<i class="fa fa-angle-right"></i></a>
+            </td>
+        </tr>
+        </tfoot>
     </table>
 </div>
 <script>
-    function xacNhanDelete(id){
-        if (confirm("Bạn có chắc muốn xóa")){
-            document.getElementById("delete "+id).submit();
+    function xacNhanDelete(id) {
+        if (confirm("Bạn có chắc muốn xóa")) {
+            document.getElementById("delete " + id).submit();
         }
     }
 </script>
