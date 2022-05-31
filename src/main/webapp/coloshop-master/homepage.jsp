@@ -28,13 +28,9 @@
 <body>
 
 <div class="super_container">
-
     <!-- Header -->
-
     <header class="header trans_300">
-
         <!-- Top Navigation -->
-
         <div class="top_nav">
             <div class="container">
                 <div class="row">
@@ -44,41 +40,16 @@
                     <div class="col-md-6 text-right">
                         <div class="top_nav_right">
                             <ul class="top_nav_menu">
-
                                 <!-- Currency / Language / My Account -->
-
-                                <li class="">
-                                    <a href="#">
-                                        usd
-                                        <i class="fa fa-angle-down"></i>
-                                    </a>
-                                    <ul class="currency_selection">
-                                        <li><a href="#">cad</a></li>
-                                        <li><a href="#">aud</a></li>
-                                        <li><a href="#">eur</a></li>
-                                        <li><a href="#">gbp</a></li>
-                                    </ul>
-                                </li>
-                                <li class="language">
-                                    <a href="#">
-                                        English
-                                        <i class="fa fa-angle-down"></i>
-                                    </a>
-                                    <ul class="language_selection">
-                                        <li><a href="#">French</a></li>
-                                        <li><a href="#">Italian</a></li>
-                                        <li><a href="#">German</a></li>
-                                        <li><a href="#">Spanish</a></li>
-                                    </ul>
-                                </li>
                                 <li class="account">
                                     <a href="#">
                                         My Account
                                         <i class="fa fa-angle-down"></i>
                                     </a>
                                     <ul class="account_selection">
-                                        <li><a href="/accounts?action=login"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-                                        <li><a href="/accounts?action=signup"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+<%--                                        <li><a href="/accounts?action=login"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>--%>
+<%--                                        <li><a href="/accounts?action=signup"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>--%>
+                                        <li><a href="/accounts?action=login"><i class="fa fa-user-plus" aria-hidden="true"></i>LogOut</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -102,13 +73,13 @@
                                 <li><a href="/products">home</a></li>
                                 <li><a href="/products?action=sell-list">my shop</a></li>
                                 <li><a href="/order-details">single product</a></li>
-                                <li><a href="/contacts">contact</a></li>
                             </ul>
                             <ul class="navbar_user">
                                 <li> <a href="/products?action=search"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-                                <li><a href="/accounts?action=details"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                                <li><a href=""><i class="fa fa-user" aria-hidden="true"></i></a></li>
                                 <li class="checkout">
-                                    <a href="/checkout/responsive-shopping-cart-layout/check-out.jsp">
+<%--                                    Nhập đường dẫn vào check-out--%>
+                                    <a href="#">
                                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                         <span id="checkout_items" class="checkout_items"></span>
                                     </a>
@@ -195,7 +166,7 @@
                 <div class="col-md-4">
                     <div class="banner_item align-items-center" style="background-image:url(images/banner_1.jpg)">
                         <div class="banner_category">
-                            <a href="/products?action=buy-list">women's</a>
+                            <a href="/products?action=buy-women">women's</a>
                         </div>
                     </div>
                 </div>
@@ -209,7 +180,7 @@
                 <div class="col-md-4">
                     <div class="banner_item align-items-center" style="background-image:url(images/banner_3.jpg)">
                         <div class="banner_category">
-                            <a href="/products?action=buy-list">men's</a>
+                            <a href="/products?action=buy-men">Men's</a>
                         </div>
                     </div>
                 </div>

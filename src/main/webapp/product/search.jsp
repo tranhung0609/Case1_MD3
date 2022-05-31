@@ -53,6 +53,8 @@
                 </div>
             </div>
         </div>
+        </div>
+        </div>
         <div class="row align-items-center">
             <div class="col text-center">
                 <div class="new_arrivals_sorting">
@@ -72,8 +74,11 @@
                     </ul>
                     <form method="post">
                         <input type="text" name="name" placeholder="Find">
-                        <button class="btn btn-success">SEARCH</button>
+                        <button class="btn btn-success">Search by name</button>
                     </form>
+
+                    <button href="/products?action=findPrice" class="btn btn-success"><select><option>Desc price</option><option>Asc price</option></select></button>
+
                 </div>
             </div>
         </div>
@@ -82,13 +87,9 @@
             <div class="row">
                 <c:forEach items="${products}" var="product">
                 <div class="col mt-3">
-                    <div class="product-grid"
-                         data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
-
-                        <div class="product-item accessories">
-                            <div class="product discount product_filter">
+                    <center>
                                 <div class="product_image">
-                                    <img src="${product.image}" alt="Loading...">
+                                    <img style="height: 200px;width: 160px" src="${product.image}" alt="Loading...">
                                 </div>
                                 <div class="favorite favorite_left"></div>
                                 <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
@@ -96,19 +97,15 @@
                                 <div class="product_info">
                                     <h6 class="product_name"><a href="">${product.name}</a></h6></div>
                                 <div class="product_info">
-                                    <h6 class="product_name"><a href="">Số lượng hiện có :</a>${product.quantity}
-                                    </h6>
-                                    <div class="product_price">$500<span>$${product.price}</span></div>
+                                    <h6 class="product_name"><a href="">Số lượng hiện có :</a>${product.quantity}</h6>
                                 </div>
+                                <div class="product_price">$500<span>$${product.price}</span></div>
+                    </center>
+                            </div>
 
-                            </div>
-                            </div>
-                            </div>
-                            </div>
                 </c:forEach>
                             </div>
                             </div>
-
 
                             <script src="js/jquery-3.2.1.min.js"></script>
                             <script src="styles/bootstrap4/popper.js"></script>
@@ -117,23 +114,6 @@
                             <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
                             <script src="plugins/easing/easing.js"></script>
                             <script src="js/custom.js"></script>
-                            <%--<h2>DANH SÁCH SẢN PHẨM CỦA MÌNH ĐỂ QUẢN LÝ</h2>--%>
-                            <%--<c:forEach items="${products}" var="product">--%>
-                            <%--    <div class="product-item men">--%>
-                            <%--        <div class="product discount product_filter">--%>
-                            <%--            <div class="product_image">--%>
-                            <%--                <img src="images/product_1.png" alt="">--%>
-                            <%--            </div>--%>
-                            <%--            <div class="favorite favorite_left"></div>--%>
-                            <%--            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>--%>
-                            <%--            <div class="product_info">--%>
-                            <%--                <h6 class="product_name"><a href="">${product.name}</a></h6>--%>
-                            <%--                <div class="product_price">$${product.price}<span>$590.00</span></div>--%>
-                            <%--            </div>--%>
-                            <%--        </div>--%>
-                            <%--        <div class="red_button add_to_cart_button"><a href="/products?action=edit&id=${product.id}">Edit</a></div>--%>
-                            <%--        <div class="red_button add_to_cart_button"><a href="/products?action=delete&id=${product.id}">Delete</a></div>--%>
-                            <%--    </div>--%>
-                            <%--</c:forEach>--%>
+
 </body>
 </html>

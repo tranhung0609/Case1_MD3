@@ -1,37 +1,26 @@
 package controller;
 
-import service.impl.OrderDetailServiceImpl;
-import service.impl.OrderServiceImpl;
+import model.CartItem;
+import model.Category;
+import model.Product;
+import service.impl.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "OrderServlet", urlPatterns = "/orders")
 public class OrderServlet extends HttpServlet {
-    OrderDetailServiceImpl orderDetailService = new OrderDetailServiceImpl();
     OrderServiceImpl orderService = new OrderServiceImpl();
+    ProductServiceImpl productService = new ProductServiceImpl();
+    ManageCartItem manageCartItem = new ManageCartItem();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
-        String action = request.getParameter("action");
-        switch (action) {
-            case "add-cart":
-                addCart(request, response);
-                break;
-            case "buy":
-                addCart(request, response);
-                break;
-        }
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
         String action = request.getParameter("action");
@@ -39,20 +28,79 @@ public class OrderServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "add-cart":
-                addCart(request, response);
+            case "add-to-cart":
+                addToCart(request, response, session);
                 break;
-            case "buy":
-                addCart(request, response);
+            case "show":
+                showListCart(request, response,session);
                 break;
         }
+
     }
 
-    private void addCart(HttpServletRequest request, HttpServletResponse response) {
-        int productId = Integer.parseInt(request.getParameter("productId"));
-        int accountId = Integer.parseInt(request.getParameter("accountId"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
-//        orderService.add();
+    private void showListCart(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/product/check-out.jsp");
+        List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cartItems");
+        if (cartItems == null) {
+            cartItems = new ArrayList<>();
+            session.setAttribute("cartItems", cartItems);
+        } else {
+            List<CartItem> myCartItems = manageCartItem.findByAccount(AccountServiceImpl.currentAccount.getId(), cartItems);
+            if (myCartItems == null) {
+                myCartItems = new ArrayList<>();
+                session.setAttribute("myCartItems", myCartItems);
+            } else {
+                double totalPrice = orderService.calTotalPrice(myCartItems);
+                session.setAttribute("myCartItems", myCartItems);
+                session.setAttribute("totalPrice", totalPrice);
+            }
+        }
+        requestDispatcher.forward(request, response);
+    }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+        HttpSession session = request.getSession();
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+//        switch (action) {
+//            case "add-to-cart":
+//                addToCart(request, response, session);
+//                break;
+//            case "buy":
+//                break;
+//            default:
+//                showListCart(request, response, session);
+//                break;
+//        }
+    }
+
+    private void addToCart(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException, ServletException {
+        List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cartItems");
+        List<CartItem> myCartItems;
+        int quantity = 1;
+//                Integer.parseInt(request.getParameter("quantity"));
+        double price = Double.parseDouble(request.getParameter("price"));
+        int productId = Integer.parseInt(request.getParameter("productId"));
+        Product product = productService.findById(productId);
+        CartItem cartItem = new CartItem(product, AccountServiceImpl.currentAccount, price, quantity);
+        if (cartItems == null) {
+            cartItems = new ArrayList<>();
+            myCartItems = new ArrayList<>();
+            session.setAttribute("cartItems", cartItems);
+            session.setAttribute("myCartItems", myCartItems);
+        } else {
+            myCartItems = manageCartItem.findByAccount(AccountServiceImpl.currentAccount.getId(), cartItems);
+            if (myCartItems.size() == 0) {
+                myCartItems = new ArrayList<>();
+                session.setAttribute("myCartItems", myCartItems);
+            }
+        }
+        manageCartItem.addToCart(cartItem, cartItems, quantity);
+        response.sendRedirect("/orders?action=show");
     }
 }

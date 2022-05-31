@@ -14,6 +14,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ProductServlet", urlPatterns = "/products")
@@ -53,10 +54,52 @@ public class ProductServlet extends HttpServlet {
             case "search":
                 showSearchForm(request, response);
                 break;
-            default:
+                case "findPrice":
+                    showfindPriceForm(request,response);
+                showSearchForm(request, response);
+                break;
+            case "buy-women":
+                showWomenList(request, response);
+                break;
+            case "buy-men":
+                showMenList(request,response);
+                break;
+              default:
                 homePage(request, response);
                 break;
         }
+    }
+
+    private void showfindPriceForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/search.jsp");
+        requestDispatcher.forward(request, response);
+    }
+
+    private void showMenList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("coloshop-master/menshop.jsp");
+        List<Product> productList = productService.findAll();
+        List<Product>productw = new ArrayList<>();
+        for (int i = 0; i < productList.size(); i++) {
+            if (productList.get(i).getCategory().getId()==2){
+                productw.add(productList.get(i));
+            }
+        }
+        request.setAttribute("productw", productw);
+        requestDispatcher.forward(request, response);
+    }
+
+    private void showWomenList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("coloshop-master/womenshop.jsp");
+        List<Product> productList = productService.findAll();
+        List<Product>productw = new ArrayList<>();
+        for (int i = 0; i < productList.size(); i++) {
+            if (productList.get(i).getCategory().getId()==1){
+                productw.add(productList.get(i));
+            }
+        }
+        request.setAttribute("productw", productw);
+        requestDispatcher.forward(request, response);
+
     }
 
     private void showSearchForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -66,13 +109,6 @@ public class ProductServlet extends HttpServlet {
 
     private void homePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("coloshop-master/homepage.jsp");
-        requestDispatcher.forward(request, response);
-    }
-
-    private void showListProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("coloshop-master/homepage.jsp");
-        List<Product> productList = productService.findAll();
-        request.setAttribute("products", productList);
         requestDispatcher.forward(request, response);
     }
 

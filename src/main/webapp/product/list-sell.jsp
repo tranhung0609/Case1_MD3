@@ -17,8 +17,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
                 crossorigin="anonymous"></script>
-
 </head>
+
 <body>
 <jsp:include page="csslist-sell.jsp"/> <%--css  giao diện--%>
 <div id="wrapper">
@@ -28,39 +28,34 @@
             <button><a href="/products?action=create" type="button" class="btn btn-outline-primary">Create</a></button>
         </form>
     </div>
-
-
     <ul class="products">
         <c:forEach items="${products}" var="product">
             <li>
                 <div class="product-item">
                     <div>
-                        <div class="product-top"><a href="/products?action=edit&id=${product.id}" type="button"
-                                                    class="btn btn-outline-primary">Edit</a>
-                            <div
-                                    class="product-top"><a href="/products?action=delete&id=${product.id}" type="button"
-                                                           class="btn btn-outline-primary">Delete</a>
-                            </div>
+                        <div class="product-top">
 
                             <div class="product-item">
-                                <a href="" class="product-image">
+                                <a href="${product.image}" class="product-image">
                                     <img style="height: 240px;width: 200px" src="${product.image}" alt="">
                                 </a>
                             </div>
                             <div class="product-info">
-                                <a href="" class="product-cat">abc</a>
-                                <a href="" class="product-name">${product.name}</a>
+                                <a href="" class="product-name"><b>${product.name}</b></a>
                             </div>
                             <div class="product-price">$${product.price}</div>
-
+                           <div> <a href="/products?action=edit&id=${product.id}" type="button"
+                               class="btn btn-outline-primary">Edit</a></div>
+                            <div
+                                    class="product-top"><a href="/products?action=delete&id=${product.id}" type="button"
+                                                           class="btn btn-outline-primary">Delete</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </li>
         </c:forEach>
-
     </ul>
 </div>
-
 </body>
 </html>

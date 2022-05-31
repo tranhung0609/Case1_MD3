@@ -47,30 +47,6 @@
 
                                 <!-- Currency / Language / My Account -->
 
-                                <li class="currency">
-                                    <a href="#">
-                                        usd
-                                        <i class="fa fa-angle-down"></i>
-                                    </a>
-                                    <ul class="currency_selection">
-                                        <li><a href="#">cad</a></li>
-                                        <li><a href="#">aud</a></li>
-                                        <li><a href="#">eur</a></li>
-                                        <li><a href="#">gbp</a></li>
-                                    </ul>
-                                </li>
-                                <li class="language">
-                                    <a href="#">
-                                        English
-                                        <i class="fa fa-angle-down"></i>
-                                    </a>
-                                    <ul class="language_selection">
-                                        <li><a href="#">French</a></li>
-                                        <li><a href="#">Italian</a></li>
-                                        <li><a href="#">German</a></li>
-                                        <li><a href="#">Spanish</a></li>
-                                    </ul>
-                                </li>
                                 <li class="account">
                                     <a href="#">
                                         My Account
@@ -78,7 +54,6 @@
                                     </a>
                                     <ul class="account_selection">
                                         <li><a href="/accounts?action=login"><i class="fa fa-sign-in" aria-hidden="true"></i>Log Out</a></li>
-                                        <li><a href="/accounts?action=signup"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -95,18 +70,18 @@
                 <div class="row">
                     <div class="col-lg-12 text-right">
                         <div class="logo_container">
-                            <a href="#">colo<span>shop</span></a>
+                            <a href="/products">colo<span>shop</span></a>
                         </div>
                         <nav class="navbar">
                             <ul class="navbar_menu">
-                                <li><a href=/products">home</a></li>
+                                <li><a href="/products">home</a></li>
                                 <li><a href="/products?action=sell-list">my shop</a></li>
                             </ul>
                             <ul class="navbar_user">
-                                <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                                <li><a href="/products?action=search"><i class="fa fa-search" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                                 <li class="checkout">
-                                    <a href="#">
+                                    <a href="/product/check-out.jsp">
                                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                         <span id="checkout_items" class="checkout_items">2</span>
                                     </a>
@@ -308,6 +283,7 @@
                                 <div class="product-grid">
 
                                     <!-- Product 1 -->
+                                    <form action="/orders?action=add-to-cart" method="post">
                                     <c:forEach items="${products}" var="product">
                                         <div class="product-item men">
                                             <div class="product discount product_filter">
@@ -315,16 +291,18 @@
                                                     <img src="images/product_1.png" alt="">
                                                 </div>
                                                 <div class="favorite favorite_left"></div>
-                                                <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+                                                <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span></span></div>
                                                 <div class="product_info">
                                                     <h6 class="product_name"><a href="/products?action=details&id=${product.id}">${product.name}</a></h6>
-                                                    <div class="product_price">$${product.price}<span>$590.00</span></div>
+                                                    <div class="product_price">$${product.price}<span></span></div>
                                                 </div>
                                             </div>
-                                            <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+                                            <div class="red_button add_to_cart_button">
+                                                <div class="red_button add_to_cart_button"><a href="/orders?action=add-to-cart&productId=${product.id}&price=${product.price}">add to cart</a></div>
+                                            </div>
                                         </div>
                                     </c:forEach>
-
+                                    </form>
 
 
                                     <!-- Product 2 -->
