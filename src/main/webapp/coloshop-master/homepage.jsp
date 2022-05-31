@@ -424,7 +424,6 @@
     </div>
 
     <!-- Deal of the week -->
-
     <div class="deal_ofthe_week">
         <div class="container">
             <div class="row align-items-center">
