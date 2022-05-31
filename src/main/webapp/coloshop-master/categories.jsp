@@ -285,7 +285,7 @@
 
                                     <!-- Product 1 -->
 
-                                    <form action="/orders?action=add-to-cart" method="post">
+                                    <form action="/orders?action=add-to-cart" method="get">
                                     <c:forEach items="${products}" var="product">
                                         <div class="product-item men">
                                             <div class="product discount product_filter">

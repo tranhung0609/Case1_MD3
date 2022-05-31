@@ -87,6 +87,7 @@ public class OrderServlet extends HttpServlet {
             } else {
                 double totalPrice = orderService.calTotalPrice(myCartItems);
                 session.setAttribute("myCartItems", myCartItems);
+                session.setAttribute("size", myCartItems.size());
                 session.setAttribute("totalPrice", totalPrice);
             }
         }
@@ -97,7 +98,7 @@ public class OrderServlet extends HttpServlet {
         List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cartItems");
         List<CartItem> myCartItems;
         int quantity = 1;
-//                Integer.parseInt(request.getParameter("quantity"));
+//        quantity = Integer.parseInt(request.getParameter("quantity"));
         double price = Double.parseDouble(request.getParameter("price"));
         int productId = Integer.parseInt(request.getParameter("productId"));
         Product product = productService.findById(productId);
