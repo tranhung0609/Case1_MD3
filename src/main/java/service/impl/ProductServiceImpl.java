@@ -89,6 +89,30 @@ public class ProductServiceImpl implements IProductService {
         }
         return products;
     }
+    public List<Product> findDescPrice() {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from products\n" + "order by price desc")
+        ) {
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                double price = rs.getDouble("price");
+                String image = rs.getString("image");
+                int quantity = rs.getInt("quantity");
+                int quantitySold = rs.getInt("quantitySold");
+                int categoryId = rs.getInt("categoryId");
+                int promotionId = rs.getInt("promotionId");
+                int accountId = rs.getInt("accountId");
+//                int accountId = AccountServiceImpl.currentAccount.getId();
+                products.add(new Product(id, name, price, image, quantity, quantitySold, categoryService.findById(categoryId), promotionService.findById(promotionId), accountService.findById(accountId)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
 
     //lấy List category để hiển thị loại sản phẩm thay vì Id
     List<Category> findAllCategoryByProducts(List<Product> products) {
@@ -197,12 +221,12 @@ public class ProductServiceImpl implements IProductService {
              PreparedStatement preparedStatement =
                      connection.prepareStatement(UPDATE_PRODUCT_SQL)) {
             preparedStatement.setString(1, product.getName());
-            preparedStatement.setDouble(2, product.getPrice());
+            preparedStatement.setString(2, String.valueOf(product.getPrice()));
             preparedStatement.setString(3, product.getImage());
-            preparedStatement.setInt(4, product.getQuantity());
-            preparedStatement.setInt(5, product.getCategory().getId());
-            preparedStatement.setInt(6, product.getPromotion().getId());
-            preparedStatement.setInt(7, product.getId());
+            preparedStatement.setString(4, String.valueOf(product.getQuantity()));
+            preparedStatement.setString(5, String.valueOf(product.getCategory().getId()));
+            preparedStatement.setString(6, String.valueOf(product.getPromotion().getId()));
+            preparedStatement.setString(7, String.valueOf(product.getId()));
             rowUpdate = preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();

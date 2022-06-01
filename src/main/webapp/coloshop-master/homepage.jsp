@@ -28,13 +28,9 @@
 <body>
 
 <div class="super_container">
-
     <!-- Header -->
-
     <header class="header trans_300">
-
         <!-- Top Navigation -->
-
         <div class="top_nav">
             <div class="container">
                 <div class="row">
@@ -44,9 +40,7 @@
                     <div class="col-md-6 text-right">
                         <div class="top_nav_right">
                             <ul class="top_nav_menu">
-
                                 <!-- Currency / Language / My Account -->
-
                                 <li class="account">
                                     <a href="#">
                                         My Account
@@ -172,7 +166,7 @@
                 <div class="col-md-4">
                     <div class="banner_item align-items-center" style="background-image:url(images/banner_1.jpg)">
                         <div class="banner_category">
-                            <a href="/products?action=buy-list">women's</a>
+                            <a href="/products?action=buy-women">women's</a>
                         </div>
                     </div>
                 </div>
@@ -186,7 +180,7 @@
                 <div class="col-md-4">
                     <div class="banner_item align-items-center" style="background-image:url(images/banner_3.jpg)">
                         <div class="banner_category">
-                            <a href="/products?action=buy-list">men's</a>
+                            <a href="/products?action=buy-men">Men's</a>
                         </div>
                     </div>
                 </div>
@@ -401,7 +395,6 @@
     </div>
 
     <!-- Deal of the week -->
-
     <div class="deal_ofthe_week">
         <div class="container">
             <div class="row align-items-center">

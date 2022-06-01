@@ -40,7 +40,7 @@
                             </div>
                             <div class="w-100">
                                 <p class="social-media d-flex justify-content-end">
-                                    <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+                                    <a href="https://www.facebook.com/KioShopThoiTrangXuatKhau" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
                                     <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
                                 </p>
                             </div>
@@ -48,11 +48,11 @@
 <%--                        <form action="<%=request.getContextPath()%>/accounts" class="signin-form" method="post">--%>
                         <form class="signin-form" action="/accounts?action=login" method="post">
                             <div class="form-group mb-3">
-                                <label class="label" for="name">Username</label>
+                                <label class="label" >Username</label>
                                 <input name="email" type="text" id="inputEmail" class="form-control" placeholder="Username" required>
                             </div>
                             <div class="form-group mb-3">
-                                <label class="label" for="password">Password</label>
+                                <label class="label" >Password</label>
                                 <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
                             </div>
                             <div class="form-group">

@@ -1,5 +1,6 @@
 package controller;
 
+import model.Account;
 import model.Category;
 import model.Product;
 import model.Promotion;
@@ -13,6 +14,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ProductServlet", urlPatterns = "/products")
@@ -55,6 +57,16 @@ public class ProductServlet extends HttpServlet {
             case "sort":
                 sortProductByQuantitySold(request, response);
                 break;
+                case "findPrice":
+                    showfindPriceForm(request,response);
+                showSearchForm(request, response);
+                break;
+            case "buy-women":
+                showWomenList(request, response);
+                break;
+            case "buy-men":
+                showMenList(request,response);
+                break;
               default:
                 homePage(request, response);
                 break;
@@ -66,6 +78,38 @@ public class ProductServlet extends HttpServlet {
         List<Product> products = productService.sortByQuantitySold();
         request.setAttribute("products", products);
         requestDispatcher.forward(request, response);
+    }
+
+    private void showfindPriceForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/search.jsp");
+        requestDispatcher.forward(request, response);
+    }
+
+    private void showMenList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("coloshop-master/menshop.jsp");
+        List<Product> productList = productService.findAll();
+        List<Product>productw = new ArrayList<>();
+        for (int i = 0; i < productList.size(); i++) {
+            if (productList.get(i).getCategory().getId()==2){
+                productw.add(productList.get(i));
+            }
+        }
+        request.setAttribute("productw", productw);
+        requestDispatcher.forward(request, response);
+    }
+
+    private void showWomenList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("coloshop-master/womenshop.jsp");
+        List<Product> productList = productService.findAll();
+        List<Product>productw = new ArrayList<>();
+        for (int i = 0; i < productList.size(); i++) {
+            if (productList.get(i).getCategory().getId()==1){
+                productw.add(productList.get(i));
+            }
+        }
+        request.setAttribute("productw", productw);
+        requestDispatcher.forward(request, response);
+
     }
 
     private void showSearchForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -150,6 +194,9 @@ public class ProductServlet extends HttpServlet {
             case "search":
                 searchProduct(request, response);
                 break;
+            case "findDesc":
+                findDescProduct(request, response);
+                break;
             case "edit":
                 try {
                     editProduct(request, response);
@@ -160,15 +207,25 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
+    private void findDescProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/finddesc.jsp");
+        List<Product> productList = productService.findDescPrice();
+        request.setAttribute("ds",productList);
+        requestDispatcher.forward(request,response);
+    }
+
     private void editProduct(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+       int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         double price = Double.parseDouble(request.getParameter("price"));
         String image = request.getParameter("image");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         int categoryId = Integer.parseInt(request.getParameter("category"));
         int promotionId = Integer.parseInt(request.getParameter("promotion"));
-        Product product = new Product(id, name, price, image, quantity, categoryService.findById(categoryId), promotionService.findById(promotionId), AccountServiceImpl.currentAccount);
+        Category category = categoryService.findById(categoryId);
+        Promotion promotion = promotionService.findById(promotionId);
+        Account account = AccountServiceImpl.currentAccount;
+        Product product = new Product(id, name, price, image, quantity, category,promotion,account);
         productService.update(product);
         response.sendRedirect("/products?action=sell-list");
     }
