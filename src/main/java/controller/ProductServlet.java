@@ -22,6 +22,7 @@ public class ProductServlet extends HttpServlet {
     ProductServiceImpl productService = new ProductServiceImpl();
     CategoryServiceImpl categoryService = new CategoryServiceImpl();
     PromotionServiceImpl promotionService = new PromotionServiceImpl();
+    AccountServiceImpl accountService = new AccountServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -123,10 +124,13 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void showProductDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/details.jsp");
         int id = Integer.parseInt(request.getParameter("id"));
         Product product = productService.findById(id);
+        Account account = accountService.findById(product.getAccount().getId());
         request.setAttribute("product", product);
+        request.setAttribute("account", account );
         requestDispatcher.forward(request, response);
     }
 

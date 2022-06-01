@@ -314,7 +314,7 @@
                                                     </div>
                                                     <center>
                                                         <input type="hidden" value="add-to-cart" name="action">
-                                                        <input type="number" value="1" name="quantity">
+                                                        <input type="number" value="1" name="quantity" style="width: 50px; text-align: center">
                                                         <input type="hidden" value="${product.id}" name="productId" style="text-align: center ; width: 50px">
                                                         <input type="hidden" value="${product.getPriceByPromotion()}"
                                                                name="price">

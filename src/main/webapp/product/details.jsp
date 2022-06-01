@@ -15,13 +15,18 @@
 </head>
 <body>
 <div class="product-card">
-    <div class="badge">Hot</div>
+    <div class="badge">${product.promotion.getName()}</div>
     <div class="product-tumb">
         <img src="${product.image}" alt="">
     </div>
     <div class="product-details">
         <span class="product-catagory">${product.category.name}</span>
         <h4><a href="">${product.name}</a></h4>
+        <h5 class="product-quantity">Số lượng hiện có : ${product.quantity}</h5>
+        <br>
+        <h5 class="product-quantitySold">Số lượng đã bán : ${product.quantitySold}</h5>
+        <h4 class="Account">Người bán : ${account.name}</h4>
+
 <%--        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>--%>
         <div class="product-bottom-details">
             <div class="product-price"><small>${product.promotion.name}</small>$${product.price}</div>
