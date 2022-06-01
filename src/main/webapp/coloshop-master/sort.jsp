@@ -309,27 +309,41 @@
 
                                     <!-- Product 1 -->
 
-                                    <form action="/orders?action=add-to-cart" method="post">
-                                        <c:forEach items="${products}" var="product">
+                                    <c:forEach items="${products}" var="product">
+                                        <form action="/orders?action=add-to-cart" method="get">
+
                                             <div class="product-item men">
                                                 <div class="product discount product_filter">
                                                     <div class="product_image">
                                                         <img src="images/product_1.png" alt="">
                                                     </div>
                                                     <div class="favorite favorite_left"></div>
-                                                    <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>${product.getStatus()}</span></div>
+                                                    <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
+                                                        <span>${product.getStatus()}</span></div>
                                                     <div class="product_info">
-                                                        <h6 class="product_name"><a href="/products?action=details&id=${product.id}">${product.name}</a></h6>
-                                                        <div class="product_price">$${product.getPriceByPromotion()}<span>$${product.price}</span></div>
+                                                        <h6 class="product_name"><a
+                                                                href="/products?action=details&id=${product.id}">${product.name}</a>
+                                                        </h6>
+                                                        <div class="product_price">
+                                                            $${product.getPriceByPromotion()}<span>$${product.price}</span>
+                                                        </div>
                                                     </div>
+                                                    <input type="hidden" value="add-to-cart" name="action">
+                                                    <input type="number" value="1" name="quantity">
+                                                    <input type="hidden" value="${product.id}" name="productId">                                                    <input type="hidden" value="${product.id}" name="productId">
+                                                    <input type="hidden" value="${product.getPriceByPromotion()}" name="price">
                                                     <h6>Sold : ${product.quantitySold} products</h6>
                                                 </div>
                                                 <div class="red_button add_to_cart_button">
-                                                    <button><a href="/orders?action=add-to-cart&productId=${product.id}&price=${product.getPriceByPromotion()}">add to cart</a></button>
+                                                        <%--                                                    <div class="red_button add_to_cart_button"><a--%>
+                                                        <%--                                                            href="/orders?action=add-to-cart&productId=${product.id}&price=${product.getPriceByPromotion()}">add--%>
+                                                        <%--                                                        to cart</a></div>--%>
+                                                    <button class="red_button add_to_cart_button">ADD TO CART</button>
                                                 </div>
                                             </div>
-                                        </c:forEach>
-                                    </form>
+
+                                        </form>
+                                    </c:forEach>
 
 
                                     <!-- Product 2 -->
