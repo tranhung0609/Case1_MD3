@@ -13,7 +13,8 @@
     <meta charset="UTF-8">
     <title>Check-out</title>
     <link type="text/css" href="/product/css/check-out.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="js/jquery-1.11.1.min.js"></script>
 </head>
 <body>
@@ -26,14 +27,15 @@
             <th style="width:10%">Giá</th>
             <th style="width:8%">Số lượng</th>
             <th style="width:22%" class="text-center">Thành tiền</th>
-            <th style="width:10%"> </th>
+            <th style="width:10%"></th>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${myCartItems}" var="cartItem">
-            <form action="/orders" method="get">
+            <form action="/orders" method="post">
                 <input type="hidden" name="action" value="delete">
                 <input type="hidden" name="cartItemId" value="${cartItem.getCartItemId()}">
+
                 <tr>
                     <td data-th="Product">
                         <div class="row">
@@ -47,19 +49,37 @@
                             </div>
                         </div>
                     </td>
-                    <td data-th="Price">$${cartItem.getProduct().getPrice()}</td>
-                    <td  data-th="Quantity">${cartItem.quantity}
+                    <td data-th="Price" id="price${cartItem.product.id}">${cartItem.getProduct().getPriceByPromotion()}</td>
+                    <td data-th="Quantity">${cartItem.quantity}
+<%--                        <input type="text" class="data-th" style="width: 40px;" id="quan${cartItem.product.id}"--%>
+<%--                               onchange="calPriceByQuantity(${cartItem.product.id})" value="${cartItem.quantity}">--%>
                     </td>
-                    <td data-th="Subtotal" class="text-center">${cartItem.price}</td>
+                    <td data-th="Subtotal" class="text-center print"
+                        id="print${cartItem.product.id}">${cartItem.price}</td>
                     <td class="actions" data-th="">
-                        <button  class="btn btn-danger btn-sm"><i class="fa fa-trash-o">Xóa</i>
+                        <button class="btn btn-danger btn-sm" onclick="xacNhanDelete(${product.id})"><i
+                                class="fa fa-trash-o">Xóa</i>
                         </button>
                     </td>
                 </tr>
             </form>
         </c:forEach>
+        <h1 id="sum"></h1>
         </tbody>
+        <script>
+            function calPriceByQuantity(id) {
+                let a = +document.getElementById("price" + id).innerHTML;
+                let b = +document.getElementById("quan" + id).value;
+                document.getElementById("print" + id).innerHTML = (a * b);
+                let sum = 0;
+                for (let i = 0; i < document.getElementsByClassName('print').length; i++) {
+                    sum += +document.getElementsByClassName('print')[i].innerHTML;
+                }
+                document.getElementById("sum").innerHTML = sum;
+                console.log(sum);
+            }
 
+        </script>
 
         <tfoot>
         <tr>
@@ -68,10 +88,11 @@
                 mua hàng</a>
             </td>
             <td colspan="2" class="hidden-xs"></td>
-            <td class="hidden-xs text-center"><strong>Tổng tiền ${totalPrice}</strong>
+            <td class="hidden-xs text-center" id="printTotal"><strong>Tổng tiền $${totalPrice}</strong>
             </td>
             <%--    truyền đường link thanh toán tiền--%>
-            <td><a href="/orders?action=buy" class="btn btn-success btn-block">Thanh toán<i class="fa fa-angle-right"></i></a>
+            <td><a href="/orders?action=buy" class="btn btn-success btn-block">Thanh toán<i
+                    class="fa fa-angle-right"></i></a>
             </td>
         </tr>
         </tfoot>

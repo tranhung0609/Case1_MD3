@@ -97,11 +97,11 @@ public class OrderServlet extends HttpServlet {
         List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cartItems");
         List<CartItem> myCartItems;
         int quantity = 1;
-//                Integer.parseInt(request.getParameter("quantity"));
+//        int quantity = Integer.parseInt(request.getParameter("quantity"));
         double price = Double.parseDouble(request.getParameter("price"));
         int productId = Integer.parseInt(request.getParameter("productId"));
         Product product = productService.findById(productId);
-        CartItem cartItem = new CartItem(product, AccountServiceImpl.currentAccount, price, quantity);
+        CartItem cartItem = new CartItem(product, AccountServiceImpl.currentAccount, price * quantity, quantity);
         if (cartItems == null) {
             cartItems = new ArrayList<>();
             myCartItems = new ArrayList<>();
@@ -127,16 +127,11 @@ public class OrderServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
-//        switch (action) {
-//            case "add-to-cart":
-//                addToCart(request, response, session);
-//                break;
-//            case "buy":
-//                break;
-//            default:
-//                showListCart(request, response, session);
-//                break;
-//        }
+        switch (action) {
+            case "add-to-cart":
+                addToCart(request, response, session);
+                break;
+        }
     }
 
 

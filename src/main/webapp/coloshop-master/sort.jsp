@@ -317,15 +317,15 @@
                                                         <img src="images/product_1.png" alt="">
                                                     </div>
                                                     <div class="favorite favorite_left"></div>
-                                                    <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+                                                    <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>${product.getStatus()}</span></div>
                                                     <div class="product_info">
                                                         <h6 class="product_name"><a href="/products?action=details&id=${product.id}">${product.name}</a></h6>
-                                                        <div class="product_price">$${product.price}<span>$590.00</span></div>
+                                                        <div class="product_price">$${product.getPriceByPromotion()}<span>$${product.price}</span></div>
                                                     </div>
                                                     <h6>Sold : ${product.quantitySold} products</h6>
                                                 </div>
                                                 <div class="red_button add_to_cart_button">
-                                                    <div class="red_button add_to_cart_button"><a href="/orders?action=add-to-cart&productId=${product.id}&price=${product.price}">add to cart</a></div>
+                                                    <button><a href="/orders?action=add-to-cart&productId=${product.id}&price=${product.getPriceByPromotion()}">add to cart</a></button>
                                                 </div>
                                             </div>
                                         </c:forEach>

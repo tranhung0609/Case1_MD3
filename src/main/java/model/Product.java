@@ -67,6 +67,21 @@ public class Product {
         return price;
     }
 
+    public String getStatus() {
+        return promotion.getName();
+    }
+    public double getPriceByPromotion() {
+        if (promotion.getId() == 1) {
+            return price;
+        } else if (promotion.getId() == 2) {
+            return (price - (price * 0.3));
+        } else if (promotion.getId() == 3) {
+            return (price * 0.5);
+        } else {
+            return (price - (price * 0.7));
+        }
+    }
+
     public void setPrice(double price) {
         this.price = price;
     }

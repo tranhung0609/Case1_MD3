@@ -31,6 +31,11 @@ public class CartItem {
         return price;
     }
 
+    public double getPriceByPrm() {
+
+        return price;
+    }
+
     public static int getCartItemId() {
         return cartItemId;
     }
