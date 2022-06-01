@@ -290,7 +290,7 @@
                                         <div class="product-item men">
                                             <div class="product discount product_filter">
                                                 <div class="product_image">
-                                                    <img src="images/product_1.png" alt="">
+                                                    <img src="${product.image}" style="height: 240px; width: 200px">
                                                 </div>
                                                 <div class="favorite favorite_left"></div>
                                                 <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>${product.getStatus()}</span></div>
@@ -298,8 +298,11 @@
                                                     <h6 class="product_name"><a href="/products?action=details&id=${product.id}">${product.name}</a></h6>
                                                     <div class="product_price">$${product.getPriceByPromotion()}<span>$${product.price}</span></div>
                                                 </div>
-                                                <input type="number" value="1" name="quan">
-                                                <h6>Sold : ${product.quantitySold} products</h6>
+                                                <center>
+                                                    <input type="number" value="1" name="quan" style="text-align: center; width: 50px;">
+                                                    <h6>Sold : ${product.quantitySold} products</h6>
+                                                </center>
+
                                             </div>
                                             <div class="red_button add_to_cart_button">
                                                 <div class="red_button add_to_cart_button"><a href="/orders?action=add-to-cart&productId=${product.id}&price=${product.getPriceByPromotion()}">add to cart</a></div>

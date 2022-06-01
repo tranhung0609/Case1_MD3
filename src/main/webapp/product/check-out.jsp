@@ -32,7 +32,7 @@
         </thead>
         <tbody>
         <c:forEach items="${myCartItems}" var="cartItem">
-            <form action="/orders" method="post">
+            <form action="/orders" method="get">
                 <input type="hidden" name="action" value="delete">
                 <input type="hidden" name="cartItemId" value="${cartItem.getCartItemId()}">
 
@@ -57,9 +57,7 @@
                     <td data-th="Subtotal" class="text-center print"
                         id="print${cartItem.product.id}">${cartItem.price}</td>
                     <td class="actions" data-th="">
-                        <button class="btn btn-danger btn-sm" onclick="xacNhanDelete(${product.id})"><i
-                                class="fa fa-trash-o">Xóa</i>
-                        </button>
+                        <button class="btn btn-danger btn-sm">Xóa</button>
                     </td>
                 </tr>
             </form>
