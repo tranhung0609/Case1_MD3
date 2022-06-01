@@ -96,8 +96,8 @@ public class OrderServlet extends HttpServlet {
     private void addToCart(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException, ServletException {
         List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cartItems");
         List<CartItem> myCartItems;
-        int quantity = 1;
-//        int quantity = Integer.parseInt(request.getParameter("quantity"));
+//        int quantity = 1;
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
         double price = Double.parseDouble(request.getParameter("price"));
         int productId = Integer.parseInt(request.getParameter("productId"));
         Product product = productService.findById(productId);

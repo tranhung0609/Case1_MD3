@@ -57,7 +57,9 @@
                     <td data-th="Subtotal" class="text-center print"
                         id="print${cartItem.product.id}">${cartItem.price}</td>
                     <td class="actions" data-th="">
-                        <button class="btn btn-danger btn-sm">Xóa</button>
+                        <button class="btn btn-danger btn-sm"><i
+                                class="fa fa-trash-o">Xóa</i>
+                        </button>
                     </td>
                 </tr>
             </form>
