@@ -53,7 +53,8 @@
                                         <i class="fa fa-angle-down"></i>
                                     </a>
                                     <ul class="account_selection">
-                                        <li><a href="/accounts?action=login"><i class="fa fa-sign-in" aria-hidden="true"></i>Log Out</a></li>
+                                        <li><a href="/accounts?action=login"><i class="fa fa-sign-in"
+                                                                                aria-hidden="true"></i>Log Out</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -78,7 +79,8 @@
                                 <li><a href="/products?action=sell-list">my shop</a></li>
                             </ul>
                             <ul class="navbar_user">
-                                <li><a href="/products?action=search"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                                <li><a href="/products?action=search"><i class="fa fa-search"
+                                                                         aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                                 <li class="checkout">
                                     <a href="/product/check-out.jsp">
@@ -159,7 +161,7 @@
                 <div class="breadcrumbs d-flex flex-row align-items-center">
                     <ul>
                         <li><a href="/products">Home</a></li>
-<%--                        <li class="active"><a href="homepage.jsp"><i class="fa fa-angle-right" aria-hidden="true"></i>Men's</a></li>--%>
+                        <%--                        <li class="active"><a href="homepage.jsp"><i class="fa fa-angle-right" aria-hidden="true"></i>Men's</a></li>--%>
                     </ul>
                 </div>
 
@@ -171,8 +173,9 @@
                             <h5>Product List</h5>
                         </div>
                         <ul class="sidebar_categories">
-                            <li><a href="#" >Men</a></li>
-                            <li class="active"><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>Women</a></li>
+                            <li><a href="#">Men</a></li>
+                            <li class="active"><a href="#"><span><i class="fa fa-angle-double-right"
+                                                                    aria-hidden="true"></i></span>Women</a></li>
                             <li><a href="#">Accessories</a></li>
                             <li><a href="#">New Arrivals</a></li>
                             <li><a href="/products?action=sort">Favorite Product</a></li>
@@ -248,9 +251,13 @@
                                             <span class="type_sorting_text">Default Sorting</span>
                                             <i class="fa fa-angle-down"></i>
                                             <ul class="sorting_type">
-                                                <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>Default Sorting</span></li>
-                                                <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>Price</span></li>
-                                                <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "name" }'><span>Product Name</span></li>
+                                                <li class="type_sorting_btn"
+                                                    data-isotope-option='{ "sortBy": "original-order" }'><span>Default Sorting</span>
+                                                </li>
+                                                <li class="type_sorting_btn"
+                                                    data-isotope-option='{ "sortBy": "price" }'><span>Price</span></li>
+                                                <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "name" }'>
+                                                    <span>Product Name</span></li>
                                             </ul>
                                         </li>
                                         <li>
@@ -274,7 +281,8 @@
                                             </ul>
                                         </div>
                                         <div class="page_total"><span>of</span> 3</div>
-                                        <div id="next_page" class="page_next"><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
+                                        <div id="next_page" class="page_next"><a href="#"><i
+                                                class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
                                     </div>
 
                                 </div>
@@ -284,30 +292,41 @@
                                 <div class="product-grid">
 
                                     <!-- Product 1 -->
-
-                                    <form action="/orders?action=add-to-cart" method="get">
                                     <c:forEach items="${products}" var="product">
-                                        <div class="product-item men">
-                                            <div class="product discount product_filter">
-                                                <div class="product_image">
-                                                    <img src="images/product_1.png" alt="">
-                                                </div>
-                                                <div class="favorite favorite_left"></div>
-                                                <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>${product.getStatus()}</span></div>
-                                                <div class="product_info">
-                                                    <h6 class="product_name"><a href="/products?action=details&id=${product.id}">${product.name}</a></h6>
-                                                    <div class="product_price">$${product.getPriceByPromotion()}<span>$${product.price}</span></div>
-                                                </div>
-                                                <input type="number" value="1" name="quan">
-                                                <h6>Sold : ${product.quantitySold} products</h6>
-                                            </div>
-                                            <div class="red_button add_to_cart_button">
-                                                <div class="red_button add_to_cart_button"><a href="/orders?action=add-to-cart&productId=${product.id}&price=${product.getPriceByPromotion()}">add to cart</a></div>
-                                            </div>
-                                        </div>
-                                    </c:forEach>
-                                    </form>
+                                        <form action="/orders?action=add-to-cart" method="get">
 
+                                            <div class="product-item men">
+                                                <div class="product discount product_filter">
+                                                    <div class="product_image">
+                                                        <img src="images/product_1.png" alt="">
+                                                    </div>
+                                                    <div class="favorite favorite_left"></div>
+                                                    <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
+                                                        <span>${product.getStatus()}</span></div>
+                                                    <div class="product_info">
+                                                        <h6 class="product_name"><a
+                                                                href="/products?action=details&id=${product.id}">${product.name}</a>
+                                                        </h6>
+                                                        <div class="product_price">
+                                                            $${product.getPriceByPromotion()}<span>$${product.price}</span>
+                                                        </div>
+                                                    </div>
+                                                    <input type="hidden" value="add-to-cart" name="action">
+                                                    <input type="number" value="1" name="quantity">
+                                                    <input type="hidden" value="${product.id}" name="productId">                                                    <input type="hidden" value="${product.id}" name="productId">
+                                                    <input type="hidden" value="${product.getPriceByPromotion()}" name="price">
+                                                    <h6>Sold : ${product.quantitySold} products</h6>
+                                                </div>
+                                                <div class="red_button add_to_cart_button">
+<%--                                                    <div class="red_button add_to_cart_button"><a--%>
+<%--                                                            href="/orders?action=add-to-cart&productId=${product.id}&price=${product.getPriceByPromotion()}">add--%>
+<%--                                                        to cart</a></div>--%>
+                                                    <button class="red_button add_to_cart_button">ADD TO CART</button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </c:forEach>
 
                                     <!-- Product 2 -->
 
@@ -317,9 +336,11 @@
                                                 <img src="images/product_2.png" alt="">
                                             </div>
                                             <div class="favorite"></div>
-                                            <div class="product_bubble product_bubble_left product_bubble_green d-flex flex-column align-items-center"><span>new</span></div>
+                                            <div class="product_bubble product_bubble_left product_bubble_green d-flex flex-column align-items-center">
+                                                <span>new</span></div>
                                             <div class="product_info">
-                                                <h6 class="product_name"><a href="single.jsp">Samsung CF591 Series Curved 27-Inch FHD Monitor</a></h6>
+                                                <h6 class="product_name"><a href="single.jsp">Samsung CF591 Series
+                                                    Curved 27-Inch FHD Monitor</a></h6>
                                                 <div class="product_price">$610.00</div>
                                             </div>
                                         </div>
@@ -335,7 +356,8 @@
                                             </div>
                                             <div class="favorite"></div>
                                             <div class="product_info">
-                                                <h6 class="product_name"><a href="single.jsp">Blue Yeti USB Microphone Blackout Edition</a></h6>
+                                                <h6 class="product_name"><a href="single.jsp">Blue Yeti USB Microphone
+                                                    Blackout Edition</a></h6>
                                                 <div class="product_price">$120.00</div>
                                             </div>
                                         </div>
@@ -349,10 +371,12 @@
                                             <div class="product_image">
                                                 <img src="images/product_4.png" alt="">
                                             </div>
-                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>sale</span></div>
+                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
+                                                <span>sale</span></div>
                                             <div class="favorite favorite_left"></div>
                                             <div class="product_info">
-                                                <h6 class="product_name"><a href="single.jsp">DYMO LabelWriter 450 Turbo Thermal Label Printer</a></h6>
+                                                <h6 class="product_name"><a href="single.jsp">DYMO LabelWriter 450 Turbo
+                                                    Thermal Label Printer</a></h6>
                                                 <div class="product_price">$410.00</div>
                                             </div>
                                         </div>
@@ -368,7 +392,8 @@
                                             </div>
                                             <div class="favorite"></div>
                                             <div class="product_info">
-                                                <h6 class="product_name"><a href="single.jsp">Pryma Headphones, Rose Gold & Grey</a></h6>
+                                                <h6 class="product_name"><a href="single.jsp">Pryma Headphones, Rose
+                                                    Gold & Grey</a></h6>
                                                 <div class="product_price">$180.00
                                                     <span>$555</span>
                                                 </div>
@@ -385,9 +410,11 @@
                                                 <img src="images/product_6.png" alt="">
                                             </div>
                                             <div class="favorite favorite_left"></div>
-                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
+                                                <span>-$20</span></div>
                                             <div class="product_info">
-                                                <h6 class="product_name"><a href="single.jsp">Fujifilm X100T 16 MP Digital Camera (Silver)</a></h6>
+                                                <h6 class="product_name"><a href="single.jsp">Fujifilm X100T 16 MP
+                                                    Digital Camera (Silver)</a></h6>
                                                 <div class="product_price">$520.00<span>$590.00</span></div>
                                             </div>
                                         </div>
@@ -403,7 +430,8 @@
                                             </div>
                                             <div class="favorite"></div>
                                             <div class="product_info">
-                                                <h6 class="product_name"><a href="single.jsp">Samsung CF591 Series Curved 27-Inch FHD Monitor</a></h6>
+                                                <h6 class="product_name"><a href="single.jsp">Samsung CF591 Series
+                                                    Curved 27-Inch FHD Monitor</a></h6>
                                                 <div class="product_price">$610.00</div>
                                             </div>
                                         </div>
@@ -419,7 +447,8 @@
                                             </div>
                                             <div class="favorite"></div>
                                             <div class="product_info">
-                                                <h6 class="product_name"><a href="single.jsp">Blue Yeti USB Microphone Blackout Edition</a></h6>
+                                                <h6 class="product_name"><a href="single.jsp">Blue Yeti USB Microphone
+                                                    Blackout Edition</a></h6>
                                                 <div class="product_price">$120.00</div>
                                             </div>
                                         </div>
@@ -433,10 +462,12 @@
                                             <div class="product_image">
                                                 <img src="images/product_9.png" alt="">
                                             </div>
-                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>sale</span></div>
+                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
+                                                <span>sale</span></div>
                                             <div class="favorite favorite_left"></div>
                                             <div class="product_info">
-                                                <h6 class="product_name"><a href="single.jsp">DYMO LabelWriter 450 Turbo Thermal Label Printer</a></h6>
+                                                <h6 class="product_name"><a href="single.jsp">DYMO LabelWriter 450 Turbo
+                                                    Thermal Label Printer</a></h6>
                                                 <div class="product_price">$410.00</div>
                                             </div>
                                         </div>
@@ -452,7 +483,8 @@
                                             </div>
                                             <div class="favorite"></div>
                                             <div class="product_info">
-                                                <h6 class="product_name"><a href="single.jsp">Pryma Headphones, Rose Gold & Grey</a></h6>
+                                                <h6 class="product_name"><a href="single.jsp">Pryma Headphones, Rose
+                                                    Gold & Grey</a></h6>
                                                 <div class="product_price">$180.00</div>
                                             </div>
                                         </div>
@@ -468,7 +500,8 @@
                                             </div>
                                             <div class="favorite"></div>
                                             <div class="product_info">
-                                                <h6 class="product_name"><a href="single.jsp">Pryma Headphones, Rose Gold & Grey</a></h6>
+                                                <h6 class="product_name"><a href="single.jsp">Pryma Headphones, Rose
+                                                    Gold & Grey</a></h6>
                                                 <div class="product_price">$180.00</div>
                                             </div>
                                         </div>
@@ -483,9 +516,11 @@
                                                 <img src="images/product_6.png" alt="">
                                             </div>
                                             <div class="favorite favorite_left"></div>
-                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
+                                                <span>-$20</span></div>
                                             <div class="product_info">
-                                                <h6 class="product_name"><a href="single.jsp">Fujifilm X100T 16 MP Digital Camera (Silver)</a></h6>
+                                                <h6 class="product_name"><a href="single.jsp">Fujifilm X100T 16 MP
+                                                    Digital Camera (Silver)</a></h6>
                                                 <div class="product_price">$520.00<span>$590.00</span></div>
                                             </div>
                                         </div>
@@ -520,7 +555,8 @@
                                             </ul>
                                         </div>
                                         <div class="page_total"><span>of</span> 3</div>
-                                        <div id="next_page_1" class="page_next"><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
+                                        <div id="next_page_1" class="page_next"><a href="#"><i
+                                                class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
                                     </div>
 
                                 </div>
@@ -591,8 +627,11 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
-                        <input id="newsletter_email" type="email" placeholder="Your email" required="required" data-error="Valid email is required.">
-                        <button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">subscribe</button>
+                        <input id="newsletter_email" type="email" placeholder="Your email" required="required"
+                               data-error="Valid email is required.">
+                        <button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300"
+                                value="Submit">subscribe
+                        </button>
                     </div>
                 </div>
             </div>
@@ -628,7 +667,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="footer_nav_container">
-                        <div class="cr">©2018 All Rights Reserverd. Template by <a href="#">Colorlib</a> &amp; distributed by <a href="https://themewagon.com">ThemeWagon</a></div>
+                        <div class="cr">©2018 All Rights Reserverd. Template by <a href="#">Colorlib</a> &amp;
+                            distributed by <a href="https://themewagon.com">ThemeWagon</a></div>
                     </div>
                 </div>
             </div>
