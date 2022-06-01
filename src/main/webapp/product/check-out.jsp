@@ -52,7 +52,7 @@
                     </td>
                     <td data-th="Subtotal" class="text-center">${cartItem.price}</td>
                     <td class="actions" data-th="">
-                        <button  class="btn btn-danger btn-sm" onclick="xacNhanDelete(${product.id})"><i class="fa fa-trash-o">Xóa</i>
+                        <button  class="btn btn-danger btn-sm"><i class="fa fa-trash-o">Xóa</i>
                         </button>
                     </td>
                 </tr>
@@ -77,12 +77,6 @@
         </tfoot>
     </table>
 </div>
-<script>
-    function xacNhanDelete(id) {
-        if (confirm("Bạn có chắc muốn xóa")) {
-            document.getElementById("delete " + id).submit();
-        }
-    }
-</script>
+
 </body>
 </html>

@@ -139,6 +139,7 @@ public class AccountServiceImpl implements IAccountService {
     public boolean checkPass(String password, String comfirmPass) {
         boolean check = false;
             if (password.equals(comfirmPass)) {
+
                 check = true;
             }
         return check;

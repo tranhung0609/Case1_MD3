@@ -116,7 +116,7 @@ public class AccountServlet extends HttpServlet {
             session.setAttribute("currentAccount",AccountServiceImpl.currentAccount);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/coloshop-master/homepage.jsp");
             requestDispatcher.forward(request,response);
-        } else {
+        } else{
             response.sendRedirect("/accounts?action=login");
         }
     }
