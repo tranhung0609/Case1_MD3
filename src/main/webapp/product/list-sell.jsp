@@ -17,6 +17,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
                 crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="coloshop-master/styles/style.css" type="text/css">
+
 </head>
 
 <body>
@@ -24,8 +26,8 @@
 <div id="wrapper">
     <div class="headline">
         <h2>Product List</h2>
-        <form method="post">
-            <button><a href="/products?action=create" type="button" class="btn btn-outline-primary">Create</a></button>
+        <form  method="post">
+            <button class="btn-hover color-5"><a href="/products?action=create">Create</a></button>
         </form>
     </div>
     <ul class="products">
@@ -43,19 +45,22 @@
                             <div class="product-info">
                                 <a href="" class="product-name"><b>${product.name}</b></a>
                             </div>
-                            <div class="product-price">$${product.price}</div>
-                           <div> <a href="/products?action=edit&id=${product.id}" type="button"
-                               class="btn btn-outline-primary">Edit</a></div>
-                            <div
-                                    class="product-top"><a href="/products?action=delete&id=${product.id}" type="button"
-                                                           class="btn btn-outline-primary">Delete</a>
-                            </div>
                         </div>
+                    </div>
+                    <div class="product-price">$${product.price}</div>
+                    <div> <button class="btn-hover color-1" style="width: 80px; height: 30px ;margin: 5px;transform: translateX(70%)"><a href="/products?action=edit&id=${product.id}">Edit</a></button></div>
+                    <div
+                            class="product-top"><button class="btn-hover color-2" style="width: 80px;height: 30px; margin: 5px;transform: translateX(70%)"><a href="/products?action=delete&id=${product.id}">Delete</a></button>
                     </div>
                 </div>
             </li>
         </c:forEach>
     </ul>
 </div>
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<center>
+    <button class="btn-hover color-3"><a href="/products"  >Back</a></button>
+</center>
 </body>
 </html>

@@ -28,10 +28,20 @@ public class AccountServlet extends HttpServlet {
             case "signup":
                 showFormSignUp(request, response);
                 break;
+            case "infor-acc":
+                showAccForm(request,response);
+                break;
             case "update":
                 showFormUpdate(request, response);
                 break;
         }
+    }
+
+    private void showAccForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("account/my-account-details.jsp");
+        Account account = AccountServiceImpl.currentAccount;
+        request.setAttribute("acc",account);
+        requestDispatcher.forward(request,response);
     }
 
     private void showFormUpdate(HttpServletRequest request, HttpServletResponse response) {

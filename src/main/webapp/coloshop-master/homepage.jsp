@@ -76,7 +76,7 @@
                             </ul>
                             <ul class="navbar_user">
                                 <li> <a href="/products?action=search"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-                                <li><a href=""><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                                <li><a href="/accounts?action=infor-acc"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                                 <li class="checkout">
 <%--                                    Nhập đường dẫn vào check-out--%>
                                     <a href="#">
